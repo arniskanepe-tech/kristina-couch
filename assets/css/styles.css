@@ -390,22 +390,22 @@ h3 {
 }
 
 .icon-circle {
-  width: 76px;
-  height: 76px;
+  width: 84px;
+  height: 84px;
   border-radius: 50%;
   display: grid;
   place-items: center;
-  background: linear-gradient(180deg, #f7f3ed, #e7efe8);
-  color: var(--green);
-  border: 1px solid rgba(47, 91, 75, 0.12);
+  background: linear-gradient(180deg, #f6f3ed, #edf2ec);
+  color: #315d50;
+  border: 2px solid rgba(73, 104, 93, 0.12);
 }
 
 .icon-circle svg {
-  width: 34px;
-  height: 34px;
+  width: 42px;
+  height: 42px;
   stroke: currentColor;
   fill: none;
-  stroke-width: 1.7;
+  stroke-width: 1.85;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
