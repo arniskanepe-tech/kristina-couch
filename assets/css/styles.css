@@ -563,7 +563,7 @@ h3 {
 
 .check-list-large {
   display: grid;
-  gap: 18px;
+  gap: 22px;
 }
 
 .check-list-large li {
@@ -571,7 +571,7 @@ h3 {
   padding-left: 42px;
   color: #31443f;
   font-size: 1rem;
-  line-height: 1.45;
+  line-height: 1.62;
 }
 
 .check-list-large li::before {
