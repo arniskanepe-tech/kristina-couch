@@ -484,25 +484,23 @@ h3 {
   object-position: center center;
 }
 
-.journey-blur {
+.journey-blur-left {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 46%;
   z-index: 1;
   pointer-events: none;
-}
-
-.journey-blur-left {
   background:
     linear-gradient(
       90deg,
-      rgba(249, 244, 238, 0.95) 0%,
-      rgba(249, 244, 238, 0.88) 18%,
-      rgba(249, 244, 238, 0.72) 34%,
-      rgba(249, 244, 238, 0.34) 48%,
-      rgba(249, 244, 238, 0.08) 62%,
-      rgba(249, 244, 238, 0) 76%
+      rgba(249, 244, 238, 0.88) 0%,
+      rgba(249, 244, 238, 0.62) 38%,
+      rgba(249, 244, 238, 0.22) 70%,
+      rgba(249, 244, 238, 0.00) 100%
     );
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(3px);
 }
 
 .journey-overlay-grid {
