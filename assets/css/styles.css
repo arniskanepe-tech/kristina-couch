@@ -310,12 +310,6 @@ h3 {
     radial-gradient(circle at 18% 42%, rgba(255,255,255,0.22), transparent 28%);
 }
 
-.hero-copy {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
 .hero-copy-overlay {
   position: relative;
   z-index: 2;
@@ -391,10 +385,7 @@ h3 {
   line-height: 1;
 }
 
-.hero-grid,
-.hero-visual,
 .hero-blur {
-  display: none;
 }
 
 /* ---------- Intro / cards ---------- */
@@ -905,18 +896,6 @@ h3 {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .hero-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .hero-visual {
-    min-height: 460px;
-  }
-
-  h1 {
-    max-width: 100%;
-  }
-
   .timeline-step:not(:last-child)::after,
   .timeline-step::before {
     display: none;
@@ -930,25 +909,32 @@ h3 {
     border-radius: 24px 24px 0 0;
   }
 
-    .hero-copy-overlay {
+    .hero-card-overlay {
+    min-height: 500px;
+  }
+
+  .hero-copy-overlay {
     width: 100%;
-    min-height: auto;
-    padding: 34px 26px 30px;
+    min-height: 500px;
+    padding: 40px 28px 34px 28px;
+    justify-content: flex-start;
   }
 
-  .hero-card-overlay {
-    min-height: 520px;
+  .hero-copy-overlay h1 {
+    max-width: 100%;
+    font-size: clamp(3rem, 8vw, 4.4rem);
   }
 
-  .hero-blur-left {
+  .hero-soft {
     background:
       linear-gradient(
         180deg,
-        rgba(246, 241, 235, 0.90) 0%,
-        rgba(246, 241, 235, 0.72) 26%,
-        rgba(246, 241, 235, 0.25) 54%,
-        rgba(246, 241, 235, 0) 76%
+        rgba(245, 239, 231, 0.86) 0%,
+        rgba(245, 239, 231, 0.62) 26%,
+        rgba(245, 239, 231, 0.22) 48%,
+        rgba(245, 239, 231, 0.00) 72%
       );
+    backdrop-filter: blur(4px);
   }
 
   .journey-overlay-grid {
@@ -1008,12 +994,14 @@ h3 {
     display: inline-flex;
   }
 
-  .hero-copy {
-    padding: 42px 26px 30px;
+  .hero-copy-overlay {
+    padding: 34px 22px 30px 22px;
+    min-height: 470px;
   }
 
   .hero-actions {
     width: 100%;
+    gap: 14px;
   }
 
   .benefit-cards,
@@ -1104,10 +1092,6 @@ h3 {
     width: 100%;
   }
 
-    .hero-card-overlay {
-    min-height: 470px;
-  }
-
   .journey-wide-card {
     min-height: 420px;
   }
@@ -1116,5 +1100,23 @@ h3 {
   .image-copy-overlay {
     padding-left: 20px;
     padding-right: 20px;
+  }
+    .hero-card-overlay {
+    min-height: 430px;
+  }
+
+  .hero-copy-overlay {
+    min-height: 430px;
+    padding: 28px 18px 24px 18px;
+  }
+
+  .hero-copy-overlay h1 {
+    font-size: clamp(2.7rem, 12vw, 3.8rem);
+    margin-bottom: 18px;
+  }
+
+  .hero-lead {
+    font-size: 0.98rem;
+    max-width: 26ch;
   }
 }
