@@ -486,23 +486,23 @@ h3 {
 
 .journey-blur-left {
   position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  width: 82%;
+  inset: 0;
   z-index: 1;
   pointer-events: none;
+
   background:
     linear-gradient(
       90deg,
-      rgba(249, 244, 238, 0.94) 0%,
-      rgba(249, 244, 238, 0.84) 24%,
-      rgba(249, 244, 238, 0.64) 48%,
-      rgba(249, 244, 238, 0.34) 68%,
-      rgba(249, 244, 238, 0.14) 82%,
-      rgba(249, 244, 238, 0.03) 92%,
-      rgba(249, 244, 238, 0.00) 100%
+      rgba(249, 244, 238, 0.96) 0%,
+      rgba(249, 244, 238, 0.88) 20%,
+      rgba(249, 244, 238, 0.72) 40%,
+      rgba(249, 244, 238, 0.48) 60%,
+      rgba(249, 244, 238, 0.26) 75%,
+      rgba(249, 244, 238, 0.12) 88%,
+      rgba(249, 244, 238, 0.05) 96%,
+      rgba(249, 244, 238, 0.02) 100%
     );
+
   backdrop-filter: blur(5px);
 }
 
