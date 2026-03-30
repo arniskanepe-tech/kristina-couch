@@ -316,14 +316,14 @@ h3 {
 .hero-copy-overlay {
   position: relative;
   z-index: 2;
-  width: min(100%, 760px);
+  width: min(100%, 900px);
   min-height: 360px;
-  padding: 44px 0 34px 64px;
+  padding: 40px 0 28px 64px;
 }
 
 .hero-copy-overlay h1 {
-  max-width: 15.8ch;
-  font-size: clamp(3rem, 4.1vw, 4.35rem);
+  max-width: 24ch;
+  font-size: clamp(2.95rem, 3.85vw, 4.15rem);
   line-height: 1.02;
   margin-bottom: 18px;
 }
@@ -331,7 +331,7 @@ h3 {
 .hero-lead {
   font-size: 1.02rem;
   line-height: 1.55;
-  max-width: 48ch;
+  max-width: 52ch;
   margin: 0;
 }
 
