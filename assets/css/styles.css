@@ -268,7 +268,7 @@ h3 {
 }
 
 .hero-card-overlay {
-  min-height: 420px;
+  min-height: 360px;
   background: #efe8de;
 }
 
@@ -285,29 +285,32 @@ h3 {
   object-position: center center;
 }
 
-.hero-blur {
+.hero-soft {
   position: absolute;
   inset: 0;
   z-index: 1;
   pointer-events: none;
-}
-
-.hero-blur-left {
   background:
     linear-gradient(
       90deg,
-      rgba(246, 241, 235, 0.96) 0%,
-      rgba(246, 241, 235, 0.90) 18%,
-      rgba(246, 241, 235, 0.72) 34%,
-      rgba(246, 241, 235, 0.34) 48%,
-      rgba(246, 241, 235, 0.08) 62%,
-      rgba(246, 241, 235, 0) 74%
+      rgba(245, 239, 231, 0.82) 0%,
+      rgba(245, 239, 231, 0.58) 22%,
+      rgba(245, 239, 231, 0.18) 40%,
+      rgba(245, 239, 231, 0.00) 58%
     );
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(4px);
+}
+
+.hero-fade {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 18% 42%, rgba(255,255,255,0.22), transparent 28%);
 }
 
 .hero-copy {
-  padding: 70px 58px 58px 58px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -316,25 +319,81 @@ h3 {
 .hero-copy-overlay {
   position: relative;
   z-index: 2;
-  width: min(100%, 620px);
-  min-height: 420px;
-  padding: 48px 56px 44px 56px;
+  width: min(100%, 610px);
+  min-height: 360px;
+  padding: 46px 0 42px 64px;
+}
+
+.hero-copy-overlay h1 {
+  max-width: 10.6ch;
+  font-size: clamp(3.2rem, 4.8vw, 4.85rem);
+  line-height: 0.95;
+  margin-bottom: 24px;
 }
 
 .hero-lead {
-  font-size: 1.12rem;
-  max-width: 32ch;
+  font-size: 1rem;
+  line-height: 1.65;
+  max-width: 31ch;
+  margin: 0;
 }
 
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 18px;
-  margin-top: 34px;
+  margin-top: 28px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 56px;
+  padding: 0 28px;
+  border-radius: 18px;
+  border: 1px solid transparent;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: transform .18s ease, box-shadow .18s ease, background .18s ease, border-color .18s ease;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+.btn-primary {
+  background: var(--green);
+  color: #fff;
+  box-shadow: 0 10px 24px rgba(47, 91, 75, 0.16);
+}
+
+.btn-secondary {
+  background: rgba(255,255,255,0.08);
+  color: var(--green);
+  border: 1.5px solid rgba(47, 91, 75, 0.28);
+}
+
+.btn-light {
+  background: #f7f1e8;
+  color: var(--green);
+  box-shadow: 0 10px 18px rgba(0,0,0,.08);
+}
+
+.btn-icon {
+  font-size: 0.96rem;
+  line-height: 1;
+}
+
+.btn-arrow {
+  font-size: 1.15rem;
+  line-height: 1;
 }
 
 .hero-grid,
-.hero-visual {
+.hero-visual,
+.hero-blur {
   display: none;
 }
 
