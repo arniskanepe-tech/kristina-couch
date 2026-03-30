@@ -287,18 +287,21 @@ h3 {
 
 .hero-soft {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 46%;
   z-index: 1;
   pointer-events: none;
   background:
     linear-gradient(
       90deg,
-      rgba(245, 239, 231, 0.82) 0%,
-      rgba(245, 239, 231, 0.58) 22%,
-      rgba(245, 239, 231, 0.18) 40%,
-      rgba(245, 239, 231, 0.00) 58%
+      rgba(245, 239, 231, 0.86) 0%,
+      rgba(245, 239, 231, 0.62) 38%,
+      rgba(245, 239, 231, 0.22) 70%,
+      rgba(245, 239, 231, 0.00) 100%
     );
-  backdrop-filter: blur(4px);
+  backdrop-filter: blur(3px);
 }
 
 .hero-fade {
