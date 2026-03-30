@@ -528,6 +528,28 @@ h3 {
   padding-right: 34px;
 }
 
+.journey-right::before {
+  content: "";
+  position: absolute;
+  inset: 14px 8px 18px 8px;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      circle at 35% 40%,
+      rgba(255,255,255,0.38) 0%,
+      rgba(255,255,255,0.18) 38%,
+      rgba(255,255,255,0.06) 62%,
+      rgba(255,255,255,0.00) 100%
+    );
+  filter: blur(16px);
+}
+
+.journey-right > * {
+  position: relative;
+  z-index: 1;
+}
+
 .journey-col h2 {
   margin: 0 0 22px;
 }
@@ -575,7 +597,6 @@ h3 {
   display: grid;
   gap: 16px;
 }
-
 .feature-list-icons li {
   display: grid;
   grid-template-columns: 48px 1fr;
@@ -584,7 +605,10 @@ h3 {
   color: #27413b;
   font-size: 1rem;
   line-height: 1.45;
-  text-shadow: 0 1px 6px rgba(249, 244, 238, 0.75);
+  text-shadow:
+    0 0 10px rgba(255,255,255,0.95),
+    0 0 18px rgba(255,255,255,0.82),
+    0 1px 2px rgba(255,255,255,0.65);
 }
 
 .feature-icon {
