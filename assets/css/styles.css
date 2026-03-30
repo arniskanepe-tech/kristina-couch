@@ -428,7 +428,7 @@ h3 {
 }
 
 .benefit-card {
-  background: #transparent;
+  background: transparent;
   border: none;
   border-radius: 18px;
   min-height: 220px;
@@ -442,21 +442,21 @@ h3 {
   box-shadow: none;
 }
 .icon-circle {
-  width: 110px;
-  height: 110px;
-  border-radius: 50%;
   display: grid;
   place-items: center;
+  width: auto;
+  height: auto;
   background: transparent;
-  border: 2px solid rgba(47, 91, 75, 0.18);
+  border: none;
+  border-radius: 0;
 }
 
 .icon-circle svg {
-  width: 82px;
-  height: 82px;
+  width: 64px;
+  height: 64px;
   stroke: var(--green);
   fill: none;
-  stroke-width: 1.6;
+  stroke-width: 1.8;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
