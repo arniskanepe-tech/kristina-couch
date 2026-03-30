@@ -489,18 +489,21 @@ h3 {
   top: 0;
   left: 0;
   bottom: 0;
-  width: 46%;
+  width: 82%;
   z-index: 1;
   pointer-events: none;
   background:
     linear-gradient(
       90deg,
-      rgba(249, 244, 238, 0.88) 0%,
-      rgba(249, 244, 238, 0.62) 38%,
-      rgba(249, 244, 238, 0.22) 70%,
+      rgba(249, 244, 238, 0.94) 0%,
+      rgba(249, 244, 238, 0.84) 24%,
+      rgba(249, 244, 238, 0.64) 48%,
+      rgba(249, 244, 238, 0.34) 68%,
+      rgba(249, 244, 238, 0.14) 82%,
+      rgba(249, 244, 238, 0.03) 92%,
       rgba(249, 244, 238, 0.00) 100%
     );
-  backdrop-filter: blur(3px);
+  backdrop-filter: blur(5px);
 }
 
 .journey-overlay-grid {
