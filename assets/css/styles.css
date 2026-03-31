@@ -668,22 +668,22 @@ h3 {
 .timeline-step:not(:last-child)::after {
   content: "";
   position: absolute;
-  top: 108px;
-  left: calc(50% + 78px);
-  width: calc(100% - 156px);
+  top: 84px;
+  left: calc(50% + 84px);
+  width: calc(100% - 168px);
   height: 2px;
-  background: rgba(47, 91, 75, 0.42);
+  background: rgba(47, 91, 75, 0.50);
 }
 
-.timeline-step::before {
+.timeline-step:not(:last-child)::before {
   content: "";
   position: absolute;
-  top: 101px;
-  right: 6px;
-  width: 16px;
-  height: 16px;
-  border-top: 2.5px solid rgba(47, 91, 75, 0.62);
-  border-right: 2.5px solid rgba(47, 91, 75, 0.62);
+  top: 77px;
+  right: 0;
+  width: 18px;
+  height: 18px;
+  border-top: 2px solid rgba(47, 91, 75, 0.68);
+  border-right: 2px solid rgba(47, 91, 75, 0.68);
   transform: rotate(45deg);
   background: transparent;
 }
