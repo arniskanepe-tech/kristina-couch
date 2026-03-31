@@ -672,19 +672,19 @@ h3 {
   left: calc(50% + 84px);
   width: calc(100% - 168px);
   height: 2px;
-  background: rgba(47, 91, 75, 0.50);
+  background: rgba(47, 91, 75, 0.56);
 }
 
 .timeline-step:not(:last-child)::before {
   content: "";
   position: absolute;
-  top: 77px;
-  right: 0;
-  width: 18px;
-  height: 18px;
-  border-top: 2px solid rgba(47, 91, 75, 0.68);
-  border-right: 2px solid rgba(47, 91, 75, 0.68);
-  transform: rotate(45deg);
+  top: 84px;
+  left: calc(100% - 84px);
+  width: 22px;
+  height: 22px;
+  border-top: 2px solid rgba(47, 91, 75, 0.72);
+  border-right: 2px solid rgba(47, 91, 75, 0.72);
+  transform: translateY(-50%) rotate(45deg);
   background: transparent;
 }
 
