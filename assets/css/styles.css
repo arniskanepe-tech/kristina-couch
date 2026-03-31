@@ -713,21 +713,20 @@ h3 {
 }
 
 .step-image {
-  width: 126px;
-  height: 126px;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
   overflow: hidden;
-  margin: 20px auto 12px;
-  border: 0;
-  box-shadow: none;
+  margin: 0 auto 18px;
   background: transparent;
 }
 
 .step-image img {
-  width: 100%;
-  height: 100%;
+  width: 112%;
+  height: 112%;
   object-fit: cover;
-  border-radius: 50%;
+  object-position: center;
+  transform: scale(1.06);
 }
 
 .timeline-step h3 {
