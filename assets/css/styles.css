@@ -863,13 +863,13 @@ h3 {
 .cta-inner::before {
   content: "";
   position: absolute;
-  left: -6px;
-  bottom: -4px;
-  width: 250px;
-  height: 112px;
+  left: -10px;
+  bottom: -6px;
+  width: 180px;
+  height: 86px;
   background: url("../images/leaf-left.png") no-repeat left bottom / contain;
-  opacity: 0.14;
-  filter: blur(2px);
+  opacity: 0.11;
+  filter: blur(1px);
   pointer-events: none;
   z-index: 0;
 }
@@ -877,13 +877,13 @@ h3 {
 .cta-inner::after {
   content: "";
   position: absolute;
-  right: -4px;
-  bottom: -2px;
-  width: 138px;
-  height: 118px;
+  right: -6px;
+  bottom: -4px;
+  width: 168px;
+  height: 132px;
   background: url("../images/leaf-right.png") no-repeat right bottom / contain;
-  opacity: 0.16;
-  filter: blur(1px);
+  opacity: 0.20;
+  filter: blur(0.5px);
   pointer-events: none;
   z-index: 0;
 }
@@ -892,14 +892,15 @@ h3 {
   position: relative;
   z-index: 1;
   max-width: 620px;
-  margin-left: 330px;
+  margin-left: 370px;
+  padding-top: 8px;
 }
 
 .cta-inner h2 {
   color: white;
-  margin: 0 0 8px;
-  max-width: 13ch;
-  line-height: 0.98;
+  margin: 0 0 10px;
+  max-width: 12ch;
+  line-height: 0.94;
 }
 
 .cta-inner p {
