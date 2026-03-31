@@ -900,7 +900,7 @@ h3 {
 .cta-inner h2 {
   color: white;
   margin: 0 0 10px;
-  max-width: 9ch;
+  max-width: none;
   line-height: 0.92;
 }
 
