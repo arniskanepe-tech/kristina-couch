@@ -671,25 +671,18 @@ h3 {
   top: 84px;
   left: calc(50% + 84px);
   width: calc(100% - 168px);
-  height: 2px;
-  background: rgba(47, 91, 75, 0.50);
-}
-
-.timeline-step:not(:last-child)::before {
-  content: "";
-  position: absolute;
-  top: 84px;
-  left: calc(50% + 84px + (100% - 168px) - 30px);
-  width: 30px;
   height: 20px;
   transform: translateY(-50%);
   background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 20' fill='none'><path d='M1 10H22' stroke='%232f5b4b' stroke-width='2.4' stroke-linecap='round'/><path d='M16 3L24 10L16 17' stroke='%232f5b4b' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+  background-size: 100% 100%;
+  background-position: left center;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 220 20' fill='none'><path d='M1 10H198' stroke='%23516f63' stroke-width='2.2' stroke-linecap='round'/><path d='M184 2L198 10L184 18' stroke='%23516f63' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/></svg>");
 }
 
-.timeline-step:last-child::before,
+.timeline-step:not(:last-child)::before {
+  display: none;
+}
+
 .timeline-step:last-child::after {
   display: none;
 }
