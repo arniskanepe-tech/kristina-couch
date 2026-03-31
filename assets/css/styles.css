@@ -752,13 +752,18 @@ h3 {
 .bottom-wrap::after {
   content: "";
   position: absolute;
-  right: -18px;
-  bottom: 8px;
-  width: 190px;
-  height: 220px;
+
+  right: 40px;        /* 🔥 bija ārā — ienesam iekšā */
+  bottom: -20px;      /* 🔥 nedaudz zemāk, lai var kāpt uz augšu */
+
+  width: 420px;       /* 🔥 x2.5 izmērs */
+  height: 480px;
+
   background: url("../images/leaf-right.png") no-repeat right bottom / contain;
-  opacity: 0.18;
+
+  opacity: 0.25;
   filter: blur(0.5px);
+
   pointer-events: none;
   z-index: 2;
 }
