@@ -251,7 +251,7 @@ h3 {
 
 .section-title.center {
   text-align: center;
-  margin-bottom: 24px;
+  margin-bottom: 10px;
 }
 
 /* ---------- Hero ---------- */
@@ -648,80 +648,97 @@ h3 {
 
 .timeline-band .container {
   background: #f8f4ee;
-  padding-top: 26px;
-  padding-bottom: 30px;
+  padding-top: 18px;
+  padding-bottom: 18px;
 }
 
 .timeline {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 18px;
+  gap: 10px;
+  align-items: start;
 }
 
 .timeline-step {
   position: relative;
   text-align: center;
-  padding: 28px 12px 10px;
+  padding: 18px 10px 6px;
 }
-
 .timeline-step:not(:last-child)::after {
   content: "";
   position: absolute;
-  right: -10px;
-  top: 98px;
-  width: calc(100% - 120px);
+  top: 92px;
+  left: calc(50% + 70px);
+  width: calc(100% - 140px);
   height: 2px;
-  background: rgba(47, 91, 75, 0.28);
+  background: rgba(47, 91, 75, 0.24);
 }
 
 .timeline-step::before {
   content: "";
   position: absolute;
-  right: -10px;
-  top: 93px;
+  top: 87px;
+  right: 14px;
   width: 10px;
   height: 10px;
-  border-top: 2px solid rgba(47, 91, 75, 0.28);
-  border-right: 2px solid rgba(47, 91, 75, 0.28);
+  border-top: 2px solid rgba(47, 91, 75, 0.24);
+  border-right: 2px solid rgba(47, 91, 75, 0.24);
   transform: rotate(45deg);
 }
 
 .timeline-step:last-child::before {
   display: none;
 }
-
 .step-badge {
   position: absolute;
-  top: 0;
+  top: 8px;
   left: 50%;
   transform: translateX(-50%);
-  width: 42px;
-  height: 42px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   display: grid;
   place-items: center;
-  background: #8ca39b;
+  background: #9aafa7;
   color: white;
   font-weight: 800;
-  box-shadow: 0 10px 20px rgba(47,91,75,.16);
-  z-index: 2;
+  font-size: 1.1rem;
+  box-shadow: none;
+  z-index: 3;
 }
 
+.timeline-step:first-child .step-badge {
+  background: #496a5d;
+}
 .step-image {
-  width: 120px;
-  height: 120px;
+  width: 116px;
+  height: 116px;
   border-radius: 50%;
   overflow: hidden;
-  margin: 22px auto 16px;
-  border: 6px solid rgba(255,255,255,.96);
-  box-shadow: var(--shadow);
-  background: linear-gradient(135deg, #ddd2c4, #efe7de);
+  margin: 24px auto 12px;
+  border: 0;
+  box-shadow: none;
+  background: transparent;
 }
-
 .step-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  border-radius: 50%;
+}
+
+.timeline-step h3 {
+  margin: 0 0 6px;
+  font-size: 1rem;
+  line-height: 1.25;
+  font-weight: 700;
+}
+
+.timeline-step p {
+  margin: 0 auto;
+  max-width: 26ch;
+  font-size: 0.95rem;
+  line-height: 1.35;
 }
 
 /* ---------- Bottom wrapper ---------- */
