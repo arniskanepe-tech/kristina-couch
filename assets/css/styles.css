@@ -749,27 +749,6 @@ h3 {
   background: #f5efe7;
 }
 
-.left-overlay-plant {
-  position: absolute;
-  left: -12px;
-  bottom: 0;
-  width: 420px;
-  opacity: 0.16;
-  filter: blur(9px);
-  z-index: 0;
-  pointer-events: none;
-}
-
-.right-overlay-leaf {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  width: 300px;
-  opacity: 0.24;
-  z-index: 0;
-  pointer-events: none;
-}
-
 /* ---------- About ---------- */
 
 .about-band {
@@ -871,50 +850,74 @@ h3 {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 20px;
-  min-height: 192px;
-  padding: 42px 42px;
-  border-radius: 30px 30px 0 0;
+  gap: 32px;
+  min-height: 168px;
+  padding: 28px 42px 26px;
+  border-radius: 0 0 30px 30px;
   background:
-    linear-gradient(90deg, rgba(255,255,255,.06) 0%, rgba(255,255,255,0) 28%),
-    linear-gradient(90deg, #3f6458 0%, #12362f 42%, #3f6458 100%);
+    linear-gradient(90deg, rgba(255,255,255,.05) 0%, rgba(255,255,255,0) 24%),
+    linear-gradient(90deg, #496a5d 0%, #153a32 38%, #426558 100%);
   color: white;
 }
 
 .cta-inner::before {
   content: "";
   position: absolute;
-  left: -12px;
-  bottom: 0;
-  width: 360px;
-  height: 240px;
+  left: -6px;
+  bottom: -4px;
+  width: 250px;
+  height: 112px;
   background: url("../images/leaf-left.png") no-repeat left bottom / contain;
   opacity: 0.14;
-  filter: blur(9px);
+  filter: blur(2px);
   pointer-events: none;
+  z-index: 0;
 }
 
-.cta-inner h2 {
-  color: white;
-  margin-bottom: 6px;
-  max-width: 14ch;
-}
-
-.cta-inner p {
-  color: rgba(255,255,255,.86);
-  margin: 0;
+.cta-inner::after {
+  content: "";
+  position: absolute;
+  right: -4px;
+  bottom: -2px;
+  width: 138px;
+  height: 118px;
+  background: url("../images/leaf-right.png") no-repeat right bottom / contain;
+  opacity: 0.16;
+  filter: blur(1px);
+  pointer-events: none;
+  z-index: 0;
 }
 
 .cta-copy {
   position: relative;
   z-index: 1;
+  max-width: 620px;
+  margin-left: 330px;
+}
+
+.cta-inner h2 {
+  color: white;
+  margin: 0 0 8px;
+  max-width: 13ch;
+  line-height: 0.98;
+}
+
+.cta-inner p {
+  color: rgba(255,255,255,.92);
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.35;
 }
 
 .cta-inner .btn {
   position: relative;
   z-index: 1;
-  min-width: 240px;
+  min-width: 248px;
+  min-height: 54px;
+  padding: 0 30px;
+  border-radius: 18px;
   box-shadow: none;
+  margin-right: 42px;
 }
 
 /* ---------- Other inner pages support ---------- */
@@ -982,14 +985,6 @@ h3 {
 
   .brand-script {
     font-size: 2.5rem;
-  }
-
-  .left-overlay-plant {
-    width: 340px;
-  }
-
-  .right-overlay-leaf {
-    width: 250px;
   }
 }
 
@@ -1133,16 +1128,6 @@ h3 {
     padding-top: 18px;
   }
 
-  .left-overlay-plant {
-    width: 250px;
-    opacity: 0.12;
-  }
-
-  .right-overlay-leaf {
-    width: 190px;
-    opacity: 0.18;
-  }
-
   .cta-inner {
     flex-direction: column;
     align-items: flex-start;
@@ -1196,15 +1181,6 @@ h3 {
   .timeline-band .container {
     padding-top: 20px;
     padding-bottom: 20px;
-  }
-
-  .left-overlay-plant {
-    width: 190px;
-    bottom: 8px;
-  }
-
-  .right-overlay-leaf {
-    width: 150px;
   }
 
   .btn {
