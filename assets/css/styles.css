@@ -668,28 +668,31 @@ h3 {
 .timeline-step:not(:last-child)::after {
   content: "";
   position: absolute;
-  top: 92px;
-  left: calc(50% + 74px);
-  width: calc(100% - 148px);
+  top: 108px;
+  left: calc(50% + 78px);
+  width: calc(100% - 156px);
   height: 2px;
-  background: rgba(47, 91, 75, 0.24);
+  background: rgba(47, 91, 75, 0.42);
 }
 
 .timeline-step::before {
   content: "";
   position: absolute;
-  top: 87px;
+  top: 101px;
   right: 6px;
-  width: 10px;
-  height: 10px;
-  border-top: 2px solid rgba(47, 91, 75, 0.24);
-  border-right: 2px solid rgba(47, 91, 75, 0.24);
+  width: 16px;
+  height: 16px;
+  border-top: 2.5px solid rgba(47, 91, 75, 0.62);
+  border-right: 2.5px solid rgba(47, 91, 75, 0.62);
   transform: rotate(45deg);
+  background: transparent;
 }
 
-.timeline-step:last-child::before {
+.timeline-step:last-child::before,
+.timeline-step:last-child::after {
   display: none;
 }
+
 .step-badge {
   position: absolute;
   top: 8px;
