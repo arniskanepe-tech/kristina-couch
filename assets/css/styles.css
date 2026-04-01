@@ -883,21 +883,21 @@ h3 {
 }
 
 .about-icon {
-  width: 42px;
-  height: 42px;
+  width: 46px;
+  height: 46px;
   border-radius: 12px;
   border: 1px solid rgba(47, 91, 75, 0.15);
   display: grid;
   place-items: center;
-  background: #f1ebe3;
+  background: #f5efe7;
 }
 
 .about-icon svg {
-  width: 20px;
-  height: 20px;
+  width: 26px;
+  height: 26px;
   stroke: var(--green);
   fill: none;
-  stroke-width: 1.8;
+  stroke-width: 1.5;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
