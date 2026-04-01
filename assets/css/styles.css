@@ -749,21 +749,20 @@ h3 {
   background: #f5efe7;
 }
 
-.bottom-wrap::after {
+.site-footer-cta .container {
+  position: relative;
+}
+
+.site-footer-cta .container::after {
   content: "";
   position: absolute;
-
-  right: 0px;        /* 🔥 bija ārā — ienesam iekšā */
-  bottom: 0px;      /* 🔥 nedaudz zemāk, lai var kāpt uz augšu */
-
-  width: 420px;       /* 🔥 x2.5 izmērs */
+  right: 0;
+  bottom: -6px;
+  width: 420px;
   height: 620px;
-
   background: url("../images/leaf-right.png") no-repeat right bottom / contain;
-
   opacity: 0.25;
   filter: blur(0.5px);
-
   pointer-events: none;
   z-index: 2;
 }
