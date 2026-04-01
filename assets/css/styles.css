@@ -753,11 +753,11 @@ h3 {
   content: "";
   position: absolute;
 
-  right: 40px;        /* 🔥 bija ārā — ienesam iekšā */
-  bottom: -20px;      /* 🔥 nedaudz zemāk, lai var kāpt uz augšu */
+  right: 0px;        /* 🔥 bija ārā — ienesam iekšā */
+  bottom: 0px;      /* 🔥 nedaudz zemāk, lai var kāpt uz augšu */
 
   width: 420px;       /* 🔥 x2.5 izmērs */
-  height: 520px;
+  height: 620px;
 
   background: url("../images/leaf-right.png") no-repeat right bottom / contain;
 
