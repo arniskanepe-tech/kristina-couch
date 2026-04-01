@@ -783,16 +783,16 @@ h3 {
 
 .about-band .container {
   background: #f7f3ed;
-  padding: 34px 34px 30px;
-  border-radius: 28px;
-  margin-top: 18px;
+  padding: 28px 34px 28px;
+  border-radius: 0;
+  margin-top: 0;
 }
 
 .about-grid {
   display: grid;
-  grid-template-columns: 0.58fr 1.08fr 0.82fr;
+  grid-template-columns: 0.56fr 1.22fr 0.82fr;
   gap: 34px;
-  align-items: stretch;
+  align-items: center;
 }
 
 .about-photo,
@@ -817,18 +817,36 @@ h3 {
 }
 
 .about-copy {
-  padding: 10px 6px 10px 4px;
+  padding: 0 4px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .about-copy .lead,
 .about-copy .about-paragraph {
-  max-width: 34ch;
+  max-width: 42ch;
+}
+
+.about-copy h2 {
+  margin-bottom: 14px;
+}
+
+.about-copy .lead {
+  margin: 0 0 14px;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.about-copy .about-paragraph {
+  margin: 0 0 14px;
+  line-height: 1.55;
 }
 
 .signature {
-  font-size: 2.2rem;
+  font-size: 1.35rem;
   color: var(--green);
-  margin-top: 14px;
+  margin-top: 6px;
   line-height: 1;
 }
 
