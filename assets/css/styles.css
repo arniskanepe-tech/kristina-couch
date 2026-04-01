@@ -887,11 +887,11 @@ h3 {
 }
 
 .about-icon svg {
-  width: 30px;
-  height: 30px;
+  width: 34px;
+  height: 34px;
   stroke: var(--green);
   fill: none;
-  stroke-width: 1.5;
+  stroke-width: 1.45;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
