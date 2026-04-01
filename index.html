@@ -12,6 +12,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Allura&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/styles.css" />
+
+  <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+  <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
 </head>
 <body>
   <div class="page-shell">
@@ -67,10 +70,12 @@
         </p>
 
         <div class="hero-actions">
-          <a class="btn btn-primary" href="cenas.html">
-           <span class="btn-icon btn-icon-calendar btn-icon-calendar--white" aria-hidden="true"></span>
-            Pieteikt konsultāciju
-          </a>
+          <a class="btn btn-primary"
+   href="#"
+   onclick="Calendly.initPopupWidget({url: 'https://calendly.com/arnis-kanepe/30min'}); return false;">
+  <span class="btn-icon btn-icon-calendar btn-icon-calendar--white" aria-hidden="true"></span>
+  Pieteikt konsultāciju
+</a>
 
           <a class="btn btn-secondary" href="par-koucingu.html">
             Kas ir koučings?
