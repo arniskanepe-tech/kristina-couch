@@ -863,12 +863,6 @@ h3 {
   gap: 16px;
 }
 
-.about-facts li {
-  position: relative;
-  padding-left: 42px;
-  color: #475751;
-}
-
 .about-facts ul {
   display: grid;
   gap: 18px;
@@ -876,9 +870,9 @@ h3 {
 
 .about-facts li {
   display: grid;
-  grid-template-columns: 44px 1fr;
+  grid-template-columns: 34px 1fr;
   align-items: center;
-  gap: 14px;
+  gap: 16px;
   color: #475751;
 }
 
