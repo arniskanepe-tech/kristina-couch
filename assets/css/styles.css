@@ -869,19 +869,37 @@ h3 {
   color: #475751;
 }
 
-.about-facts li::before {
-  content: "✦";
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 28px;
-  height: 28px;
-  border-radius: 10px;
+.about-facts ul {
+  display: grid;
+  gap: 18px;
+}
+
+.about-facts li {
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  align-items: center;
+  gap: 14px;
+  color: #475751;
+}
+
+.about-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  border: 1px solid rgba(47, 91, 75, 0.15);
   display: grid;
   place-items: center;
-  background: #f8f3ec;
-  border: 1px solid rgba(47,91,75,.12);
-  color: var(--green);
+  background: #f1ebe3;
+}
+
+.about-icon svg {
+  width: 20px;
+  height: 20px;
+  stroke: var(--green);
+  fill: none;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 /* ---------- Footer CTA only ---------- */
