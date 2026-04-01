@@ -877,8 +877,8 @@ h3 {
 }
 
 .about-icon {
-  width: 34px;
-  height: 34px;
+  width: 48px;
+  height: 48px;
   display: grid;
   place-items: center;
   background: transparent;
@@ -887,11 +887,11 @@ h3 {
 }
 
 .about-icon svg {
-  width: 34px;
-  height: 34px;
+  width: 42px;
+  height: 42px;
   stroke: var(--green);
-  fill: none;
-  stroke-width: 2.2;
+  fill: #2a4d41;
+  stroke-width: 2.6;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
