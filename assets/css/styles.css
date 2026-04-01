@@ -829,7 +829,7 @@ h3 {
 
 /* kopīgais visiem tekstiem */
 .about-copy p {
-  max-width: 42ch;
+  max-width: 50ch;
   margin: 0 0 14px;
   line-height: 1.55;
 }
