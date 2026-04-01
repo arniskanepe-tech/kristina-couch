@@ -823,24 +823,20 @@ h3 {
   justify-content: center;
 }
 
-.about-copy .lead,
-.about-copy .about-paragraph {
-  max-width: 42ch;
-}
-
 .about-copy h2 {
   margin-bottom: 14px;
 }
 
-.about-copy .lead {
-  margin: 0 0 14px;
-  font-size: 1rem;
-  line-height: 1.5;
-}
-
-.about-copy .about-paragraph {
+/* kopīgais visiem tekstiem */
+.about-copy p {
+  max-width: 42ch;
   margin: 0 0 14px;
   line-height: 1.55;
+}
+
+/* tikai pirmajam tekstam */
+.about-copy .lead {
+  font-size: 1rem;
 }
 
 .signature {
