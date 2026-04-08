@@ -159,12 +159,19 @@
     </p>
 
 <div class="inline-booking-box">
-  <div
-    class="calendly-inline-widget"
-    data-url="https://calendly.com/arnis-kanepe/30min?hide_gdpr_banner=1"
-    style="width:100%;height:860px;">
-  </div>
+  <div id="calendly-inline-test"></div>
 </div>
+
+<script>
+  window.addEventListener("load", function () {
+    Calendly.initInlineWidget({
+      url: "https://calendly.com/arnis-kanepe/30min?hide_gdpr_banner=1",
+      parentElement: document.getElementById("calendly-inline-test"),
+      prefill: {},
+      utm: {}
+    });
+  });
+</script>
   </div>
 </section>
       
