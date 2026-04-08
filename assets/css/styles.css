@@ -1160,14 +1160,6 @@ h3 {
   justify-content: center;
 }
 
-.calendly-inline-widget {
-  width: 100%;
-  max-width: 1380px;
-  border-radius: 20px;
-  overflow: hidden;
-  background: #fff;
-}
-
 #calendly-inline-test {
   width: 100%;
   max-width: 1320px;
@@ -1289,8 +1281,6 @@ h3 {
   .consult-dynamic-info {
     grid-template-columns: 1fr;
   }
-}
-  
 }
 
 @media (max-width: 860px) {
