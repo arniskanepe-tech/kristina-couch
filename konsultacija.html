@@ -184,17 +184,17 @@
     </main>
   </div>
 
-  <script>
-    const CLEAN_POPUP_URL = "https://calendly.com/arnis-kanepe/30min?hide_gdpr_banner=1&hide_event_type_details=1";
+ <script>
+  const CLEAN_POPUP_URL = "https://calendly.com/arnis-kanepe/30min?hide_gdpr_banner=1";
 
-    window.addEventListener("load", function () {
-      Calendly.initInlineWidget({
-        url: "https://calendly.com/arnis-kanepe/30min?hide_gdpr_banner=1&hide_event_type_details=1",
-        parentElement: document.getElementById("calendly-inline-test"),
-        prefill: {},
-        utm: {}
-      });
+  window.addEventListener("load", function () {
+    Calendly.initInlineWidget({
+      url: "https://calendly.com/arnis-kanepe/30min?hide_gdpr_banner=1",
+      parentElement: document.getElementById("calendly-inline-test"),
+      prefill: {},
+      utm: {}
     });
+  });
 
     const consultMap = {
       intro: {
