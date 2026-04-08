@@ -1152,62 +1152,15 @@ h3 {
   background: #f7f3ed;
   padding: 48px 42px;
 }
-
 .inline-booking-box {
   margin-top: 26px;
-  background: rgba(251, 248, 244, 0.72);
-  border: 1px solid rgba(47, 91, 75, 0.08);
-  border-radius: 24px;
-  padding: 28px;
-}
-
-.inline-booking-layout {
-  display: grid;
-  grid-template-columns: 0.9fr 1.35fr;
-  gap: 28px;
-  align-items: start;
-}
-
-.inline-booking-copy {
-  padding-top: 8px;
-}
-
-.inline-booking-copy h3 {
-  margin: 0 0 10px;
-  font-size: 1.6rem;
-  color: var(--green);
-}
-
-.inline-booking-lead {
-  margin: 0 0 18px;
-  color: var(--muted);
-  font-size: 1rem;
-  line-height: 1.55;
-}
-
-.inline-booking-text p {
-  margin: 0 0 12px;
-  color: #495953;
-  line-height: 1.65;
-}
-
-.inline-booking-text ul {
-  margin: 0 0 18px;
-  padding-left: 20px;
-  color: #495953;
-  line-height: 1.7;
-}
-
-.inline-booking-text li {
-  margin-bottom: 8px;
-}
-
-.inline-booking-calendar {
-  min-width: 0;
+  display: flex;
+  justify-content: center;
 }
 
 .calendly-inline-widget {
   width: 100%;
+  max-width: 1180px;
   border-radius: 20px;
   overflow: hidden;
   background: #fff;
@@ -1327,9 +1280,6 @@ h3 {
   .consult-dynamic-info {
     grid-template-columns: 1fr;
   }
-
-  .inline-booking-layout {
-  grid-template-columns: 1fr;
 }
   
 }
@@ -1412,9 +1362,9 @@ h3 {
 .inline-booking-band .container {
   padding: 28px 20px;
 }
-
+  
 .inline-booking-box {
-  padding: 20px;
+  margin-top: 20px;
 }
   
 }
@@ -1513,12 +1463,4 @@ h3 {
     flex-direction: column;
     align-items: flex-start;
   }
-  
-  .inline-booking-box {
-  padding: 18px;
-}
-
-.inline-booking-copy h3 {
-  font-size: 1.35rem;
-}
 }
