@@ -1152,6 +1152,7 @@ h3 {
   background: #f7f3ed;
   padding: 24px 12px;
 }
+
 .inline-booking-box {
   margin-top: 18px;
   padding: 0;
@@ -1165,6 +1166,13 @@ h3 {
   border-radius: 20px;
   overflow: hidden;
   background: #fff;
+}
+
+#calendly-inline-test {
+  width: 100%;
+  max-width: 1320px;
+  margin: 0 auto;
+  min-height: 860px;
 }
 
 /* ---------- Responsive ---------- */
