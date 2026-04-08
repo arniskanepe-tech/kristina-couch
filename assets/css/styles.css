@@ -1155,16 +1155,18 @@ h3 {
 
 .inline-booking-box {
   margin-top: 18px;
-  padding: 0;
+  padding: 0 0 320px;
   display: flex;
   justify-content: center;
+  overflow: visible;
 }
 
 #calendly-inline-test {
   transform: scale(1.35);
   transform-origin: top center;
-  width: 74%; /* kompensē scale (100 / 1.35 ≈ 74) */
+  width: 74%;
   margin: 0 auto;
+  min-height: 1160px;
 }
 
 /* ---------- Responsive ---------- */
