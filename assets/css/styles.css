@@ -1150,7 +1150,7 @@ h3 {
 
 .inline-booking-band .container {
   background: #f7f3ed;
-  padding: 28px 20px;
+  padding: 24px 12px;
 }
 .inline-booking-box {
   margin-top: 18px;
@@ -1161,7 +1161,7 @@ h3 {
 
 .calendly-inline-widget {
   width: 100%;
-  max-width: 1180px;
+  max-width: 1380px;
   border-radius: 20px;
   overflow: hidden;
   background: #fff;
