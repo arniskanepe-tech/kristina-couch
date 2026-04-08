@@ -1161,10 +1161,10 @@ h3 {
 }
 
 #calendly-inline-test {
-  width: 100%;
-  max-width: 1320px;
+  transform: scale(1.35);
+  transform-origin: top center;
+  width: 74%; /* kompensē scale (100 / 1.35 ≈ 74) */
   margin: 0 auto;
-  min-height: 860px;
 }
 
 /* ---------- Responsive ---------- */
