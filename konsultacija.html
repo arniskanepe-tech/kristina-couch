@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="lv">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Konsultācija — Kristīna Kaņepe</title>
+  <meta name="description" content="Izvēlies sev piemērotāko konsultācijas veidu un rezervē laiku sarunai." />
+  <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="assets/css/styles.css" />
+
+  <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+  <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+</head>
+<body>
+  <div class="page-shell">
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="index.html" aria-label="Sākumlapa">
+          <span class="brand-script">Kristīna Kaņepe</span>
+          <span class="brand-sub">KOUČINGS &amp; CILVĒKU ATTĪSTĪBA</span>
+        </a>
+
+        <nav class="main-nav" aria-label="Galvenā navigācija">
+          <a href="index.html">Sākums</a>
+          <a href="par-koucingu.html">Par koučingu</a>
+          <a href="pakalpojumi.html">Pakalpojumi</a>
+          <a href="cenas.html">Cenas</a>
+          <a class="active" href="konsultacija.html">Konsultācija</a>
+        </nav>
+
+        <div class="lang-switch" aria-label="Valodas izvēle">
+          <a class="active" href="#">LV</a>
+          <a href="#">RU</a>
+          <a href="#">EN</a>
+        </div>
+
+        <button class="nav-toggle" aria-label="Atvērt izvēlni" type="button">
+          <span></span>
+        </button>
+      </div>
+    </header>
+
+    <main class="main-stack consult-page">
+      <section class="consult-hero band">
+        <div class="container">
+          <div class="consult-hero-box">
+            <p class="consult-kicker">Konsultācija</p>
+            <h1>Izvēlies sev piemērotāko sarunas formātu</h1>
+            <p class="lead consult-lead">
+              Šeit testējam divus pieteikšanās risinājumus — kartīšu variantu un dropdown variantu — lai saprastu, kas vizuāli un UX ziņā izskatās labāk.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="consult-section band">
+        <div class="container">
+          <div class="consult-section-head">
+            <h2>1. variants — trīs kartītes</h2>
+            <p class="lead">
+              Katrs konsultācijas veids ir redzams uzreiz. Šis variants ir skaidrs un vizuāli stiprāks.
+            </p>
+          </div>
+
+          <div class="consult-cards">
+            <article class="consult-card">
+              <div class="consult-card-top">
+                <h3>Ievadkonsultācija</h3>
+                <span class="consult-duration">30 min</span>
+              </div>
+              <p>Pirmajai sarunai, lai saprastu Tavu situāciju, virzienu un to, vai koučings šobrīd Tev ir piemērots.</p>
+              <a class="btn btn-primary"
+                 href="#"
+                 onclick="Calendly.initPopupWidget({url: 'https://calendly.com/arnis-kanepe/30min'}); return false;">
+                <span class="btn-icon btn-icon-calendar btn-icon-calendar--white" aria-hidden="true"></span>
+                Izvēlēties laiku
+              </a>
+            </article>
+
+            <article class="consult-card">
+              <div class="consult-card-top">
+                <h3>Atkārtota konsultācija</h3>
+                <span class="consult-duration">60 min</span>
+              </div>
+              <p>Tiem, kas jau turpina darbu un vēlas nākamo soli, dziļāku skaidrību un konkrētu progresu.</p>
+              <a class="btn btn-primary"
+                 href="#"
+                 onclick="Calendly.initPopupWidget({url: 'https://calendly.com/arnis-kanepe/30min'}); return false;">
+                <span class="btn-icon btn-icon-calendar btn-icon-calendar--white" aria-hidden="true"></span>
+                Izvēlēties laiku
+              </a>
+            </article>
+
+            <article class="consult-card">
+              <div class="consult-card-top">
+                <h3>Garā sesija</h3>
+                <span class="consult-duration">90 min</span>
+              </div>
+              <p>Padziļinātam darbam, sarežģītākām tēmām un situācijām, kur vajag vairāk telpas un dziļuma.</p>
+              <a class="btn btn-primary"
+                 href="#"
+                 onclick="Calendly.initPopupWidget({url: 'https://calendly.com/arnis-kanepe/30min'}); return false;">
+                <span class="btn-icon btn-icon-calendar btn-icon-calendar--white" aria-hidden="true"></span>
+                Izvēlēties laiku
+              </a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="consult-section band consult-section-alt">
+        <div class="container">
+          <div class="consult-section-head">
+            <h2>2. variants — dropdown izvēle</h2>
+            <p class="lead">
+              Lietotājs vispirms izvēlas konsultācijas veidu, un tad zemāk atveras attiecīgais pieteikšanās bloks.
+            </p>
+          </div>
+
+          <div class="consult-select-wrap">
+            <label class="consult-label" for="consultType">Izvēlies konsultācijas veidu</label>
+            <select id="consultType" class="consult-select">
+              <option value="">-- Izvēlies --</option>
+              <option value="intro">Ievadkonsultācija (30 min)</option>
+              <option value="repeat">Atkārtota konsultācija (60 min)</option>
+              <option value="deep">Garā sesija (90 min)</option>
+            </select>
+          </div>
+
+          <div id="consultDynamicInfo" class="consult-dynamic-info" hidden>
+            <div class="consult-dynamic-copy">
+              <h3 id="consultDynamicTitle"></h3>
+              <p id="consultDynamicText"></p>
+            </div>
+            <div class="consult-dynamic-action">
+              <a id="consultDynamicButton"
+                 class="btn btn-primary"
+                 href="#"
+                 onclick="return false;">
+                <span class="btn-icon btn-icon-calendar btn-icon-calendar--white" aria-hidden="true"></span>
+                Atvērt pieteikšanos
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="bottom-wrap">
+        <footer class="site-footer-cta">
+          <div class="container">
+            <div class="cta-inner">
+              <div class="cta-copy">
+                <h2>Sper soli pretī skaidrībai un izaugsmei!</h2>
+                <p>Rezervē pirmo konsultāciju un atklāj, kā koučings var palīdzēt tieši tev.</p>
+              </div>
+              <a class="btn btn-light"
+                 href="#"
+                 onclick="Calendly.initPopupWidget({url: 'https://calendly.com/arnis-kanepe/30min'}); return false;">
+                <span class="btn-icon btn-icon-calendar btn-icon-calendar--green" aria-hidden="true"></span>
+                Pieteikt konsultāciju
+              </a>
+            </div>
+          </div>
+        </footer>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const consultMap = {
+      intro: {
+        title: "Ievadkonsultācija (30 min)",
+        text: "Pirmā saruna, lai saprastu Tavu situāciju, iezīmētu iespējamos virzienus un saprastu, vai koučings šobrīd Tev der.",
+        url: "https://calendly.com/arnis-kanepe/30min"
+      },
+      repeat: {
+        title: "Atkārtota konsultācija (60 min)",
+        text: "Turpinājuma saruna tiem, kas jau ir procesā un vēlas iet dziļāk ar nākamajiem soļiem un konkrētu progresu.",
+        url: "https://calendly.com/arnis-kanepe/30min"
+      },
+      deep: {
+        title: "Garā sesija (90 min)",
+        text: "Padziļināts formāts sarežģītākām tēmām, kad nepieciešams vairāk telpas, struktūras un skaidrības.",
+        url: "https://calendly.com/arnis-kanepe/30min"
+      }
+    };
+
+    const select = document.getElementById("consultType");
+    const infoBox = document.getElementById("consultDynamicInfo");
+    const title = document.getElementById("consultDynamicTitle");
+    const text = document.getElementById("consultDynamicText");
+    const button = document.getElementById("consultDynamicButton");
+
+    if (select) {
+      select.addEventListener("change", function () {
+        const value = this.value;
+        if (!consultMap[value]) {
+          infoBox.hidden = true;
+          return;
+        }
+
+        const item = consultMap[value];
+        title.textContent = item.title;
+        text.textContent = item.text;
+        button.setAttribute(
+          "onclick",
+          `Calendly.initPopupWidget({url: '${item.url}'}); return false;`
+        );
+        infoBox.hidden = false;
+      });
+    }
+  </script>
+</body>
+</html>
