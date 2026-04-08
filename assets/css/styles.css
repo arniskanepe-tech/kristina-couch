@@ -1150,10 +1150,11 @@ h3 {
 
 .inline-booking-band .container {
   background: #f7f3ed;
-  padding: 48px 42px;
+  padding: 28px 20px;
 }
 .inline-booking-box {
-  margin-top: 26px;
+  margin-top: 18px;
+  padding: 0;
   display: flex;
   justify-content: center;
 }
