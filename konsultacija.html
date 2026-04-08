@@ -151,30 +151,17 @@
       </section>
 
       <section class="band inline-booking-band">
-  <div class="container">
+        <div class="container">
+          <h2>3. variants — pieteikšanās uzreiz lapā</h2>
+          <p class="lead">
+            Lietotājs uzreiz redz pieejamos laikus un var pieteikties bez papildus logiem.
+          </p>
 
-    <h2>3. variants — pieteikšanās uzreiz lapā</h2>
-    <p class="lead">
-      Lietotājs uzreiz redz pieejamos laikus un var pieteikties bez papildus logiem.
-    </p>
-
-<div class="inline-booking-box">
-  <div id="calendly-inline-test"></div>
-</div>
-
-<script>
-  window.addEventListener("load", function () {
-    Calendly.initInlineWidget({
-      url: "https://calendly.com/arnis-kanepe/30min?hide_gdpr_banner=1&hide_event_type_details=1",
-      parentElement: document.getElementById("calendly-inline-test"),
-      prefill: {},
-      utm: {}
-    });
-  });
-</script>
-  </div>
-</section>
-      
+          <div class="inline-booking-box">
+            <div id="calendly-inline-test"></div>
+          </div>
+        </div>
+      </section>
 
       <section class="bottom-wrap">
         <footer class="site-footer-cta">
@@ -198,53 +185,34 @@
   </div>
 
   <script>
-    <script>
-  const CLEAN_POPUP_URL = "https://calendly.com/arnis-kanepe/30min?hide_gdpr_banner=1&hide_event_type_details=1";
+    const CLEAN_POPUP_URL = "https://calendly.com/arnis-kanepe/30min?hide_gdpr_banner=1&hide_event_type_details=1";
 
-  const consultMap = {
-    intro: {
-      title: "Ievadkonsultācija (30 min)",
-      text: "Pirmā saruna, lai saprastu Tavu situāciju, iezīmētu iespējamos virzienus un saprastu, vai koučings šobrīd Tev der.",
-      url: CLEAN_POPUP_URL
-    },
-    repeat: {
-      title: "Atkārtota konsultācija (60 min)",
-      text: "Turpinājuma saruna tiem, kas jau ir procesā un vēlas iet dziļāk ar nākamajiem soļiem un konkrētu progresu.",
-      url: CLEAN_POPUP_URL
-    },
-    deep: {
-      title: "Garā sesija (90 min)",
-      text: "Padziļināts formāts sarežģītākām tēmām, kad nepieciešams vairāk telpas, struktūras un skaidrības.",
-      url: CLEAN_POPUP_URL
-    }
-  };
-
-  const select = document.getElementById("consultType");
-  const infoBox = document.getElementById("consultDynamicInfo");
-  const title = document.getElementById("consultDynamicTitle");
-  const text = document.getElementById("consultDynamicText");
-  const button = document.getElementById("consultDynamicButton");
-
-  if (select) {
-    select.addEventListener("change", function () {
-      const value = this.value;
-      if (!consultMap[value]) {
-        infoBox.hidden = true;
-        return;
-      }
-
-      const item = consultMap[value];
-      title.textContent = item.title;
-      text.textContent = item.text;
-      button.setAttribute(
-        "onclick",
-        `Calendly.initPopupWidget({url: '${item.url}'}); return false;`
-      );
-      infoBox.hidden = false;
+    window.addEventListener("load", function () {
+      Calendly.initInlineWidget({
+        url: "https://calendly.com/arnis-kanepe/30min?hide_gdpr_banner=1&hide_event_type_details=1",
+        parentElement: document.getElementById("calendly-inline-test"),
+        prefill: {},
+        utm: {}
+      });
     });
-  }
-</script>
-  
+
+    const consultMap = {
+      intro: {
+        title: "Ievadkonsultācija (30 min)",
+        text: "Pirmā saruna, lai saprastu Tavu situāciju, iezīmētu iespējamos virzienus un saprastu, vai koučings šobrīd Tev der.",
+        url: CLEAN_POPUP_URL
+      },
+      repeat: {
+        title: "Atkārtota konsultācija (60 min)",
+        text: "Turpinājuma saruna tiem, kas jau ir procesā un vēlas iet dziļāk ar nākamajiem soļiem un konkrētu progresu.",
+        url: CLEAN_POPUP_URL
+      },
+      deep: {
+        title: "Garā sesija (90 min)",
+        text: "Padziļināts formāts sarežģītākām tēmām, kad nepieciešams vairāk telpas, struktūras un skaidrības.",
+        url: CLEAN_POPUP_URL
+      }
+    };
 
     const select = document.getElementById("consultType");
     const infoBox = document.getElementById("consultDynamicInfo");
@@ -255,15 +223,12 @@
     if (select) {
       select.addEventListener("change", function () {
         const value = this.value;
+
         if (!consultMap[value]) {
           infoBox.hidden = true;
           return;
         }
 
-<script>
-  const CLEAN_POPUP_URL = "https://calendly.com/arnis-kanepe/30min?hide_gdpr_banner=1&hide_event_type_details=1";
-</script>
-        
         const item = consultMap[value];
         title.textContent = item.title;
         text.textContent = item.text;
