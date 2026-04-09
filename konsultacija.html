@@ -74,9 +74,7 @@
                 <span class="consult-duration">30 min</span>
               </div>
               <p>Pirmajai sarunai, lai saprastu Tavu situāciju, virzienu un to, vai koučings šobrīd Tev ir piemērots.</p>
-              <a class="btn btn-primary"
-                 href="#"
-                 onclick="openCalendlyModal(CLEAN_POPUP_URL); return false;">
+              <a class="btn btn-primary" href="#" onclick="openCalendlyModal(CLEAN_POPUP_URL); return false;">
                 <span class="btn-icon btn-icon-calendar btn-icon-calendar--white" aria-hidden="true"></span>
                 Izvēlēties laiku
               </a>
@@ -88,9 +86,7 @@
                 <span class="consult-duration">60 min</span>
               </div>
               <p>Tiem, kas jau turpina darbu un vēlas nākamo soli, dziļāku skaidrību un konkrētu progresu.</p>
-              <a class="btn btn-primary"
-                 href="#"
-                 onclick="openCalendlyModal(CLEAN_POPUP_URL); return false;">
+              <a class="btn btn-primary" href="#" onclick="openCalendlyModal(CLEAN_POPUP_URL); return false;">
                 <span class="btn-icon btn-icon-calendar btn-icon-calendar--white" aria-hidden="true"></span>
                 Izvēlēties laiku
               </a>
@@ -102,9 +98,7 @@
                 <span class="consult-duration">90 min</span>
               </div>
               <p>Padziļinātam darbam, sarežģītākām tēmām un situācijām, kur vajag vairāk telpas un dziļuma.</p>
-              <a class="btn btn-primary"
-                 href="#"
-                 onclick="openCalendlyModal(CLEAN_POPUP_URL); return false;">
+              <a class="btn btn-primary" href="#" onclick="openCalendlyModal(CLEAN_POPUP_URL); return false;">
                 <span class="btn-icon btn-icon-calendar btn-icon-calendar--white" aria-hidden="true"></span>
                 Izvēlēties laiku
               </a>
@@ -138,10 +132,7 @@
               <p id="consultDynamicText"></p>
             </div>
             <div class="consult-dynamic-action">
-              <a id="consultDynamicButton"
-                 class="btn btn-primary"
-                 href="#"
-                 onclick="return false;">
+              <a id="consultDynamicButton" class="btn btn-primary" href="#" onclick="return false;">
                 <span class="btn-icon btn-icon-calendar btn-icon-calendar--white" aria-hidden="true"></span>
                 Atvērt pieteikšanos
               </a>
@@ -171,9 +162,7 @@
                 <h2>Sper soli pretī skaidrībai un izaugsmei!</h2>
                 <p>Rezervē pirmo konsultāciju un atklāj, kā koučings var palīdzēt tieši tev.</p>
               </div>
-              <a class="btn btn-light"
-                 href="#"
-                 onclick="openCalendlyModal(CLEAN_POPUP_URL); return false;">
+              <a class="btn btn-light" href="#" onclick="openCalendlyModal(CLEAN_POPUP_URL); return false;">
                 <span class="btn-icon btn-icon-calendar btn-icon-calendar--green" aria-hidden="true"></span>
                 Pieteikt konsultāciju
               </a>
@@ -185,49 +174,17 @@
   </div>
 
   <!-- CUSTOM MODAL -->
-  <div id="custom-calendly-modal" class="custom-modal" hidden>
+  <div id="custom-calendly-modal" class="custom-modal" hidden aria-hidden="true">
     <div class="custom-modal-overlay" onclick="closeCalendlyModal()"></div>
 
-    <div class="custom-modal-content">
-      <button class="custom-modal-close" type="button" onclick="closeCalendlyModal()">✕</button>
+    <div class="custom-modal-content" role="dialog" aria-modal="true" aria-label="Konsultācijas rezervācija">
+      <button class="custom-modal-close" type="button" onclick="closeCalendlyModal()" aria-label="Aizvērt rezervācijas logu">✕</button>
       <div id="custom-calendly-inline"></div>
     </div>
   </div>
 
   <script>
     const CLEAN_POPUP_URL = "https://calendly.com/arnis-kanepe/30min?hide_gdpr_banner=1";
-
-    function openCalendlyModal(url = CLEAN_POPUP_URL) {
-      const modal = document.getElementById("custom-calendly-modal");
-      const container = document.getElementById("custom-calendly-inline");
-
-      modal.hidden = false;
-      container.innerHTML = "";
-
-      Calendly.initInlineWidget({
-        url,
-        parentElement: container,
-        prefill: {},
-        utm: {}
-      });
-    }
-
-    function closeCalendlyModal() {
-      const modal = document.getElementById("custom-calendly-modal");
-      const container = document.getElementById("custom-calendly-inline");
-
-      modal.hidden = true;
-      container.innerHTML = "";
-    }
-
-    window.addEventListener("load", function () {
-      Calendly.initInlineWidget({
-        url: CLEAN_POPUP_URL,
-        parentElement: document.getElementById("calendly-inline-test"),
-        prefill: {},
-        utm: {}
-      });
-    });
 
     const consultMap = {
       intro: {
@@ -247,31 +204,95 @@
       }
     };
 
-    const select = document.getElementById("consultType");
-    const infoBox = document.getElementById("consultDynamicInfo");
-    const title = document.getElementById("consultDynamicTitle");
-    const text = document.getElementById("consultDynamicText");
-    const button = document.getElementById("consultDynamicButton");
+    function waitForCalendly(callback, attempts = 60) {
+      if (window.Calendly && typeof window.Calendly.initInlineWidget === "function") {
+        callback();
+        return;
+      }
 
-    if (select) {
-      select.addEventListener("change", function () {
-        const value = this.value;
+      if (attempts <= 0) {
+        console.warn("Calendly nav ielādējies.");
+        return;
+      }
 
-        if (!consultMap[value]) {
-          infoBox.hidden = true;
-          return;
-        }
+      setTimeout(() => waitForCalendly(callback, attempts - 1), 200);
+    }
 
-        const item = consultMap[value];
-        title.textContent = item.title;
-        text.textContent = item.text;
-        button.setAttribute(
-          "onclick",
-          `openCalendlyModal('${item.url}'); return false;`
-        );
-        infoBox.hidden = false;
+    function openCalendlyModal(url = CLEAN_POPUP_URL) {
+      const modal = document.getElementById("custom-calendly-modal");
+      const container = document.getElementById("custom-calendly-inline");
+
+      if (!modal || !container) return;
+
+      modal.hidden = false;
+      modal.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+      container.innerHTML = "";
+
+      waitForCalendly(() => {
+        Calendly.initInlineWidget({
+          url,
+          parentElement: container,
+          prefill: {},
+          utm: {}
+        });
       });
     }
+
+    function closeCalendlyModal() {
+      const modal = document.getElementById("custom-calendly-modal");
+      const container = document.getElementById("custom-calendly-inline");
+
+      if (!modal || !container) return;
+
+      modal.hidden = true;
+      modal.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+      container.innerHTML = "";
+    }
+
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape") {
+        closeCalendlyModal();
+      }
+    });
+
+    window.addEventListener("DOMContentLoaded", function () {
+      const inlineTarget = document.getElementById("calendly-inline-test");
+      const select = document.getElementById("consultType");
+      const infoBox = document.getElementById("consultDynamicInfo");
+      const title = document.getElementById("consultDynamicTitle");
+      const text = document.getElementById("consultDynamicText");
+      const button = document.getElementById("consultDynamicButton");
+
+      if (inlineTarget) {
+        waitForCalendly(() => {
+          Calendly.initInlineWidget({
+            url: CLEAN_POPUP_URL,
+            parentElement: inlineTarget,
+            prefill: {},
+            utm: {}
+          });
+        });
+      }
+
+      if (select && infoBox && title && text && button) {
+        select.addEventListener("change", function () {
+          const value = this.value;
+
+          if (!consultMap[value]) {
+            infoBox.hidden = true;
+            return;
+          }
+
+          const item = consultMap[value];
+          title.textContent = item.title;
+          text.textContent = item.text;
+          button.setAttribute("onclick", `openCalendlyModal('${item.url}'); return false;`);
+          infoBox.hidden = false;
+        });
+      }
+    });
   </script>
 </body>
 </html>
