@@ -1586,10 +1586,14 @@ h3 {
     height: 58px;
   }
 
-  .timeline,
-  .simple-grid {
-    grid-template-columns: 1fr;
-  }
+  .timeline {
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+
+.simple-grid {
+  grid-template-columns: 1fr;
+}
 
   .timeline-step {
     padding-top: 18px;
@@ -1753,6 +1757,11 @@ h3 {
     padding: 26px 20px;
   }
 
+.timeline {
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+  
   .about-band .container,
   .timeline-band .container {
     padding-top: 20px;
