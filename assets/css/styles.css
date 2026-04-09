@@ -1184,7 +1184,7 @@ h3 {
   border-radius: 26px;
   overflow: hidden;
   box-shadow: 0 28px 80px rgba(0, 0, 0, 0.22);
-  padding: 8px;
+  padding: 1px;
 }
 
 .custom-modal-close {
