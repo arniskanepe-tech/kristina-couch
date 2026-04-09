@@ -476,6 +476,11 @@ h3 {
   display: block;
 }
 
+.icon-circle .icon-compass {
+  width: 104px;
+  height: 104px;
+}
+
 /* ---------- Journey wide block ---------- */
 
 .journey-band .container {
