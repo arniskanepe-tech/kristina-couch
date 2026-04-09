@@ -1215,7 +1215,7 @@ h3 {
   transform-origin: top center;
   width: 82%;
   min-height: 980px;
-  margin: 0 auto;
+  margin: -18px; auto;
   overflow: hidden;
   border-radius: 18px;
   background: #f7f3ed;
