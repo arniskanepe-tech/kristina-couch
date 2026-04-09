@@ -1054,6 +1054,9 @@ h3 {
 .header-social--whatsapp {
   background: rgba(47, 91, 75, 0.12);
 }
+.header-social--phone {
+  background: rgba(47, 91, 75, 0.10);
+}
 
 /* ---------- Footer / CTA contacts ---------- */
 
@@ -1545,7 +1548,7 @@ h3 {
 
   /* svarīgi: benefit-cards te PALIEK 2 kolonnās */
   .benefit-cards {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 14px;
     padding-left: 0;
   }
@@ -1672,10 +1675,48 @@ h3 {
   .container {
     width: min(calc(100% - 20px), var(--container));
   }
+.header-contact {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
 
-  .header-contact {
-    display: none;
-  }
+.header-phone {
+  display: none;
+}
+
+.header-social {
+  width: 36px;
+  height: 36px;
+}
+
+.header-social svg {
+  width: 22px;
+  height: 22px;
+}
+
+  .header-inner {
+  grid-template-columns: 1fr auto auto;
+  gap: 10px;
+}
+
+.brand {
+  min-width: 0;
+}
+
+.brand-script {
+  font-size: 1.9rem;
+}
+
+.brand-sub {
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+}
+
+.nav-toggle {
+  width: 42px;
+  height: 42px;
+}
 
   .cta-contact {
     flex-direction: column;
