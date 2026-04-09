@@ -1211,11 +1211,11 @@ h3 {
 }
 
 #custom-calendly-inline {
-  transform: scale(1.22);
+  transform: translateY(-20px) scale(1.22);
   transform-origin: top center;
   width: 82%;
   min-height: 980px;
-  margin: -18px; auto;
+  margin: 0 auto;
   overflow: hidden;
   border-radius: 18px;
   background: #f7f3ed;
