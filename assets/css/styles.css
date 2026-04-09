@@ -1171,26 +1171,27 @@ h3 {
 .custom-modal-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(24, 36, 31, 0.46);
+  background: rgba(24, 36, 31, 0.36);
   backdrop-filter: blur(5px);
 }
 
 .custom-modal-content {
   position: relative;
-  width: min(1320px, 96vw);
+  width: min(1380px, 96vw);
   height: min(920px, 92vh);
   margin: 4vh auto;
-  background: #ffffff;
+  background: #f7f3ed;
   border-radius: 26px;
   overflow: hidden;
   box-shadow: 0 28px 80px rgba(0, 0, 0, 0.22);
+  padding: 18px;
 }
 
 .custom-modal-close {
   position: absolute;
   top: 14px;
   right: 16px;
-  z-index: 20;
+  z-index: 10;
   width: 42px;
   height: 42px;
   border: 1px solid rgba(47, 91, 75, 0.14);
@@ -1212,13 +1213,21 @@ h3 {
 #custom-calendly-inline {
   width: 100%;
   height: 100%;
+  min-height: 100%;
+  overflow: hidden;
+  border-radius: 18px;
+  background: #f7f3ed;
 }
 
+/* svarīgais: piespiežam Calendly widget aizņemt visu modāli */
 #custom-calendly-inline .calendly-inline-widget,
 #custom-calendly-inline iframe {
   width: 100% !important;
   height: 100% !important;
-  min-height: 920px !important;
+  min-height: 100% !important;
+  border: 0 !important;
+  display: block;
+  background: #f7f3ed !important;
 }
 
 /* ---------- Responsive ---------- */
@@ -1430,9 +1439,10 @@ h3 {
 
   .custom-modal-content {
     width: min(96vw, 1100px);
-    height: min(90vh, 820px);
-    margin: 24px auto;
+    height: min(94vh, 860px);
+    margin: 3vh auto;
     border-radius: 20px;
+    padding: 10px;
   }
 
   .custom-modal-close {
@@ -1570,6 +1580,7 @@ h3 {
     height: 100vh;
     margin: 0;
     border-radius: 0;
+    padding: 0;
   }
 
   .custom-modal-overlay {
@@ -1584,8 +1595,7 @@ h3 {
   }
 
   #custom-calendly-inline {
-    width: 100%;
-    height: 100%;
+    border-radius: 0;
   }
 
   #custom-calendly-inline .calendly-inline-widget,
