@@ -1670,74 +1670,66 @@ h3 {
     min-height: 760px !important;
   }
 }
-
 @media (max-width: 560px) {
   .container {
     width: min(calc(100% - 20px), var(--container));
   }
-.header-contact {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.header-phone {
-  display: none;
-}
-
-.header-social {
-  width: 36px;
-  height: 36px;
-}
-
-.header-social svg {
-  width: 22px;
-  height: 22px;
-}
 
   .header-inner {
-  grid-template-columns: 1fr auto auto;
-  gap: 10px;
-}
-
-.brand {
-  min-width: 0;
-}
-
-.brand-script {
-  font-size: 1.9rem;
-}
-
-.brand-sub {
-  font-size: 0.62rem;
-  letter-spacing: 0.14em;
-}
-
-.nav-toggle {
-  width: 42px;
-  height: 42px;
-}
-
-  .cta-contact {
-    flex-direction: column;
-    align-items: flex-start;
+    grid-template-columns: 1fr auto auto;
+    align-items: start;
+    gap: 10px;
+    min-height: auto;
+    padding-top: 12px;
+    padding-bottom: 12px;
   }
 
-  .cta-socials {
-    gap: 8px;
+  .brand {
+    min-width: 0;
+    max-width: 165px;
   }
 
   .brand-script {
-    font-size: 2rem;
+    font-size: 1.75rem;
+    line-height: 0.9;
   }
 
   .brand-sub {
-    font-size: 0.65rem;
-    letter-spacing: 0.18em;
+    font-size: 0.52rem;
+    letter-spacing: 0.14em;
+    line-height: 1.35;
   }
 
   .lang-switch {
     display: none;
+  }
+
+  .header-contact {
+    display: grid;
+    grid-template-columns: repeat(2, 36px);
+    gap: 6px;
+    justify-content: end;
+    align-content: start;
+  }
+
+  .header-phone {
+    display: none;
+  }
+
+  .header-social {
+    width: 36px;
+    height: 36px;
+  }
+
+  .header-social svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .nav-toggle {
+    width: 42px;
+    height: 42px;
+    align-self: start;
   }
 
   h1 {
@@ -1797,10 +1789,10 @@ h3 {
     max-width: 26ch;
   }
 
-  /* uz maza telefona joprojām 2 kolonnas, bet kompaktāk */
   .benefit-cards {
     grid-template-columns: repeat(2, 1fr);
     gap: 10px;
+    padding-left: 0;
   }
 
   .benefit-card {
@@ -1835,6 +1827,15 @@ h3 {
   .icon-circle--compass .icon-compass {
     width: 50px;
     height: 50px;
+  }
+
+  .cta-contact {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .cta-socials {
+    gap: 8px;
   }
 
   .consult-hero-box {
