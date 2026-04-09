@@ -477,15 +477,18 @@ h3 {
 }
 
 .icon-circle--compass {
-  width: 164px;
-  height: 164px;
-  flex: 0 0 164px;
+  width: 96px;
+  height: 96px;
+  flex: 0 0 96px;
+  overflow: visible;
 }
 
 .icon-circle--compass .icon-compass {
-  width: 164px;
-  height: 164px;
+  width: 72px;
+  height: 72px;
   max-width: none;
+  transform: scale(1.45);
+  transform-origin: center center;
 }
 
 /* ---------- Journey wide block ---------- */
