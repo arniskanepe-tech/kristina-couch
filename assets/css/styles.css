@@ -1690,7 +1690,7 @@ h3 {
 
   .brand {
   min-width: 0;
-  max-width: 165px;
+  max-width: 200px;
   display: flex;
   flex-direction: column;
   justify-content: center;
