@@ -76,7 +76,7 @@
               <p>Pirmajai sarunai, lai saprastu Tavu situāciju, virzienu un to, vai koučings šobrīd Tev ir piemērots.</p>
               <a class="btn btn-primary"
                  href="#"
-                 onclick="openCalendlyModal(); return false;">
+                 onclick="openCalendlyModal(CLEAN_POPUP_URL); return false;">
                 <span class="btn-icon btn-icon-calendar btn-icon-calendar--white" aria-hidden="true"></span>
                 Izvēlēties laiku
               </a>
@@ -90,7 +90,7 @@
               <p>Tiem, kas jau turpina darbu un vēlas nākamo soli, dziļāku skaidrību un konkrētu progresu.</p>
               <a class="btn btn-primary"
                  href="#"
-                 onclick="openCalendlyModal(); return false;">
+                 onclick="openCalendlyModal(CLEAN_POPUP_URL); return false;">
                 <span class="btn-icon btn-icon-calendar btn-icon-calendar--white" aria-hidden="true"></span>
                 Izvēlēties laiku
               </a>
@@ -104,7 +104,7 @@
               <p>Padziļinātam darbam, sarežģītākām tēmām un situācijām, kur vajag vairāk telpas un dziļuma.</p>
               <a class="btn btn-primary"
                  href="#"
-                 onclick="openCalendlyModal(); return false;">
+                 onclick="openCalendlyModal(CLEAN_POPUP_URL); return false;">
                 <span class="btn-icon btn-icon-calendar btn-icon-calendar--white" aria-hidden="true"></span>
                 Izvēlēties laiku
               </a>
@@ -173,7 +173,7 @@
               </div>
               <a class="btn btn-light"
                  href="#"
-                 onclick="openCalendlyModal(); return false;">
+                 onclick="openCalendlyModal(CLEAN_POPUP_URL); return false;">
                 <span class="btn-icon btn-icon-calendar btn-icon-calendar--green" aria-hidden="true"></span>
                 Pieteikt konsultāciju
               </a>
@@ -184,36 +184,50 @@
     </main>
   </div>
 
-<script>
-function openCalendlyModal() {
-  const modal = document.getElementById("custom-calendly-modal");
-  const container = document.getElementById("custom-calendly-inline");
+  <!-- CUSTOM MODAL -->
+  <div id="custom-calendly-modal" class="custom-modal" hidden>
+    <div class="custom-modal-overlay" onclick="closeCalendlyModal()"></div>
 
-  modal.hidden = false;
-  container.innerHTML = ""; // reset
+    <div class="custom-modal-content">
+      <button class="custom-modal-close" type="button" onclick="closeCalendlyModal()">✕</button>
+      <div id="custom-calendly-inline"></div>
+    </div>
+  </div>
 
-  Calendly.initInlineWidget({
-    url: "https://calendly.com/arnis-kanepe/30min?hide_gdpr_banner=1",
-    parentElement: container
-  });
-}
+  <script>
+    const CLEAN_POPUP_URL = "https://calendly.com/arnis-kanepe/30min?hide_gdpr_banner=1";
 
-function closeCalendlyModal() {
-  document.getElementById("custom-calendly-modal").hidden = true;
-}
-</script>
-  
- <script>
-  const CLEAN_POPUP_URL = "https://calendly.com/arnis-kanepe/30min?hide_gdpr_banner=1";
+    function openCalendlyModal(url = CLEAN_POPUP_URL) {
+      const modal = document.getElementById("custom-calendly-modal");
+      const container = document.getElementById("custom-calendly-inline");
 
-  window.addEventListener("load", function () {
-    Calendly.initInlineWidget({
-      url: "https://calendly.com/arnis-kanepe/30min?hide_gdpr_banner=1",
-      parentElement: document.getElementById("calendly-inline-test"),
-      prefill: {},
-      utm: {}
+      modal.hidden = false;
+      container.innerHTML = "";
+
+      Calendly.initInlineWidget({
+        url,
+        parentElement: container,
+        prefill: {},
+        utm: {}
+      });
+    }
+
+    function closeCalendlyModal() {
+      const modal = document.getElementById("custom-calendly-modal");
+      const container = document.getElementById("custom-calendly-inline");
+
+      modal.hidden = true;
+      container.innerHTML = "";
+    }
+
+    window.addEventListener("load", function () {
+      Calendly.initInlineWidget({
+        url: CLEAN_POPUP_URL,
+        parentElement: document.getElementById("calendly-inline-test"),
+        prefill: {},
+        utm: {}
+      });
     });
-  });
 
     const consultMap = {
       intro: {
@@ -253,20 +267,11 @@ function closeCalendlyModal() {
         text.textContent = item.text;
         button.setAttribute(
           "onclick",
-          `Calendly.initPopupWidget({url: '${item.url}'}); return false;`
+          `openCalendlyModal('${item.url}'); return false;`
         );
         infoBox.hidden = false;
       });
     }
   </script>
-  <div id="custom-calendly-modal" class="custom-modal" hidden>
-  <div class="custom-modal-overlay"></div>
-
-  <div class="custom-modal-content">
-    <button class="custom-modal-close" onclick="closeCalendlyModal()">✕</button>
-
-    <div id="custom-calendly-inline"></div>
-  </div>
-</div>
 </body>
 </html>
