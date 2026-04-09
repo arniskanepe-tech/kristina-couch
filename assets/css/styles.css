@@ -523,6 +523,7 @@ h3 {
 
   backdrop-filter: blur(5px);
 }
+
 .journey-overlay-grid {
   position: relative;
   z-index: 2;
@@ -606,7 +607,6 @@ h3 {
   color: #fff;
   font-size: 0.9rem;
   font-weight: 800;
-
   box-shadow: none;
   border: none;
 }
@@ -615,6 +615,7 @@ h3 {
   display: grid;
   gap: 16px;
 }
+
 .feature-list-icons li {
   display: grid;
   grid-template-columns: 48px 1fr;
@@ -636,7 +637,6 @@ h3 {
   display: grid;
   place-items: center;
   background: var(--green);
-
   border: none;
   box-shadow: none;
 }
@@ -729,8 +729,6 @@ h3 {
   width: 100%;
   height: 100%;
   object-fit: cover;
-
-  /* svarīgi */
   object-position: center;
 }
 
@@ -827,7 +825,6 @@ h3 {
   margin-bottom: 14px;
 }
 
-/* kopīgais visiem tekstiem */
 .about-copy p {
   max-width: 65ch;
   margin: 0 0 14px;
@@ -836,7 +833,6 @@ h3 {
   line-height: 1.55;
 }
 
-/* tikai pirmajam tekstam */
 .about-copy .lead {
   font-size: 1rem;
 }
@@ -857,11 +853,6 @@ h3 {
   list-style: none;
   padding: 0;
   margin: 0;
-  display: grid;
-  gap: 16px;
-}
-
-.about-facts ul {
   display: grid;
   gap: 18px;
 }
@@ -1161,6 +1152,14 @@ h3 {
   overflow: visible;
 }
 
+#calendly-inline-test {
+  transform: scale(1.35);
+  transform-origin: top center;
+  width: 74%;
+  margin: 0 auto;
+  min-height: 1160px;
+}
+
 /* === CUSTOM CALENDLY MODAL === */
 
 .custom-modal {
@@ -1178,8 +1177,9 @@ h3 {
 
 .custom-modal-content {
   position: relative;
-  width: min(1280px, 94vw);
-  margin: 38px auto;
+  width: min(1320px, 96vw);
+  height: min(920px, 92vh);
+  margin: 4vh auto;
   background: #ffffff;
   border-radius: 26px;
   overflow: hidden;
@@ -1190,7 +1190,7 @@ h3 {
   position: absolute;
   top: 14px;
   right: 16px;
-  z-index: 5;
+  z-index: 20;
   width: 42px;
   height: 42px;
   border: 1px solid rgba(47, 91, 75, 0.14);
@@ -1210,12 +1210,15 @@ h3 {
 }
 
 #custom-calendly-inline {
-  transform: scale(1.16);
-  transform-origin: top center;
-  width: 86.2%;
-  margin: 0 auto;
-  min-height: 980px;
-  padding-top: 8px;
+  width: 100%;
+  height: 100%;
+}
+
+#custom-calendly-inline .calendly-inline-widget,
+#custom-calendly-inline iframe {
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 920px !important;
 }
 
 /* ---------- Responsive ---------- */
@@ -1267,39 +1270,39 @@ h3 {
     border-radius: 24px 24px 0 0;
   }
 
-    .hero-card-overlay {
+  .hero-card-overlay {
     min-height: 500px;
   }
 
   .hero-copy-overlay {
-  position: relative;
-  z-index: 2;
-  width: min(100%, 860px);
-  min-height: 360px;
-  padding: 40px 0 28px 64px;
-}
+    position: relative;
+    z-index: 2;
+    width: min(100%, 860px);
+    min-height: 360px;
+    padding: 40px 0 28px 64px;
+  }
 
   .hero-copy-overlay h1 {
     max-width: 100%;
     font-size: clamp(3rem, 8vw, 4.4rem);
   }
 
- .hero-soft {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  background:
-    linear-gradient(
-      90deg,
-      rgba(245, 239, 231, 0.84) 0%,
-      rgba(245, 239, 231, 0.60) 18%,
-      rgba(245, 239, 231, 0.22) 30%,
-      rgba(245, 239, 231, 0.06) 40%,
-      rgba(245, 239, 231, 0.00) 48%
-    );
-  backdrop-filter: blur(2.6px);
-}
+  .hero-soft {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background:
+      linear-gradient(
+        90deg,
+        rgba(245, 239, 231, 0.84) 0%,
+        rgba(245, 239, 231, 0.60) 18%,
+        rgba(245, 239, 231, 0.22) 30%,
+        rgba(245, 239, 231, 0.06) 40%,
+        rgba(245, 239, 231, 0.00) 48%
+      );
+    backdrop-filter: blur(2.6px);
+  }
 
   .journey-overlay-grid {
     grid-template-columns: 1fr;
@@ -1325,6 +1328,7 @@ h3 {
         rgba(249, 244, 238, 0) 78%
       );
   }
+
   .consult-cards {
     grid-template-columns: 1fr;
   }
@@ -1407,18 +1411,26 @@ h3 {
   .consult-dynamic-info {
     margin-left: 22px;
     margin-right: 22px;
-  }  
-  
-.inline-booking-band .container {
-  padding: 28px 20px;
-}
-  
-.inline-booking-box {
-  margin-top: 20px;
-}
+  }
 
-    .custom-modal-content {
+  .inline-booking-band .container {
+    padding: 28px 20px;
+  }
+
+  .inline-booking-box {
+    margin-top: 20px;
+    padding: 0;
+  }
+
+  #calendly-inline-test {
+    transform: scale(1);
+    width: 100%;
+    min-height: 760px;
+  }
+
+  .custom-modal-content {
     width: min(96vw, 1100px);
+    height: min(90vh, 820px);
     margin: 24px auto;
     border-radius: 20px;
   }
@@ -1431,12 +1443,14 @@ h3 {
   }
 
   #custom-calendly-inline {
-    transform: scale(1);
     width: 100%;
-    min-height: 760px;
-    padding-top: 0;
+    height: 100%;
   }
-  
+
+  #custom-calendly-inline .calendly-inline-widget,
+  #custom-calendly-inline iframe {
+    min-height: 760px !important;
+  }
 }
 
 @media (max-width: 560px) {
@@ -1494,7 +1508,8 @@ h3 {
     padding-left: 20px;
     padding-right: 20px;
   }
-    .hero-card-overlay {
+
+  .hero-card-overlay {
     min-height: 430px;
   }
 
@@ -1512,6 +1527,7 @@ h3 {
     font-size: 0.98rem;
     max-width: 26ch;
   }
+
   .consult-hero-box {
     padding: 34px 18px 24px;
   }
@@ -1533,7 +1549,23 @@ h3 {
     flex-direction: column;
     align-items: flex-start;
   }
-    .custom-modal-content {
+
+  .inline-booking-band .container {
+    padding: 24px 14px;
+  }
+
+  .inline-booking-box {
+    margin-top: 16px;
+    padding: 0;
+  }
+
+  #calendly-inline-test {
+    transform: scale(1);
+    width: 100%;
+    min-height: 720px;
+  }
+
+  .custom-modal-content {
     width: 100vw;
     height: 100vh;
     margin: 0;
@@ -1552,9 +1584,12 @@ h3 {
   }
 
   #custom-calendly-inline {
-    transform: scale(1);
     width: 100%;
-    min-height: 720px;
-    padding-top: 0;
+    height: 100%;
+  }
+
+  #custom-calendly-inline .calendly-inline-widget,
+  #custom-calendly-inline iframe {
+    min-height: 720px !important;
   }
 }
