@@ -993,6 +993,121 @@ h3 {
   color: #4f5d59;
 }
 
+/* ---------- Header contacts instead of languages ---------- */
+
+.header-contact {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  justify-self: end;
+}
+
+.header-phone {
+  font-size: 0.98rem;
+  font-weight: 600;
+  color: var(--green);
+  white-space: nowrap;
+  transition: opacity .18s ease;
+}
+
+.header-phone:hover {
+  opacity: 0.75;
+}
+
+.header-social {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #ece6dc;
+  color: var(--green);
+  transition: transform .18s ease, background .18s ease, color .18s ease;
+}
+
+.header-social:hover {
+  transform: translateY(-1px);
+  background: #e5ddd1;
+}
+
+.header-social svg {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+
+.header-social--whatsapp {
+  background: rgba(47, 91, 75, 0.12);
+}
+
+/* ---------- Footer / CTA contacts ---------- */
+
+.cta-side {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 14px;
+  margin-right: 150px;
+}
+
+.cta-inner .btn {
+  margin-right: 0;
+}
+
+.cta-contact {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.cta-phone {
+  color: rgba(255,255,255,.96);
+  font-weight: 600;
+  font-size: 1rem;
+  white-space: nowrap;
+}
+
+.cta-phone:hover {
+  opacity: 0.8;
+}
+
+.cta-socials {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cta-social {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.12);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.16);
+  transition: transform .18s ease, background .18s ease;
+}
+
+.cta-social:hover {
+  transform: translateY(-1px);
+  background: rgba(255,255,255,0.18);
+}
+
+.cta-social svg {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+
+.cta-social--whatsapp {
+  background: rgba(255,255,255,0.16);
+}
+
 /* ---------- Consultation page ---------- */
 
 .consult-page {
@@ -1233,8 +1348,8 @@ h3 {
 /* ---------- Responsive ---------- */
 
 @media (max-width: 1280px) {
-  .header-inner {
-    grid-template-columns: auto 1fr auto;
+ .header-inner {
+    grid-template-columns: auto 1fr auto auto;
   }
 
   .main-nav {
@@ -1248,6 +1363,24 @@ h3 {
   .brand-script {
     font-size: 2.5rem;
   }
+
+  .header-contact {
+    gap: 10px;
+  }
+
+  .header-phone {
+    font-size: 0.92rem;
+  }
+
+  .cta-copy {
+    margin-left: 0;
+    width: auto;
+  }
+
+  .cta-side {
+    margin-right: 0;
+  }
+  
 }
 
 @media (max-width: 1100px) {
@@ -1255,6 +1388,10 @@ h3 {
   .dual-grid,
   .about-grid {
     grid-template-columns: 1fr;
+  }
+
+  .header-phone {
+    display: none;
   }
 
   .benefit-cards {
@@ -1353,6 +1490,14 @@ h3 {
     min-height: 84px;
   }
 
+   .header-contact {
+    gap: 8px;
+
+     .header-social {
+    width: 40px;
+    height: 40px;
+  }
+
   .main-nav {
     position: fixed;
     left: 16px;
@@ -1402,6 +1547,16 @@ h3 {
     align-items: flex-start;
     padding: 34px 24px;
     min-height: auto;
+  }
+
+      .cta-side {
+    width: 100%;
+    align-items: stretch;
+  }
+
+  .cta-contact {
+    justify-content: flex-start;
+    gap: 14px;
   }
 
   .cta-inner .btn {
@@ -1466,6 +1621,19 @@ h3 {
 @media (max-width: 560px) {
   .container {
     width: min(calc(100% - 20px), var(--container));
+  }
+
+  .header-contact {
+    display: none;
+  }
+
+  .cta-contact {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .cta-socials {
+    gap: 8px;
   }
 
   .brand-script {
