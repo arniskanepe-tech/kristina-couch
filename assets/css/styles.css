@@ -1179,7 +1179,7 @@ h3 {
   position: relative;
   width: min(1380px, 96vw);
   height: min(920px, 92vh);
-  margin: 1vh auto;
+  margin: 4vh auto;
   background: #f7f3ed;
   border-radius: 26px;
   overflow: hidden;
@@ -1211,7 +1211,7 @@ h3 {
 }
 
 #custom-calendly-inline {
-  transform: translateY(-20px) scale(1.22);
+  transform: translateY(-30px) scale(1.22);
   transform-origin: top center;
   width: 82%;
   min-height: 980px;
