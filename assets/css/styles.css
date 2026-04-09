@@ -1179,7 +1179,7 @@ h3 {
   position: relative;
   width: min(1380px, 96vw);
   height: min(920px, 92vh);
-  margin: 4vh auto;
+  margin: 1vh auto;
   background: #f7f3ed;
   border-radius: 26px;
   overflow: hidden;
