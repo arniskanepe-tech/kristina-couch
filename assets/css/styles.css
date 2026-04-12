@@ -1369,6 +1369,72 @@ h3 {
   background: #f7f3ed !important;
 }
 
+/* ---------- Consultation cards on homepage ---------- */
+
+.consult-cards-band .container {
+  background: #f7f3ed;
+  padding: 10px 0 28px;
+}
+
+.consult-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.consult-option-card {
+  background: rgba(243, 239, 232, 0.92);
+  border: 1px solid rgba(47, 91, 75, 0.08);
+  border-radius: 22px;
+  padding: 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  cursor: pointer;
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+
+.consult-option-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(32, 47, 41, 0.06);
+  border-color: rgba(47, 91, 75, 0.14);
+}
+
+.consult-option-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.consult-option-top h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  line-height: 1.2;
+}
+
+.consult-option-duration {
+  white-space: nowrap;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--green);
+  background: #efe8de;
+  padding: 8px 12px;
+  border-radius: 999px;
+}
+
+.consult-option-card p {
+  margin: 0;
+  color: #495953;
+  line-height: 1.65;
+  flex: 1;
+}
+
+.consult-option-btn {
+  width: 100%;
+  justify-content: center;
+}
+
 /* ---------- Responsive ---------- */
 
 @media (max-width: 1280px) {
@@ -1501,6 +1567,11 @@ h3 {
   .consult-dynamic-info {
     grid-template-columns: 1fr;
   }
+
+  .consult-cards-grid {
+  grid-template-columns: 1fr;
+}
+
 }
 
 @media (max-width: 860px) {
@@ -1920,4 +1991,7 @@ h3 {
   #custom-calendly-inline iframe {
     min-height: 720px !important;
   }
+
+  
+
 }

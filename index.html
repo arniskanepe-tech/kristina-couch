@@ -26,18 +26,11 @@
         </a>
 
         <nav class="main-nav" aria-label="Galvenā navigācija">
-          <a class="active" href="index.html">Sākums</a>
-          <a href="par-koucingu.html">Par koučingu</a>
-          <a href="pakalpojumi.html">Pakalpojumi</a>
-          <a href="konsultacija.html">Konsultācija</a>
-          <a href="cenas.html">Cenas</a>
-          <!--
-          <a href="atsauksmes.html">Atsauksmes</a>
-          <a href="par-mani.html">Par mani</a>
-          <a href="partneriem.html">Sadarbības partneriem</a>
-          <a href="privatais-kabinets.html">Privātais kabinets</a>
-          -->
-        </nav>
+  <a class="active" href="index.html">Sākums</a>
+  <a href="par-mani.html">Par mani</a>
+  <a href="pakalpojumi.html">Pakalpojumi</a>
+  <a href="koucings.html">Koučings</a>
+</nav>
 <div class="header-contact" aria-label="Kontakti un sociālie tīkli">
   <a class="header-phone" href="tel:+37126465779" aria-label="Zvanīt uz +371 26465779">
     +371 26465779
@@ -482,6 +475,69 @@
           </div>
         </section>
 
+        <section class="band consult-cards-band">
+  <div class="container">
+    <div class="consult-cards-grid">
+      <article class="consult-option-card"
+        onclick="Calendly.initPopupWidget({url: 'https://calendly.com/arnis-kanepe/30min'}); return false;"
+        role="button" tabindex="0">
+        <div class="consult-option-top">
+          <h3>Ievadkonsultācija</h3>
+          <span class="consult-option-duration">30 min</span>
+        </div>
+        <p>
+          Pirmajai sarunai, lai saprastu Tavu situāciju, virzienu un to,
+          vai koučings šobrīd Tev ir piemērots.
+        </p>
+        <a class="btn btn-primary consult-option-btn"
+           href="#"
+           onclick="Calendly.initPopupWidget({url: 'https://calendly.com/arnis-kanepe/30min'}); return false;">
+          <span class="btn-icon btn-icon-calendar btn-icon-calendar--white" aria-hidden="true"></span>
+          Izvēlēties laiku
+        </a>
+      </article>
+
+      <article class="consult-option-card"
+        onclick="Calendly.initPopupWidget({url: 'https://calendly.com/arnis-kanepe/30min'}); return false;"
+        role="button" tabindex="0">
+        <div class="consult-option-top">
+          <h3>Atkārtota konsultācija</h3>
+          <span class="consult-option-duration">60 min</span>
+        </div>
+        <p>
+          Tiem, kas jau turpina darbu un vēlas nākamo soli, dziļāku
+          skaidrību un konkrētu progresu.
+        </p>
+        <a class="btn btn-primary consult-option-btn"
+           href="#"
+           onclick="Calendly.initPopupWidget({url: 'https://calendly.com/arnis-kanepe/30min'}); return false;">
+          <span class="btn-icon btn-icon-calendar btn-icon-calendar--white" aria-hidden="true"></span>
+          Izvēlēties laiku
+        </a>
+      </article>
+
+      <article class="consult-option-card"
+        onclick="Calendly.initPopupWidget({url: 'https://calendly.com/arnis-kanepe/30min'}); return false;"
+        role="button" tabindex="0">
+        <div class="consult-option-top">
+          <h3>Garā sesija</h3>
+          <span class="consult-option-duration">90 min</span>
+        </div>
+        <p>
+          Padziļinātam darbam, sarežģītākām tēmām un situācijām,
+          kur vajag vairāk telpas un dziļuma.
+        </p>
+        <a class="btn btn-primary consult-option-btn"
+           href="#"
+           onclick="Calendly.initPopupWidget({url: 'https://calendly.com/arnis-kanepe/30min'}); return false;">
+          <span class="btn-icon btn-icon-calendar btn-icon-calendar--white" aria-hidden="true"></span>
+          Izvēlēties laiku
+        </a>
+      </article>
+    </div>
+  </div>
+</section>
+
         <footer class="site-footer-cta">
           <div class="container">
            <div class="cta-inner">
@@ -491,7 +547,9 @@
   </div>
 
   <div class="cta-side">
-    <a class="btn btn-light" href="cenas.html">
+    <a class="btn btn-light"
+   href="#"
+   onclick="Calendly.initPopupWidget({url: 'https://calendly.com/arnis-kanepe/30min'}); return false;">
       <span class="btn-icon btn-icon-calendar btn-icon-calendar--green" aria-hidden="true"></span>
       Pieteikt konsultāciju
     </a>
@@ -535,7 +593,7 @@
       </section>
     </main>
 
-    <script src="assets/script.js"></script>
+    <script src="assets/js/main.js"></script>
   </div>
 </body>
 </html>
