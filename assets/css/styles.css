@@ -419,6 +419,28 @@ h3 {
   align-items: stretch;
 }
 
+.intro-grid {
+  gap: 24px;
+}
+
+.intro-grid .simple-card h2 {
+  text-align: center;
+}
+
+.intro-grid .simple-card p {
+  text-align: justify;
+}
+
+.intro-grid .simple-card p {
+  text-align: justify;
+  line-height: 1.7;
+}
+
+.intro-grid .simple-card {
+  border-radius: 0;
+  box-shadow: none;
+}
+
 .intro-copy {
   background: #f7f3ed;
   padding: 44px 42px;
@@ -968,13 +990,13 @@ h3 {
 /* ---------- Other inner pages support ---------- */
 
 .page-hero {
-  padding: 56px 0 12px;
+  padding: 8px 0 0;
 }
 
 .page-hero-box {
   padding: 42px;
   background: linear-gradient(180deg, #f9f4ee, #efe6da);
-  border-radius: 30px;
+  border-radius: 0px;
 }
 
 .simple-grid {
@@ -1011,6 +1033,20 @@ h3 {
   border-radius: 14px;
   background: #f3ece3;
   color: #4f5d59;
+}
+
+/* ---------- Inner pages shared spacing ---------- */
+
+.inner-page-main {
+  padding-top: 8px;
+}
+
+.inner-page-section {
+  margin-top: 18px;
+}
+
+.inner-page-section:first-of-type {
+  margin-top: 0;
 }
 
 /* ---------- Header contacts instead of languages ---------- */
