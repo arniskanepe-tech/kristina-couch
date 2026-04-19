@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const BOOKING_API_BASE = "http://localhost:3000";
+  const BOOKING_API_BASE = "http://185.219.156.43:3001";
 
   const modal = document.getElementById("booking-modal");
   const modalTitle = document.getElementById("booking-modal-title");
