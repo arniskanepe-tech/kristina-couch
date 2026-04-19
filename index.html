@@ -12,9 +12,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Allura&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/styles.css" />
-
-  <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
-  <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
 </head>
 <body>
   <div class="page-shell">
@@ -473,18 +470,14 @@
           </div>
         </section>
 
-        <section class="band consult-cards-band" id="konsultacijas">
+<section class="band consult-cards-band" id="konsultacijas">
   <div class="container">
-    <div class="consult-cards-grid">
+    <div class="consult-cards-grid" id="booking-services-grid">
 
-      <!-- 1. Sākotnējā saruna -->
-      <article class="consult-option-card"
-        onclick="Calendly.initPopupWidget({url: 'https://calendly.com/arnis-kanepe/30min'}); return false;"
-        role="button" tabindex="0">
-        
+      <article class="consult-option-card booking-card" data-service-id="1" role="button" tabindex="0">
         <div class="consult-option-top">
-          <h3>Sākotnējā saruna</h3>
-          <span class="consult-option-duration">20 min • Bezmaksas</span>
+          <h3>Ievadsaruna</h3>
+          <span class="consult-option-duration">15 min</span>
         </div>
 
         <p>
@@ -492,21 +485,16 @@
           vajadzības un to, vai koučings šobrīd Tev ir piemērots.
         </p>
 
-        <a class="btn btn-primary consult-option-btn" href="#">
+        <button class="btn btn-primary consult-option-btn booking-open-btn" type="button">
           <span class="btn-icon btn-icon-calendar btn-icon-calendar--white" aria-hidden="true"></span>
           Izvēlēties laiku
-        </a>
+        </button>
       </article>
 
-
-      <!-- 2. Plānotā saruna -->
-      <article class="consult-option-card"
-        onclick="Calendly.initPopupWidget({url: 'https://calendly.com/arnis-kanepe/karteja-saruma'}); return false;"
-        role="button" tabindex="0">
-        
+      <article class="consult-option-card booking-card" data-service-id="2" role="button" tabindex="0">
         <div class="consult-option-top">
-          <h3>Plānotā saruna</h3>
-          <span class="consult-option-duration">45 min • 50 €</span>
+          <h3>Saruna</h3>
+          <span class="consult-option-duration">60 min</span>
         </div>
 
         <p>
@@ -514,21 +502,16 @@
           lēmumam — ar fokusu uz skaidrību un konkrētiem nākamajiem soļiem.
         </p>
 
-        <a class="btn btn-primary consult-option-btn" href="#">
+        <button class="btn btn-primary consult-option-btn booking-open-btn" type="button">
           <span class="btn-icon btn-icon-calendar btn-icon-calendar--white" aria-hidden="true"></span>
           Izvēlēties laiku
-        </a>
+        </button>
       </article>
 
-
-      <!-- 3. Ilgās pārrunas -->
-      <article class="consult-option-card"
-        onclick="Calendly.initPopupWidget({url: 'https://calendly.com/arnis-kanepe/dzila-iegremdesanas'}); return false;"
-        role="button" tabindex="0">
-        
+      <article class="consult-option-card booking-card" data-service-id="3" role="button" tabindex="0">
         <div class="consult-option-top">
-          <h3>Ilgās pārrunas</h3>
-          <span class="consult-option-duration">60 min • 75 €</span>
+          <h3>Padziļināta saruna</h3>
+          <span class="consult-option-duration">90 min</span>
         </div>
 
         <p>
@@ -536,15 +519,17 @@
           laika, telpas un strukturēta pieeja risinājuma atrašanai.
         </p>
 
-        <a class="btn btn-primary consult-option-btn" href="#">
+        <button class="btn btn-primary consult-option-btn booking-open-btn" type="button">
           <span class="btn-icon btn-icon-calendar btn-icon-calendar--white" aria-hidden="true"></span>
           Izvēlēties laiku
-        </a>
+        </button>
       </article>
 
     </div>
   </div>
 </section>
+
+
 
         <footer class="site-footer-cta">
           <div class="container">
@@ -599,7 +584,33 @@
       </section>
     </main>
 
+<div class="booking-modal" id="booking-modal" aria-hidden="true">
+  <div class="booking-modal__backdrop" data-booking-close></div>
+
+  <div class="booking-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="booking-modal-title">
+    <button class="booking-modal__close" type="button" aria-label="Aizvērt" data-booking-close>&times;</button>
+
+    <div class="booking-modal__layout">
+      <div class="booking-modal__info">
+        <p class="booking-modal__eyebrow">Konsultācijas rezervācija</p>
+        <h3 id="booking-modal-title" class="booking-modal__title">Izvēlies laiku</h3>
+        <p class="booking-modal__meta" id="booking-modal-meta"></p>
+        <p class="booking-modal__text" id="booking-modal-text"></p>
+      </div>
+
+      <div class="booking-modal__content">
+        <div id="booking-ui-root"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/booking.js"></script>
   </div>
 </body>
 </html>
