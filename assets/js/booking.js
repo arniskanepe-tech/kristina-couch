@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const BOOKING_API_BASE = "";
+  const BOOKING_API_BASE = "..";
 
   const modal = document.getElementById("booking-modal");
   const modalTitle = document.getElementById("booking-modal-title");
