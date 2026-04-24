@@ -1538,10 +1538,10 @@ h3 {
 .booking-form-box,
 .booking-success-box,
 .booking-empty-box {
-  padding: 22px 22px;
-  border-radius: 20px;
-  background: rgba(243, 239, 232, 0.92);
-  border: 1px solid rgba(47, 91, 75, 0.08);
+  padding: 0px;
+  border-radius: 0px;
+  background: transparent;
+  border: none;
 }
 
 .booking-summary p,
@@ -1625,6 +1625,80 @@ h3 {
   box-shadow: 0 12px 28px rgba(32, 47, 41, 0.08);
 }
 
+/* ===== Custom datepicker layout ===== */
+
+.dp-layout {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 28px;
+  align-items: start;
+}
+
+.dp-left {
+  background: #fbf8f4;
+  padding: 16px;
+  border-radius: 18px;
+  border: 1px solid rgba(47, 91, 75, 0.12);
+}
+
+.dp-right {
+  min-height: 120px;
+}
+
+/* header */
+.dp-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.dp-header button {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  border: 1px solid rgba(47, 91, 75, 0.2);
+  background: #fff;
+  cursor: pointer;
+}
+
+/* days grid */
+.dp-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+}
+
+.dp-day {
+  height: 36px;
+  border-radius: 10px;
+  border: 1px solid rgba(47, 91, 75, 0.12);
+  background: #fff;
+  cursor: pointer;
+}
+
+.dp-day:hover {
+  background: #efe8de;
+}
+
+.dp-day.is-selected {
+  background: var(--green);
+  color: white;
+}
+
+.dp-day.is-disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+/* responsive */
+@media (max-width: 860px) {
+  .dp-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+
 
 /* ---------- Responsive ---------- */
 
@@ -1667,6 +1741,7 @@ h3 {
   .intro-grid,
   .about-grid {
     grid-template-columns: 1fr;
+    align-items: start;
   }
 
   .header-phone {
@@ -1675,7 +1750,7 @@ h3 {
 
   .benefit-cards {
     grid-template-columns: repeat(2, 1fr);
-    padding-left: 0;
+    padding: 5px 0 5px 0;
   }
 
   .timeline {
@@ -1804,16 +1879,27 @@ h3 {
     display: inline-flex;
   }
 
-  .hero-copy-overlay {
-    padding: 34px 22px 30px 22px;
-    min-height: 470px;
-  }
+.hero-copy-overlay {
+  padding: 34px 22px 30px 22px;
+  min-height: 470px;
+}
+
+.hero-copy-overlay h1 {
+  max-width: 14ch;
+  font-size: clamp(2.3rem, 6vw, 3.4rem);
+  line-height: 0.98;
+}
+
+.hero-lead {
+  font-size: 0.92rem;
+  line-height: 1.4;
+  max-width: 28ch;
+}
 
   .hero-actions {
     width: 100%;
     gap: 14px;
   }
-
 
 .booking-modal__layout {
     grid-template-columns: 1fr;
@@ -1832,8 +1918,16 @@ h3 {
   .benefit-cards {
     grid-template-columns: repeat(4, 1fr);
     gap: 14px;
-    padding-left: 0;
+    padding: 0 0 16px 0;
   }
+
+.intro-grid {
+  gap: 8px;
+}
+
+.intro-copy {
+  padding-bottom: 8px;
+}
 
   .benefit-card {
     min-height: 190px;
@@ -1915,6 +2009,32 @@ h3 {
     margin-left: 22px;
     margin-right: 22px;
   }
+
+/* ===== MOBILE SWIPE CARDS ===== */
+
+  .consult-cards-grid {
+    display: flex;
+    overflow-x: auto;
+    gap: 16px;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 10px;
+  }
+
+  .consult-option-card {
+    flex: 0 0 85%;
+    scroll-snap-align: start;
+  }
+
+  /* paslēpj scrollbar */
+  .consult-cards-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+#konsultacijas {
+  scroll-margin-top: 120px;
+}
+
+
 }
 @media (max-width: 560px) {
   .container {
@@ -1992,8 +2112,13 @@ h3 {
   .intro-copy,
   .list-panel,
   .image-copy {
-    padding: 28px 20px;
+    padding: 28px 20px 8px;
   }
+
+.intro-grid {
+  gap: 8px;
+}
+
 
   .about-facts {
     padding: 26px 20px;
@@ -2046,7 +2171,7 @@ h3 {
   .benefit-cards {
     grid-template-columns: repeat(2, 1fr);
     gap: 10px;
-    padding-left: 0;
+    padding: 0 0 26px;
   }
 
   .benefit-card {
@@ -2115,11 +2240,20 @@ h3 {
   }
 
   .booking-modal__dialog {
-    width: 100vw;
-    height: 100vh;
-    max-height: none;
+    width: 100%;
+    height: 100%;
+    max-height: 100%;
     margin: 0;
     border-radius: 0;
+  }
+
+  .booking-modal__content {
+    padding: 20px 16px;
+    overflow-x: hidden;
+  }
+
+  .booking-modal__layout {
+    width: 100%;
   }
 
   .booking-modal__close {
@@ -2134,6 +2268,34 @@ h3 {
   .booking-slot-btn {
     min-width: calc(50% - 5px);
   }
-  
+
+/* ===== MOBILE BOOKING FIX ===== */
+
+.dp-grid {
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 4px;
+  width: 100%;
+}
+
+.dp-day {
+  width: 100%;
+  min-width: 0;
+  height: 32px;
+  font-size: 0.85rem;
+}
+
+.booking-slots {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  width: 100%;
+}
+
+.booking-slot-btn {
+  width: 100%;
+  min-width: 0;
+  padding: 10px 0;
+  font-size: 0.95rem;
+}
 
 }

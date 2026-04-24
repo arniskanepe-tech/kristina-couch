@@ -76,35 +76,36 @@ document.addEventListener("DOMContentLoaded", () => {
     modalMeta.textContent = `${selectedService.duration} min`;
     modalText.textContent = cardDescriptions[selectedService.id] || "";
 
-    uiRoot.innerHTML = `
-      <div class="booking-ui">
-        <div>
-          <h3>Izvēlies datumu</h3>
-          <input class="booking-date-input" type="date" id="booking-date-input">
-        </div>
+uiRoot.innerHTML = `
+  <div class="booking-ui-grid">
 
-        <div id="booking-slots-section"></div>
-        <div id="booking-form-section"></div>
+    <div class="booking-left">
+      <div class="booking-head">
+        <h3>Izvēlies datumu</h3>
       </div>
-    `;
+      <div id="custom-datepicker"></div>
+    </div>
 
-    const dateInput = document.getElementById("booking-date-input");
-    const today = new Date().toISOString().split("T")[0];
-    dateInput.min = today;
+    <div class="booking-right">
+      <div id="slots-inline"></div>
 
-    dateInput.addEventListener("change", async () => {
-      selectedDate = dateInput.value;
-      selectedTime = null;
-      document.getElementById("booking-form-section").innerHTML = "";
+      <div id="booking-slots-section"></div>
+      <div id="booking-form-section"></div>
+    </div>
 
-      if (!selectedDate) return;
+  </div>
+`;
 
-      await renderSlots(selectedDate);
-    });
+renderCustomDatepicker();
+
   }
 
   async function renderSlots(date) {
-    const slotsSection = document.getElementById("booking-slots-section");
+
+const slotsSection =
+  document.getElementById("slots-inline") ||
+  document.getElementById("booking-slots-section");
+
 
     slotsSection.innerHTML = `<div class="booking-loading">Ielādējam pieejamos laikus...</div>`;
 
@@ -140,23 +141,34 @@ document.addEventListener("DOMContentLoaded", () => {
         </button>
       `).join("");
 
-      slotsSection.innerHTML = `
-        <div>
-          <h4>Pieejamie laiki</h4>
-          <div class="booking-slots">${slotsHtml}</div>
-        </div>
-      `;
+slotsSection.innerHTML = `
+  <div class="booking-slots">${slotsHtml}</div>
+`;
 
-      document.querySelectorAll(".booking-slot-btn").forEach(btn => {
-        btn.addEventListener("click", () => {
-          document.querySelectorAll(".booking-slot-btn").forEach(x => x.classList.remove("is-selected"));
-          btn.classList.add("is-selected");
+document.querySelectorAll(".booking-slot-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".booking-slot-btn").forEach(x => x.classList.remove("is-selected"));
+    btn.classList.add("is-selected");
 
-          selectedTime = btn.getAttribute("data-time");
-          renderBookingForm();
-        });
-      });
-    } catch (error) {
+    selectedTime = btn.getAttribute("data-time");
+    renderBookingForm();
+
+    if (window.innerWidth < 768) {
+      setTimeout(() => {
+        const formSection = document.getElementById("booking-form-section");
+        if (formSection) {
+          formSection.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+          });
+        }
+      }, 150);
+    }
+  });
+});
+
+ }
+catch (error) {
       slotsSection.innerHTML = `
         <div class="booking-error">
           Neizdevās ielādēt laikus.
@@ -164,6 +176,121 @@ document.addEventListener("DOMContentLoaded", () => {
       `;
     }
   }
+
+
+function renderCustomDatepicker() {
+  const container = document.getElementById("custom-datepicker");
+
+  const today = new Date();
+  let currentMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+
+  function formatDate(date) {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+   return `${year}-${month}-${day}`;
+  }
+
+function getMonthName(month) {
+  const months = [
+    "Janvāris", "Februāris", "Marts", "Aprīlis", "Maijs", "Jūnijs",
+    "Jūlijs", "Augusts", "Septembris", "Oktobris", "Novembris", "Decembris"
+  ];
+  return months[month];
+}
+
+
+  function render() {
+    const year = currentMonth.getFullYear();
+    const month = currentMonth.getMonth();
+
+    const firstDay = new Date(year, month, 1).getDay();
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+let html = `
+  <div class="dp-layout">
+
+    <div class="dp-left">
+      <div class="dp-header">
+        <button id="dp-prev">←</button>
+	<div>${getMonthName(month)} ${year}</div>
+        <button id="dp-next">→</button>
+      </div>
+
+      <div class="dp-grid">
+`;
+
+    for (let i = 0; i < firstDay; i++) {
+      html += `<div></div>`;
+    }
+
+    for (let d = 1; d <= daysInMonth; d++) {
+      const date = new Date(year, month, d);
+      const iso = formatDate(date);
+
+      const isPast = date < new Date().setHours(0,0,0,0);
+
+      html += `
+        <button class="dp-day ${isPast ? 'is-disabled' : ''}" data-date="${iso}" ${isPast ? 'disabled' : ''}>
+          ${d}
+        </button>
+      `;
+    }
+
+html += `
+      </div>
+    </div>
+
+    <div class="dp-right">
+      <div id="slots-inline"></div>
+    </div>
+
+  </div>
+`;
+
+    container.innerHTML = html;
+
+    document.getElementById("dp-prev").onclick = () => {
+      currentMonth.setMonth(currentMonth.getMonth() - 1);
+      render();
+    };
+
+    document.getElementById("dp-next").onclick = () => {
+      currentMonth.setMonth(currentMonth.getMonth() + 1);
+      render();
+    };
+
+    container.querySelectorAll(".dp-day").forEach(btn => {
+      btn.onclick = async () => {
+        container.querySelectorAll(".dp-day").forEach(x => x.classList.remove("is-selected"));
+        btn.classList.add("is-selected");
+
+        selectedDate = btn.dataset.date;
+        selectedTime = null;
+
+        document.getElementById("booking-form-section").innerHTML = "";
+
+        await renderSlots(selectedDate);
+
+if (window.innerWidth < 768) {
+  setTimeout(() => {
+    const el = document.querySelector(".booking-slots");
+    if (el) {
+      el.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+    }
+  }, 150);
+}
+
+ };
+    });
+  }
+
+  render();
+}
+
 
   function renderBookingForm() {
     const formSection = document.getElementById("booking-form-section");
@@ -249,6 +376,19 @@ document.addEventListener("DOMContentLoaded", () => {
           </button>
         </div>
       `;
+
+
+      if (window.innerWidth < 768) {
+        setTimeout(() => {
+          const successBox = document.querySelector(".booking-success-box");
+          if (successBox) {
+            successBox.scrollIntoView({
+              behavior: "smooth",
+              block: "start"
+            });
+          }
+        }, 150);
+      }
 
       const slotsSection = document.getElementById("booking-slots-section");
       if (slotsSection && selectedDate) {
