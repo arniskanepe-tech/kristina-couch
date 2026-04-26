@@ -203,8 +203,7 @@ function getMonthName(month) {
   function render() {
     const year = currentMonth.getFullYear();
     const month = currentMonth.getMonth();
-
-    const firstDay = new Date(year, month, 1).getDay();
+    const firstDay = (new Date(year, month, 1).getDay() + 6) % 7;
     const daysInMonth = new Date(year, month + 1, 0).getDate();
 
 let html = `
@@ -215,6 +214,16 @@ let html = `
         <button id="dp-prev">←</button>
 	<div>${getMonthName(month)} ${year}</div>
         <button id="dp-next">→</button>
+      </div>
+
+<div class="dp-weekdays">
+        <div>Pr</div>
+        <div>Ot</div>
+        <div>Tr</div>
+        <div>Ce</div>
+        <div>Pk</div>
+        <div>Se</div>
+        <div>Sv</div>
       </div>
 
       <div class="dp-grid">
@@ -307,9 +316,28 @@ if (window.innerWidth < 768) {
         <h4>Ievadi savus datus</h4>
 
         <div class="booking-form-grid">
-          <input type="text" id="booking-client-name" placeholder="Vārds">
-          <input type="email" id="booking-client-email" placeholder="E-pasts">
-          <input type="tel" id="booking-client-phone" placeholder="Telefons">
+
+<div class="form-field">
+  <input type="text" id="booking-client-name" placeholder="Vārds">
+  <div class="form-error" id="error-name"></div>
+</div>
+
+<div class="form-field">
+  <input type="email" id="booking-client-email" placeholder="E-pasts">
+  <div class="form-error" id="error-email"></div>
+</div>
+
+<div class="form-field">
+  <input type="tel" id="booking-client-phone" placeholder="Telefons">
+  <div class="form-error" id="error-phone"></div>
+</div>
+
+<div class="form-field">
+  <textarea id="booking-client-goal" placeholder="Sarunas mērķis"></textarea>
+  <div class="form-error" id="error-goal"></div>
+</div>
+
+
 
           <button type="button" class="booking-primary-btn" id="booking-submit-btn">
             Apstiprināt rezervāciju
@@ -325,11 +353,49 @@ if (window.innerWidth < 768) {
     const name = document.getElementById("booking-client-name").value.trim();
     const email = document.getElementById("booking-client-email").value.trim();
     const phone = document.getElementById("booking-client-phone").value.trim();
+    const goal = document.getElementById("booking-client-goal").value.trim();
 
-    if (!name || !email) {
-      alert("Lūdzu aizpildi vismaz vārdu un e-pastu.");
-      return;
-    }
+// reset errors
+document.getElementById("error-name").textContent = "";
+document.getElementById("error-email").textContent = "";
+document.getElementById("error-phone").textContent = "";
+
+document.getElementById("booking-client-name").classList.remove("input-error");
+document.getElementById("booking-client-email").classList.remove("input-error");
+document.getElementById("booking-client-phone").classList.remove("input-error");
+
+let hasError = false;
+
+// NAME
+if (!name) {
+  document.getElementById("error-name").textContent = "Ievadi vārdu";
+  document.getElementById("booking-client-name").classList.add("input-error");
+  hasError = true;
+}
+
+// EMAIL
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+if (!email || !emailRegex.test(email)) {
+  document.getElementById("error-email").textContent = "Ievadi korektu e-pastu";
+  document.getElementById("booking-client-email").classList.add("input-error");
+  hasError = true;
+}
+
+// PHONE
+const phoneRegex = /^[0-9+()\-\s]{8,20}$/;
+
+if (!phone || !phoneRegex.test(phone)) {
+  document.getElementById("error-phone").textContent = "Ievadi korektu telefona numuru";
+  document.getElementById("booking-client-phone").classList.add("input-error");
+  hasError = true;
+}
+
+if (hasError) return;
+
+
+
+
 
     const formSection = document.getElementById("booking-form-section");
 
@@ -349,7 +415,8 @@ if (window.innerWidth < 768) {
           time: selectedTime,
           name,
           email,
-          phone
+          phone,
+	  goal
         })
       });
 

@@ -1554,11 +1554,12 @@ h3 {
 
 .booking-form-grid {
   display: grid;
-  gap: 12px;
+  gap: 6px;
   max-width: 460px;
 }
 
-.booking-form-grid input {
+.booking-form-grid input
+.booking-form-grid textarea {
   min-height: 54px;
   padding: 0 16px;
   border-radius: 16px;
@@ -1566,6 +1567,13 @@ h3 {
   background: #fff;
   color: var(--ink);
   font: inherit;
+}
+
+
+.booking-form-grid textarea {
+  min-height: 108px;
+  padding-top: 14px;
+  resize: vertical;
 }
 
 .booking-primary-btn {
@@ -1625,6 +1633,24 @@ h3 {
   box-shadow: 0 12px 28px rgba(32, 47, 41, 0.08);
 }
 
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.form-error {
+  min-height: 12px;
+  margin-top: 1px;
+  font-size: 0.72rem;
+  line-height: 1.15;
+  color: rgba(192, 57, 43, 0.85);
+}
+
+.input-error {
+  border: 1px solid rgba(192, 57, 43, 0.85) !important;
+}
+
 /* ===== Custom datepicker layout ===== */
 
 .dp-layout {
@@ -1667,6 +1693,17 @@ h3 {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   gap: 6px;
+}
+
+.dp-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+  margin-bottom: 6px;
+  color: rgba(45, 53, 48, 0.55);
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-align: center;
 }
 
 .dp-day {
