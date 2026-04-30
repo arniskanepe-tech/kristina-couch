@@ -330,11 +330,101 @@ input[type="checkbox"] {
   min-width: 220px;
 }
 
+#admin-toast {
+  position: fixed;
+  right: 28px;
+  bottom: 28px;
+  z-index: 9999;
+  background: #2f5b4b;
+  color: #fff;
+  padding: 12px 18px;
+  border-radius: 14px;
+  font-weight: 700;
+  box-shadow: 0 12px 28px rgba(32, 47, 41, 0.18);
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+  transition: opacity .2s ease, transform .2s ease;
+}
+
+#admin-toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
 /* ---------- REZERVĀCIJAS ---------- */
 
 #bookings-table {
   margin-top: 6px;
 }
+
+.admin-calendar {
+  margin: 12px 0 16px;
+}
+
+.admin-cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+}
+
+.cal-day,
+.cal-empty {
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.cal-empty {
+  background: transparent;
+}
+
+.cal-day {
+  background: #f2ece4;
+}
+
+.cal-day.has-booking {
+  background: #e74c3c;
+  color: #fff;
+  font-weight: 700;
+}
+
+.admin-cal-header {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 4px 0 10px;
+  font-weight: 700;
+}
+
+.admin-cal-header button {
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  padding: 0;
+  border-radius: 10px;
+  font-size: 16px;
+}
+
+.admin-cal-header span {
+  min-width: 130px;
+  text-align: center;
+}
+
+.cal-day-name {
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: var(--muted);
+}
+
+
 
 /* ---------- RESPONSIVE ---------- */
 
@@ -408,4 +498,38 @@ input[type="checkbox"] {
     width: 100%;
     min-width: 0;
   }
+
+  .config-table-wrap {
+    padding: 10px 8px 12px;
+  }
+
+  .config-days-table {
+    table-layout: fixed;
+    width: 100%;
+    font-size: 13px;
+  }
+
+  .config-days-table th,
+  .config-days-table td {
+    padding: 8px 6px;
+  }
+
+  .config-days-table input[type="time"] {
+    width: 100%;
+    min-width: 0;
+    padding: 7px 6px;
+    font-size: 13px;
+  }
+
+
+
+.bookings-table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+#bookings-table {
+  min-width: 700px;
+}
+
 }

@@ -445,6 +445,11 @@ if (hasError) return;
       `;
 
 
+const slotsSection = document.getElementById("booking-slots-section");
+      if (slotsSection && selectedDate) {
+        await renderSlots(selectedDate);
+      }
+
       if (window.innerWidth < 768) {
         setTimeout(() => {
           const successBox = document.querySelector(".booking-success-box");
@@ -454,13 +459,9 @@ if (hasError) return;
               block: "start"
             });
           }
-        }, 150);
+        }, 250);
       }
 
-      const slotsSection = document.getElementById("booking-slots-section");
-      if (slotsSection && selectedDate) {
-        await renderSlots(selectedDate);
-      }
 
       document.getElementById("booking-close-success").addEventListener("click", closeModal);
     } catch (error) {

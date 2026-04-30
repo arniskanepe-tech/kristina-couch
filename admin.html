@@ -27,10 +27,14 @@
       </table>
     </section>
 
-    <section class="section-block">
-      <h2>Rezervācijas</h2>
+<section class="section-block">
+  <h2>Rezervācijas</h2>
 
-      <div class="booking-tools">
+  <div id="admin-booking-calendar" class="admin-calendar"></div>
+  <div class="booking-tools">
+
+
+ <button type="button" onclick="clearAdminCalendarFilter()">Visas</button>
         <input type="text" id="booking-search" placeholder="Meklēt rezervācijās...">
         <select id="booking-sort">
           <option value="createdAt-desc">Jaunākās vispirms</option>
@@ -44,7 +48,8 @@
         </select>
       </div>
 
-      <table id="bookings-table">
+<div class="bookings-table-wrap">     
+ <table id="bookings-table">
   <thead>
     <tr>
       <th>Pakalpojums</th>
@@ -58,12 +63,15 @@
   </thead>
   <tbody></tbody>
 </table>
+</div>
     </section>
   </div>
 
   <script>
     let currentOpenServiceId = null;
     let bookingsCache = [];
+    let adminCalendarMonth = new Date();
+    let selectedBookingDate = null;
 
     function escapeHtml(value) {
       return String(value ?? "")
@@ -291,7 +299,7 @@
     return;
   }
 
-  const availabilityRes = await fetch("/availability");
+const availabilityRes = await fetch("/kristina/availability");
   const availability = await availabilityRes.json();
   const serviceAvailability = availability.filter(a => a.serviceId === serviceId);
 
@@ -326,15 +334,24 @@
     }
   }
 
-  await loadServices();
-  alert("Saglabāts");
+// aizver edit skatu
+currentOpenServiceId = null;
+
+// pārlādē datus
+await loadServices();
+
+// success paziņojums
+showToast("Saglabāts ✔");
 }
 
-    async function loadBookings() {
-      const response = await fetch("/kristina/bookings");
-      bookingsCache = await response.json();
-      renderBookings();
-    }
+
+async function loadBookings() {
+  const response = await fetch("/kristina/bookings");
+  bookingsCache = await response.json();
+  renderBookings();
+  renderAdminCalendar(bookingsCache);
+}
+
 
     function renderBookings() {
       const tbody = document.querySelector("#bookings-table tbody");
@@ -344,6 +361,9 @@
       const sortValue = document.getElementById("booking-sort").value;
 
       let filtered = [...bookingsCache];
+	if (selectedBookingDate) {
+  	filtered = filtered.filter(b => b.date === selectedBookingDate);
+        }
 
       if (searchValue) {
         filtered = filtered.filter(b =>
@@ -415,6 +435,114 @@
 }
 
 
+
+    function showToast(message) {
+      let toast = document.getElementById("admin-toast");
+
+      if (!toast) {
+        toast = document.createElement("div");
+        toast.id = "admin-toast";
+        document.body.appendChild(toast);
+      }
+
+      toast.innerText = message;
+      toast.classList.add("show");
+
+      setTimeout(() => {
+        toast.classList.remove("show");
+      }, 2000);
+    }
+
+function changeAdminCalendarMonth(direction) {
+  adminCalendarMonth.setMonth(adminCalendarMonth.getMonth() + direction);
+  renderAdminCalendar(bookingsCache);
+}
+
+function selectAdminCalendarDate(date) {
+  selectedBookingDate = date;
+  renderBookings();
+  renderAdminCalendar(bookingsCache);
+}
+
+function clearAdminCalendarFilter() {
+  selectedBookingDate = null;
+  renderBookings();
+  renderAdminCalendar(bookingsCache);
+}
+
+
+function renderAdminCalendar(bookings) {
+  const container = document.getElementById("admin-booking-calendar");
+  if (!container) return;
+
+const year = adminCalendarMonth.getFullYear();
+const month = adminCalendarMonth.getMonth();
+
+  const monthNames = [
+    "Janvāris", "Februāris", "Marts", "Aprīlis", "Maijs", "Jūnijs",
+    "Jūlijs", "Augusts", "Septembris", "Oktobris", "Novembris", "Decembris"
+  ];
+
+  const dayNames = ["Pr", "Ot", "Tr", "Ce", "Pk", "Se", "Sv"];
+
+  const firstDayRaw = new Date(year, month, 1).getDay();
+  const firstDay = (firstDayRaw === 0 ? 6 : firstDayRaw - 1); // pirmdiena = 0
+
+  const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+  // booking datumi
+  const bookedDays = new Set(bookings.map(b => b.date));
+
+  function formatDate(d) {
+    const y = d.getFullYear();
+    const m = String(d.getMonth() + 1).padStart(2, "0");
+    const day = String(d.getDate()).padStart(2, "0");
+    return `${y}-${m}-${day}`;
+  }
+
+let html = `
+  <div class="admin-cal-header">
+    <button onclick="changeAdminCalendarMonth(-1)">←</button>
+    <span>${monthNames[month]} ${year}</span>
+    <button onclick="changeAdminCalendarMonth(1)">→</button>
+  </div>
+
+    <div class="admin-cal-grid admin-cal-days">
+  `;
+
+  // dienu nosaukumi
+  dayNames.forEach(d => {
+    html += `<div class="cal-day-name">${d}</div>`;
+  });
+
+  html += `</div><div class="admin-cal-grid">`;
+
+  // tukšumi
+  for (let i = 0; i < firstDay; i++) {
+    html += `<div class="cal-empty"></div>`;
+  }
+
+  for (let d = 1; d <= daysInMonth; d++) {
+    const date = new Date(year, month, d);
+    const iso = formatDate(date);
+
+    const hasBooking = bookedDays.has(iso);
+
+html += `
+  <div 
+    class="cal-day ${hasBooking ? "has-booking" : ""}" 
+    data-date="${iso}"
+    onclick="selectAdminCalendarDate('${iso}')"
+  >
+    ${d}
+  </div>
+`;
+  }
+
+  html += `</div>`;
+
+  container.innerHTML = html;
+}
 
     document.getElementById("booking-search").addEventListener("input", renderBookings);
     document.getElementById("booking-sort").addEventListener("change", renderBookings);
