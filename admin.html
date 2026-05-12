@@ -399,10 +399,15 @@ async function loadBookings() {
         }
       });
 
-      filtered.forEach(b => {
+filtered.forEach(b => {
+  const isCancelled = b.status === "cancelled";
+
   tbody.innerHTML += `
-    <tr>
-      <td>${escapeHtml(b.service)}</td>
+    <tr class="${isCancelled ? 'booking-cancelled' : ''}">
+      <td>
+        ${escapeHtml(b.service)}
+        ${isCancelled ? '<span class="booking-badge">Atcelts</span>' : ''}
+      </td>
       <td>${escapeHtml(b.date)}</td>
       <td>${escapeHtml(b.time)}</td>
       <td>${escapeHtml(b.name)}</td>
@@ -414,6 +419,13 @@ async function loadBookings() {
     </tr>
   `;
 });
+
+
+
+
+
+
+
     }
 
     async function deleteBooking(index) {
@@ -490,8 +502,13 @@ const month = adminCalendarMonth.getMonth();
 
   const daysInMonth = new Date(year, month + 1, 0).getDate();
 
-  // booking datumi
-  const bookedDays = new Set(bookings.map(b => b.date));
+// booking datumi tikai aktīvām rezervācijām
+const bookedDays = new Set(
+  bookings
+    .filter(b => b.status !== "cancelled")
+    .map(b => b.date)
+);
+
 
   function formatDate(d) {
     const y = d.getFullYear();
@@ -530,7 +547,7 @@ let html = `
 
 html += `
   <div 
-    class="cal-day ${hasBooking ? "has-booking" : ""}" 
+    class="cal-day ${hasBooking ? "has-booking" : ""} ${selectedBookingDate === iso ? "is-selected" : ""}"
     data-date="${iso}"
     onclick="selectAdminCalendarDate('${iso}')"
   >

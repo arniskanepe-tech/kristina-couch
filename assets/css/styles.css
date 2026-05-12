@@ -609,6 +609,7 @@ h3 {
 
 .journey-col h2 {
   margin: 0 0 22px;
+  font-size: 28px;
 }
 
 .check-list,
@@ -620,7 +621,7 @@ h3 {
 
 .check-list-large {
   display: grid;
-  gap: 22px;
+  gap: 16px;
 }
 
 .check-list-large li {
@@ -1097,8 +1098,12 @@ h3 {
   background: rgba(47, 91, 75, 0.12);
 }
 .header-social--phone {
-  background: rgba(47, 91, 75, 0.10);
+  background: rgba(47, 91, 75, 0.12);
 }
+.header-social--linkedin {
+  background: rgba(47, 91, 75, 0.12);
+}
+
 
 /* ---------- Footer / CTA contacts ---------- */
 

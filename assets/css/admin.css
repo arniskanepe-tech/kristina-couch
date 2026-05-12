@@ -424,6 +424,31 @@ input[type="checkbox"] {
   color: var(--muted);
 }
 
+/* SELECTED DAY */
+
+.cal-day.is-selected {
+  outline: 2px solid #2f5b4b;
+  background: #dfeee7;
+  font-weight: 700;
+}
+
+
+/* CANCELLED BOOKING */
+
+.booking-cancelled {
+  opacity: 0.6;
+}
+
+.booking-badge {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 2px 8px;
+  font-size: 12px;
+  border-radius: 8px;
+  background: #e74c3c;
+  color: #fff;
+  font-weight: 600;
+}
 
 
 /* ---------- RESPONSIVE ---------- */

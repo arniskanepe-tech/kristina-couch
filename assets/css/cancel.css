@@ -1,0 +1,67 @@
+body {
+  margin: 0;
+  font-family: Inter, sans-serif;
+  background: #f6f3ee;
+  color: #2d3b36;
+}
+
+.cancel-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.cancel-card {
+  background: #ffffff;
+  padding: 40px 30px;
+  border-radius: 20px;
+  max-width: 480px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+}
+
+.cancel-kicker {
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #6b7c76;
+  margin-bottom: 10px;
+}
+
+h1 {
+  font-size: 28px;
+  margin-bottom: 16px;
+}
+
+.cancel-card p {
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 24px;
+}
+
+.cancel-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.cancel-btn {
+  display: block;
+  padding: 14px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.cancel-btn-primary {
+  background: #2f5b4b;
+  color: #fff;
+}
+
+.cancel-btn-secondary {
+  background: #e7e1d8;
+  color: #2d3b36;
+}
