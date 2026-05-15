@@ -392,6 +392,10 @@ input[type="checkbox"] {
   color: #fff;
   font-weight: 700;
 }
+.cal-day.has-past-booking {
+  background: #7da28d;
+  color: #fff;
+}
 
 .admin-cal-header {
   display: inline-flex;

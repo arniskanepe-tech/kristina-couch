@@ -545,9 +545,21 @@ let html = `
 
     const hasBooking = bookedDays.has(iso);
 
+    const today = new Date();
+    today.setHours(0,0,0,0);
+
+    const isPastBooking =
+      hasBooking &&
+      date < today;
+
 html += `
   <div 
-    class="cal-day ${hasBooking ? "has-booking" : ""} ${selectedBookingDate === iso ? "is-selected" : ""}"
+class="
+  cal-day
+  ${hasBooking ? "has-booking" : ""}
+  ${isPastBooking ? "has-past-booking" : ""}
+  ${selectedBookingDate === iso ? "is-selected" : ""}
+"
     data-date="${iso}"
     onclick="selectAdminCalendarDate('${iso}')"
   >

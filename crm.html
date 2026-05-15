@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="lv">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CRM — Kristīna Kaņepe</title>
+
+  <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <link rel="stylesheet" href="assets/css/crm.css" />
+</head>
+
+<body>
+  <div class="crm-page">
+
+    <header class="crm-topbar">
+      <div class="crm-topbar-inner">
+        <div>
+          <div class="crm-logo">Kristīna Kaņepe</div>
+          <div class="crm-subtitle">KLIENTU CRM</div>
+        </div>
+
+        <div class="crm-actions">
+          <a class="crm-back-link" href="admin.html">← Atpakaļ uz admin</a>
+          <button class="crm-btn crm-btn-primary" type="button">+ Pievienot klientu</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="crm-content">
+
+      <div class="crm-toolbar">
+        <input type="search" placeholder="Meklēt pēc vārda, e-pasta vai telefona..." />
+        <select>
+          <option>Visi klienti</option>
+          <option>Ar rezervācijām</option>
+          <option>Manuāli pievienoti</option>
+        </select>
+      </div>
+
+      <section class="crm-table-card">
+        <div class="crm-table-scroll">
+          <table class="crm-table">
+            <thead>
+              <tr>
+                <th rowspan="2">Vārds <button type="button">⌄</button></th>
+                <th rowspan="2">Uzvārds <button type="button">⌄</button></th>
+                <th rowspan="2">E-pasts <button type="button">⌄</button></th>
+                <th rowspan="2">Telefons <button type="button">⌄</button></th>
+                <th rowspan="2">Nodarbošanās <button type="button">⌄</button></th>
+                <th rowspan="2">Profesija <button type="button">⌄</button></th>
+                <th rowspan="2">Rezervācijas <button type="button">⌄</button></th>
+                <th rowspan="2">Pēdējā konsultācija <button type="button">⌄</button></th>
+                <th colspan="4">Izmantotās metodes</th>
+              </tr>
+              <tr>
+                <th>GROW <button type="button">⌄</button></th>
+                <th>Virsotne <button type="button">⌄</button></th>
+                <th>Vērtības <button type="button">⌄</button></th>
+                <th>Rīcības plāns <button type="button">⌄</button></th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr class="crm-row" id="openClientModal">
+                <td>Anna</td>
+                <td>Bērziņa</td>
+                <td>anna.berzina@example.com</td>
+                <td>+371 20000001</td>
+                <td>Komandas vadītāja</td>
+                <td>HR speciāliste</td>
+                <td>3</td>
+                <td>10.05.2026</td>
+                <td>✓</td>
+                <td>✓</td>
+                <td></td>
+                <td>✓</td>
+              </tr>
+
+              <tr class="crm-row" id="openClientModal2">
+                <td>Jānis</td>
+                <td>Ozols</td>
+                <td>janis.ozols@example.com</td>
+                <td>+371 20000002</td>
+                <td>Uzņēmējs</td>
+                <td>Vadītājs</td>
+                <td>1</td>
+                <td>02.05.2026</td>
+                <td>✓</td>
+                <td></td>
+                <td>✓</td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+    </main>
+
+    <div class="crm-modal-backdrop" id="clientModalBackdrop"></div>
+
+    <section class="crm-modal" id="clientModal">
+      <div class="crm-modal-header">
+        <div>
+          <div class="crm-eyebrow">Klienta kartīte</div>
+          <h2>Anna Bērziņa</h2>
+          <p>anna.berzina@example.com · +371 20000001</p>
+        </div>
+
+        <div class="crm-modal-buttons">
+          <button class="crm-btn" type="button" id="closeClientModal">Aizvērt</button>
+          <button class="crm-btn crm-btn-primary" type="button">Saglabāt</button>
+        </div>
+      </div>
+
+      <div class="crm-modal-body">
+
+        <aside class="crm-client-form">
+          <h3>Klienta dati</h3>
+
+          <label>Vārds<input value="Anna"></label>
+          <label>Uzvārds<input value="Bērziņa"></label>
+          <label>E-pasts<input value="anna.berzina@example.com"></label>
+          <label>Telefons<input value="+371 20000001"></label>
+          <label>Nodarbošanās<input value="Komandas vadītāja"></label>
+          <label>Profesija<input value="HR speciāliste"></label>
+
+          <div class="crm-methods">
+            <div class="crm-methods-title">Izmantotās metodes</div>
+            <label><input type="checkbox" checked> GROW</label>
+            <label><input type="checkbox" checked> Virsotne</label>
+            <label><input type="checkbox"> Vērtības</label>
+            <label><input type="checkbox" checked> Rīcības plāns</label>
+          </div>
+        </aside>
+
+        <section class="crm-feed">
+          <div class="crm-feed-header">
+            <h3>Klienta notikumu plūsma</h3>
+            <button class="crm-btn crm-btn-primary" type="button">+ Pievienot piezīmi</button>
+          </div>
+
+          <article class="crm-feed-item crm-feed-note">
+            <div class="crm-feed-meta">
+              <span>12.05.2026</span>
+              <strong>Brīvā piezīme</strong>
+            </div>
+            <p>Jāpārrunā nākamie soļi un praktiska rīcības karte.</p>
+          </article>
+
+          <article class="crm-feed-item crm-feed-session">
+            <div class="crm-feed-meta">
+              <span>10.05.2026</span>
+              <strong>Konsultācija notikusi</strong>
+            </div>
+            <p><b>Pakalpojums:</b> Individuālā konsultācija</p>
+            <p><b>Tēma:</b> karjeras izvēle un lēmuma pieņemšana.</p>
+            <textarea placeholder="Piezīme pie šīs konsultācijas..."></textarea>
+          </article>
+
+          <article class="crm-feed-item crm-feed-booking">
+            <div class="crm-feed-meta">
+              <span>03.05.2026</span>
+              <strong>Rezervācija veikta</strong>
+            </div>
+            <p>Kliente pieteicās konsultācijai 10.05.2026 plkst. 18:00.</p>
+          </article>
+
+          <article class="crm-feed-item crm-feed-cancelled">
+            <div class="crm-feed-meta">
+              <span>25.04.2026</span>
+              <strong>Rezervācija atcelta</strong>
+            </div>
+            <p><b>Tēma:</b> darba maiņa.</p>
+          </article>
+
+          <div class="crm-new-note">
+            <textarea placeholder="Jauna brīvā piezīme..."></textarea>
+            <button class="crm-btn crm-btn-primary" type="button">Saglabāt piezīmi</button>
+          </div>
+        </section>
+
+      </div>
+    </section>
+
+  </div>
+
+  <script>
+    const modal = document.getElementById("clientModal");
+    const backdrop = document.getElementById("clientModalBackdrop");
+    const closeButton = document.getElementById("closeClientModal");
+
+    function openModal() {
+      document.body.classList.add("crm-modal-open");
+    }
+
+    function closeModal() {
+      document.body.classList.remove("crm-modal-open");
+    }
+
+    document.getElementById("openClientModal").addEventListener("click", openModal);
+    document.getElementById("openClientModal2").addEventListener("click", openModal);
+    closeButton.addEventListener("click", closeModal);
+    backdrop.addEventListener("click", closeModal);
+  </script>
+</body>
+</html>

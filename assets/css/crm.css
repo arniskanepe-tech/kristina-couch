@@ -1,0 +1,366 @@
+body {
+  margin: 0;
+  background: #f6f1e8;
+  font-family: 'Inter', sans-serif;
+  color: #26322d;
+}
+
+.crm-page {
+  min-height: 100vh;
+}
+
+.crm-topbar {
+  background: rgba(255,255,255,.82);
+  border-bottom: 1px solid rgba(47,91,75,.08);
+}
+
+.crm-topbar-inner {
+  width: calc(100% - 80px);
+  max-width: 1800px;
+  margin: 0 auto;
+  padding: 22px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.crm-logo {
+  font-family: 'Allura', cursive;
+  font-size: 3rem;
+  color: #2f5b4b;
+  line-height: 1;
+}
+
+.crm-subtitle {
+  margin-top: 2px;
+  font-size: .82rem;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: #556b61;
+}
+
+.crm-actions {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.crm-back-link {
+  text-decoration: none;
+  color: #2f5b4b;
+  font-weight: 700;
+}
+
+.crm-content {
+  width: calc(100% - 80px);
+  max-width: 1800px;
+  margin: 0 auto;
+  padding: 34px 0 50px;
+}
+
+.crm-toolbar {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 26px;
+}
+
+.crm-toolbar input,
+.crm-toolbar select {
+  height: 52px;
+  border-radius: 16px;
+  border: 1px solid rgba(47,91,75,.12);
+  background: #fff;
+  padding: 0 18px;
+  font-size: .96rem;
+  font-family: inherit;
+}
+
+.crm-toolbar input {
+  flex: 1;
+}
+
+.crm-btn {
+  height: 46px;
+  padding: 0 22px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: .95rem;
+  transition: .18s ease;
+}
+
+.crm-btn:hover {
+  transform: translateY(-1px);
+}
+
+.crm-btn-primary {
+  background: #2f5b4b;
+  color: #fff;
+}
+
+.crm-table-card {
+  background: rgba(255,255,255,.72);
+  border-radius: 30px;
+  overflow: hidden;
+  border: 1px solid rgba(47,91,75,.08);
+  box-shadow: 0 20px 50px rgba(47,91,75,.08);
+}
+
+.crm-table-scroll {
+  overflow-x: auto;
+}
+
+.crm-table {
+  width: 100%;
+  min-width: 1650px;
+  border-collapse: collapse;
+}
+
+.crm-table thead {
+  background: rgba(47,91,75,.05);
+}
+
+.crm-table th {
+  padding: 22px 18px;
+  text-align: left;
+  font-size: .82rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: #2f5b4b;
+  border-bottom: 1px solid rgba(47,91,75,.08);
+  white-space: nowrap;
+}
+
+.crm-table th button {
+  margin-left: 6px;
+  border: none;
+  background: transparent;
+  color: #8f9f97;
+  cursor: pointer;
+}
+
+.crm-table td {
+  padding: 18px;
+  border-bottom: 1px solid rgba(47,91,75,.06);
+  white-space: nowrap;
+}
+
+.crm-row {
+  cursor: pointer;
+  transition: background .16s ease;
+}
+
+.crm-row:hover {
+  background: rgba(212,196,168,.14);
+}
+
+.crm-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(20,30,25,.45);
+  backdrop-filter: blur(4px);
+  opacity: 0;
+  visibility: hidden;
+  transition: .18s ease;
+  z-index: 100;
+}
+
+.crm-modal {
+  position: fixed;
+  inset: 28px;
+  background: #fff;
+  border-radius: 32px;
+  box-shadow: 0 30px 90px rgba(20,30,25,.3);
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  transition: .18s ease;
+  z-index: 101;
+}
+
+.crm-modal-open .crm-modal,
+.crm-modal-open .crm-modal-backdrop {
+  opacity: 1;
+  visibility: visible;
+}
+
+.crm-modal-header {
+  padding: 30px 36px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-bottom: 1px solid rgba(47,91,75,.08);
+  background: rgba(246,241,232,.7);
+}
+
+.crm-eyebrow {
+  margin-bottom: 10px;
+  font-size: .8rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: #9a8f78;
+}
+
+.crm-modal-header h2 {
+  margin: 0 0 10px;
+  font-size: 3rem;
+  font-family: 'Cormorant Garamond', serif;
+  color: #2f5b4b;
+}
+
+.crm-modal-buttons {
+  display: flex;
+  gap: 12px;
+}
+
+.crm-modal-body {
+  height: calc(100% - 132px);
+  overflow: auto;
+  padding: 32px;
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  gap: 28px;
+}
+
+.crm-client-form,
+.crm-feed {
+  background: #fff;
+  border-radius: 26px;
+  border: 1px solid rgba(47,91,75,.08);
+  padding: 28px;
+}
+
+.crm-client-form h3,
+.crm-feed h3 {
+  margin-top: 0;
+  margin-bottom: 24px;
+  color: #2f5b4b;
+}
+
+.crm-client-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 16px;
+  font-size: .76rem;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: #9a8f78;
+  font-weight: 700;
+}
+
+.crm-client-form input {
+  height: 48px;
+  border-radius: 14px;
+  border: 1px solid rgba(47,91,75,.12);
+  padding: 0 14px;
+  font-family: inherit;
+  font-size: .96rem;
+  color: #26322d;
+}
+
+.crm-methods {
+  margin-top: 26px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(47,91,75,.08);
+}
+
+.crm-methods-title {
+  margin-bottom: 14px;
+  font-size: .76rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: #9a8f78;
+  font-weight: 700;
+}
+
+.crm-methods label {
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: .95rem;
+  color: #26322d;
+}
+
+.crm-methods input {
+  height: auto;
+}
+
+.crm-feed-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.crm-feed-item {
+  border-radius: 22px;
+  padding: 20px 22px;
+  margin-bottom: 18px;
+}
+
+.crm-feed-note {
+  background: rgba(212,196,168,.14);
+  border-left: 4px solid #d4c4a8;
+}
+
+.crm-feed-session {
+  background: rgba(47,91,75,.08);
+  border-left: 4px solid #2f5b4b;
+}
+
+.crm-feed-booking {
+  background: rgba(84,115,101,.08);
+  border-left: 4px solid #6d8a7d;
+}
+
+.crm-feed-cancelled {
+  background: rgba(110,110,110,.08);
+  border-left: 4px solid #7c7c7c;
+  opacity: .7;
+}
+
+.crm-feed-meta {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.crm-feed-meta span {
+  color: #9a8f78;
+  font-size: .82rem;
+}
+
+.crm-feed-meta strong {
+  color: #2f5b4b;
+}
+
+.crm-feed-item p {
+  line-height: 1.7;
+}
+
+.crm-feed textarea,
+.crm-new-note textarea {
+  width: 100%;
+  min-height: 120px;
+  border-radius: 16px;
+  border: 1px solid rgba(47,91,75,.12);
+  padding: 14px;
+  resize: vertical;
+  font-family: inherit;
+  margin-top: 12px;
+}
+
+.crm-new-note {
+  margin-top: 30px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(47,91,75,.08);
+}
+
+.crm-new-note .crm-btn {
+  margin-top: 14px;
+}
