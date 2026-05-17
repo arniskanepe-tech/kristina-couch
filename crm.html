@@ -35,7 +35,11 @@
     <main class="crm-content">
 
       <div class="crm-toolbar">
-        <input type="search" placeholder="Meklēt pēc vārda, e-pasta vai telefona..." />
+<input
+  type="search"
+  id="crm-global-search"
+  placeholder="Meklēt pēc vārda, e-pasta vai telefona..."
+/>
         <select>
           <option>Visi klienti</option>
           <option>Ar rezervācijām</option>
@@ -46,58 +50,114 @@
       <section class="crm-table-card">
         <div class="crm-table-scroll">
           <table class="crm-table">
-            <thead>
-              <tr>
-                <th rowspan="2">Vārds <button type="button">⌄</button></th>
-                <th rowspan="2">Uzvārds <button type="button">⌄</button></th>
-                <th rowspan="2">E-pasts <button type="button">⌄</button></th>
-                <th rowspan="2">Telefons <button type="button">⌄</button></th>
-                <th rowspan="2">Nodarbošanās <button type="button">⌄</button></th>
-                <th rowspan="2">Profesija <button type="button">⌄</button></th>
-                <th rowspan="2">Rezervācijas <button type="button">⌄</button></th>
-                <th rowspan="2">Pēdējā konsultācija <button type="button">⌄</button></th>
-                <th colspan="4">Izmantotās metodes</th>
-              </tr>
-              <tr>
-                <th>GROW <button type="button">⌄</button></th>
-                <th>Virsotne <button type="button">⌄</button></th>
-                <th>Vērtības <button type="button">⌄</button></th>
-                <th>Rīcības plāns <button type="button">⌄</button></th>
-              </tr>
-            </thead>
 
-            <tbody>
-              <tr class="crm-row" id="openClientModal">
-                <td>Anna</td>
-                <td>Bērziņa</td>
-                <td>anna.berzina@example.com</td>
-                <td>+371 20000001</td>
-                <td>Komandas vadītāja</td>
-                <td>HR speciāliste</td>
-                <td>3</td>
-                <td>10.05.2026</td>
-                <td>✓</td>
-                <td>✓</td>
-                <td></td>
-                <td>✓</td>
-              </tr>
+<thead>
 
-              <tr class="crm-row" id="openClientModal2">
-                <td>Jānis</td>
-                <td>Ozols</td>
-                <td>janis.ozols@example.com</td>
-                <td>+371 20000002</td>
-                <td>Uzņēmējs</td>
-                <td>Vadītājs</td>
-                <td>1</td>
-                <td>02.05.2026</td>
-                <td>✓</td>
-                <td></td>
-                <td>✓</td>
-                <td></td>
-              </tr>
-            </tbody>
+  <tr>
+
+    <th rowspan="2" onclick="setSort('name')">
+      Vārds
+      <button type="button" onclick="openFilterMenu(event,'name')">
+        ⌄
+      </button>
+    </th>
+
+    <th rowspan="2" onclick="setSort('surname')">
+      Uzvārds
+      <button type="button" onclick="openFilterMenu(event,'surname')">
+        ⌄
+      </button>
+    </th>
+
+    <th rowspan="2" onclick="setSort('email')">
+      E-pasts
+      <button type="button" onclick="openFilterMenu(event,'email')">
+        ⌄
+      </button>
+    </th>
+
+    <th rowspan="2" onclick="setSort('phone')">
+      Telefons
+      <button type="button" onclick="openFilterMenu(event,'phone')">
+        ⌄
+      </button>
+    </th>
+
+    <th rowspan="2" onclick="setSort('occupation')">
+      Nodarbošanās
+      <button type="button" onclick="openFilterMenu(event,'occupation')">
+        ⌄
+      </button>
+    </th>
+
+    <th rowspan="2" onclick="setSort('profession')">
+      Profesija
+      <button type="button" onclick="openFilterMenu(event,'profession')">
+        ⌄
+      </button>
+    </th>
+
+    <th rowspan="2" onclick="setSort('bookingsCount')">
+      Rezervācijas
+      <button type="button" onclick="openFilterMenu(event,'bookingsCount')">
+        ⌄
+      </button>
+    </th>
+
+    <th rowspan="2" onclick="setSort('lastBookingDate')">
+      Pēdējā konsultācija
+      <button type="button" onclick="openFilterMenu(event,'lastBookingDate')">
+        ⌄
+      </button>
+    </th>
+
+    <th colspan="4">
+      Izmantotās metodes
+    </th>
+
+  </tr>
+
+  <tr>
+
+    <th onclick="setSort('grow')">
+      GROW
+      <button type="button" onclick="openFilterMenu(event,'grow')">
+        ⌄
+      </button>
+    </th>
+
+    <th onclick="setSort('virsotne')">
+      Virsotne
+      <button type="button" onclick="openFilterMenu(event,'virsotne')">
+        ⌄
+      </button>
+    </th>
+
+    <th onclick="setSort('vertibas')">
+      Vērtības
+      <button type="button" onclick="openFilterMenu(event,'vertibas')">
+        ⌄
+      </button>
+    </th>
+
+    <th onclick="setSort('ricibasPlans')">
+      Rīcības plāns
+      <button type="button" onclick="openFilterMenu(event,'ricibasPlans')">
+        ⌄
+      </button>
+    </th>
+
+  </tr>
+
+</thead>
+
+
+		<tbody id="crm-clients-body">
+		</tbody>
+
           </table>
+<div id="crm-filter-menu"></div>
+
         </div>
       </section>
 
@@ -108,21 +168,39 @@
     <section class="crm-modal" id="clientModal">
       <div class="crm-modal-header">
         <div>
-          <div class="crm-eyebrow">Klienta kartīte</div>
-          <h2>Anna Bērziņa</h2>
-          <p>anna.berzina@example.com · +371 20000001</p>
+<div class="crm-eyebrow">Klienta kartīte</div>
+<div class="crm-eyebrow crm-client-name">Anna Bērziņa</div>
+<p>anna.berzina@example.com · +371 20000001</p>
         </div>
 
-        <div class="crm-modal-buttons">
-          <button class="crm-btn" type="button" id="closeClientModal">Aizvērt</button>
-          <button class="crm-btn crm-btn-primary" type="button">Saglabāt</button>
-        </div>
+<div class="crm-modal-buttons">
+  <button
+    class="crm-btn crm-btn-primary"
+    type="button"
+    onclick="scrollToFreeNote()"
+  >
+    + Piezīme
+  </button>
+
+  <button class="crm-btn" type="button" id="closeClientModal">
+    Aizvērt
+  </button>
+
+  <button
+    class="crm-btn crm-btn-primary"
+    type="button"
+    onclick="saveClientData()"
+  >
+    Saglabāt
+  </button>
+</div>
+
       </div>
 
       <div class="crm-modal-body">
 
         <aside class="crm-client-form">
-          <h3>Klienta dati</h3>
+	<!-- <h3>Klienta dati</h3> -->
 
           <label>Vārds<input value="Anna"></label>
           <label>Uzvārds<input value="Bērziņa"></label>
@@ -130,21 +208,42 @@
           <label>Telefons<input value="+371 20000001"></label>
           <label>Nodarbošanās<input value="Komandas vadītāja"></label>
           <label>Profesija<input value="HR speciāliste"></label>
+<div class="crm-important-block">
+  <div class="crm-methods-title">Svarīga info 1</div>
+  <textarea id="important-info-1"></textarea>
+</div>
 
-          <div class="crm-methods">
-            <div class="crm-methods-title">Izmantotās metodes</div>
-            <label><input type="checkbox" checked> GROW</label>
-            <label><input type="checkbox" checked> Virsotne</label>
-            <label><input type="checkbox"> Vērtības</label>
-            <label><input type="checkbox" checked> Rīcības plāns</label>
-          </div>
+<div class="crm-important-block">
+  <div class="crm-methods-title">Svarīga info 2</div>
+  <textarea id="important-info-2"></textarea>
+</div>
+
+<div class="crm-methods">
+  <div class="crm-methods-title">Izmantotās metodes</div>
+
+  <label>
+    <input type="checkbox" id="method-grow">
+    GROW
+  </label>
+
+  <label>
+    <input type="checkbox" id="method-virsotne">
+    Virsotne
+  </label>
+
+  <label>
+    <input type="checkbox" id="method-vertibas">
+    Vērtības
+  </label>
+
+  <label>
+    <input type="checkbox" id="method-ricibas-plans">
+    Rīcības plāns
+  </label>
+</div>
         </aside>
 
         <section class="crm-feed">
-          <div class="crm-feed-header">
-            <h3>Klienta notikumu plūsma</h3>
-            <button class="crm-btn crm-btn-primary" type="button">+ Pievienot piezīmi</button>
-          </div>
 
           <article class="crm-feed-item crm-feed-note">
             <div class="crm-feed-meta">
@@ -180,10 +279,13 @@
             <p><b>Tēma:</b> darba maiņa.</p>
           </article>
 
-          <div class="crm-new-note">
-            <textarea placeholder="Jauna brīvā piezīme..."></textarea>
-            <button class="crm-btn crm-btn-primary" type="button">Saglabāt piezīmi</button>
-          </div>
+<div class="crm-new-note">
+  <textarea
+    id="crm-free-note"
+    placeholder="Jauna brīvā piezīme..."
+  ></textarea>
+
+</div>
         </section>
 
       </div>
@@ -191,23 +293,715 @@
 
   </div>
 
-  <script>
-    const modal = document.getElementById("clientModal");
-    const backdrop = document.getElementById("clientModalBackdrop");
-    const closeButton = document.getElementById("closeClientModal");
+<script>
+  const backdrop = document.getElementById("clientModalBackdrop");
+  const closeButton = document.getElementById("closeClientModal");
 
-    function openModal() {
-      document.body.classList.add("crm-modal-open");
+  let clientsCache = [];
+  let bookingsCache = [];
+
+const CRM_COLUMNS = [
+  {
+    key: "name",
+    label: "Vārds",
+    sortable: true,
+    filterable: true,
+    type: "text"
+  },
+  {
+    key: "surname",
+    label: "Uzvārds",
+    sortable: true,
+    filterable: true,
+    type: "text"
+  },
+  {
+    key: "email",
+    label: "E-pasts",
+    sortable: true,
+    filterable: true,
+    type: "text"
+  },
+  {
+    key: "phone",
+    label: "Telefons",
+    sortable: true,
+    filterable: true,
+    type: "text"
+  },
+  {
+    key: "occupation",
+    label: "Nodarbošanās",
+    sortable: true,
+    filterable: true,
+    type: "text"
+  },
+  {
+    key: "profession",
+    label: "Profesija",
+    sortable: true,
+    filterable: true,
+    type: "text"
+  },
+  {
+    key: "bookingsCount",
+    label: "Rezervācijas",
+    sortable: true,
+    filterable: true,
+    type: "number"
+  },
+  {
+    key: "lastBookingDate",
+    label: "Pēdējā konsultācija",
+    sortable: true,
+    filterable: true,
+    type: "date"
+  }
+];
+
+let activeFilters = {};
+let activeSearch = "";
+let activeSort = {
+  key: null,
+  direction: "asc"
+};
+
+let activeFilterColumn = null;
+
+function toggleFilter(column, value) {
+
+  if (!activeFilters[column]) {
+
+    activeFilters[column] = [];
+
+  }
+
+  const exists =
+
+    activeFilters[column].includes(value);
+
+  if (exists) {
+
+    activeFilters[column] =
+
+      activeFilters[column]
+
+        .filter(v => v !== value);
+
+  } else {
+
+    activeFilters[column].push(value);
+
+  }
+
+  renderClientsTable(getFilteredClients());
+
+}
+
+function openFilterMenu(event, column) {
+
+  event.stopPropagation();
+
+  activeFilterColumn = column;
+
+  renderFilterMenu(column);
+
+  const menu =
+    document.getElementById("crm-filter-menu");
+
+  menu.style.display = "block";
+
+  menu.style.left = `${event.pageX}px`;
+  menu.style.top = `${event.pageY}px`;
+}
+
+function renderFilterMenu(column) {
+
+  const menu =
+    document.getElementById("crm-filter-menu");
+
+  const values = [
+    ...new Set(
+      clientsCache.map(client => {
+
+        if (
+          column === "grow" ||
+          column === "virsotne" ||
+          column === "vertibas" ||
+          column === "ricibasPlans"
+        ) {
+
+          return client.methods?.[column]
+            ? "Jā"
+            : "Nē";
+        }
+
+        return String(client[column] || "");
+      })
+    )
+  ];
+
+  menu.innerHTML = values.map(value => {
+
+    const checked =
+      activeFilters[column]?.includes(value)
+        ? "checked"
+        : "";
+
+    return `
+      <label class="crm-filter-option">
+        <input
+          type="checkbox"
+          ${checked}
+          onchange="toggleFilter('${column}','${value}')"
+        >
+        ${value || "(tukšs)"}
+      </label>
+    `;
+  }).join("");
+}
+
+document.addEventListener("click", (event) => {
+
+  const menu =
+    document.getElementById("crm-filter-menu");
+
+  if (!menu.contains(event.target)) {
+
+    menu.style.display = "none";
+  }
+});
+
+
+  function openModal() {
+    document.body.classList.add("crm-modal-open");
+  }
+
+  function closeModal() {
+    document.body.classList.remove("crm-modal-open");
+  }
+
+  closeButton.addEventListener("click", closeModal);
+  backdrop.addEventListener("click", closeModal);
+
+  function normalizeEmail(email) {
+    return String(email || "").trim().toLowerCase();
+  }
+
+  function getBookingDateTime(booking) {
+    return new Date(`${booking.date}T${booking.time || "00:00"}:00`);
+  }
+
+  function getEventType(booking) {
+    if (booking.status === "cancelled") {
+      return {
+        className: "crm-feed-cancelled",
+        title: "Rezervācija atcelta"
+      };
     }
 
-    function closeModal() {
-      document.body.classList.remove("crm-modal-open");
+    const bookingDate = getBookingDateTime(booking);
+    const now = new Date();
+
+    if (bookingDate < now) {
+      return {
+        className: "crm-feed-session",
+        title: "Konsultācija notikusi"
+      };
     }
 
-    document.getElementById("openClientModal").addEventListener("click", openModal);
-    document.getElementById("openClientModal2").addEventListener("click", openModal);
-    closeButton.addEventListener("click", closeModal);
-    backdrop.addEventListener("click", closeModal);
-  </script>
+    return {
+      className: "crm-feed-booking",
+      title: "Rezervācija veikta"
+    };
+  }
+
+  function openClient(client) {
+    const email = normalizeEmail(client.email);
+    window.currentClientEmail = email;
+
+    const clientBookings = bookingsCache
+      .filter(booking => normalizeEmail(booking.email) === email)
+      .sort((a, b) => getBookingDateTime(b) - getBookingDateTime(a));
+
+document.querySelector(".crm-client-name").textContent =
+      client.name || client.email || "Klients";
+
+    document.querySelector(".crm-modal-header p").textContent =
+      `${client.email || ""} · ${client.phone || ""}`;
+
+    const inputs = document.querySelectorAll(".crm-client-form > label input");
+
+if (inputs[0]) inputs[0].value = client.name || "";
+if (inputs[1]) inputs[1].value = client.surname || "";
+if (inputs[2]) inputs[2].value = client.email || "";
+if (inputs[3]) inputs[3].value = client.phone || "";
+if (inputs[4]) inputs[4].value = client.occupation || "";
+if (inputs[5]) inputs[5].value = client.profession || "";
+document.getElementById("important-info-1").value =
+  client.importantInfo1 || "";
+
+document.getElementById("important-info-2").value =
+  client.importantInfo2 || "";
+
+    const feed = document.querySelector(".crm-feed");
+
+const notesHtml = Array.isArray(client.notes)
+  ? client.notes
+      .filter(note => note.type === "free")
+      .map(note => `
+        <article class="crm-feed-item crm-feed-note">
+          <div class="crm-feed-meta">
+            <span>${new Date(note.createdAt).toLocaleString("lv-LV")}</span>
+          </div>
+          <p>${note.text || ""}</p>
+        </article>
+      `).join("")
+  : "";
+
+   
+function getSessionNoteText(client, booking) {
+  const bookingId = booking.eventId || booking.cancelToken || `${booking.date}-${booking.time}`;
+
+  const note = Array.isArray(client.notes)
+    ? client.notes.find(
+        item =>
+          item.type === "session" &&
+          item.bookingId === bookingId
+      )
+    : null;
+
+  return note?.text || "";
+}
+
+
+ const timelineHtml = clientBookings.map(booking => {
+      const type = getEventType(booking);
+
+      return `
+        <article class="crm-feed-item ${type.className}">
+          <div class="crm-feed-meta">
+            <span>${booking.date} ${booking.time || ""}</span>
+            <strong>${type.title}</strong>
+          </div>
+
+          <p><b>Pakalpojums:</b> ${booking.service || "-"}</p>
+          <p><b>Tēma:</b> ${booking.goal || "-"}</p>
+
+<textarea
+  data-booking-id="${booking.eventId || booking.cancelToken || `${booking.date}-${booking.time}`}"
+  class="session-note-textarea"
+  placeholder="Piezīme pie šīs konsultācijas..."
+>${getSessionNoteText(client, booking)}</textarea>
+
+
+        </article>
+      `;
+    }).join("");
+
+    feed.innerHTML = `
+
+
+	${notesHtml}
+	${timelineHtml || `
+        <article class="crm-feed-item crm-feed-note">
+          <div class="crm-feed-meta">
+            <span>-</span>
+            <strong>Nav rezervāciju</strong>
+          </div>
+          <p>Šim klientam vēl nav rezervāciju vēstures.</p>
+        </article>
+      `}
+
+<div class="crm-new-note">
+  <textarea
+    id="crm-free-note"
+    placeholder="Jauna brīvā piezīme..."
+  ></textarea>
+</div>
+
+    `;
+
+    openModal();
+  }
+
+
+function renderClientsTable(clients) {
+  const tbody = document.getElementById("crm-clients-body");
+
+  tbody.innerHTML = "";
+
+  clients.forEach(client => {
+    const row = document.createElement("tr");
+
+    row.className = "crm-row";
+
+    row.innerHTML = `
+      <td>${client.name || ""}</td>
+      <td>${client.surname || ""}</td>
+      <td>${client.email || ""}</td>
+      <td>${client.phone || ""}</td>
+      <td>${client.occupation || ""}</td>
+      <td>${client.profession || ""}</td>
+      <td>${client.bookingsCount || 0}</td>
+      <td>${client.lastBookingDate || ""}</td>
+      <td>${client.methods?.grow ? "✓" : ""}</td>
+      <td>${client.methods?.virsotne ? "✓" : ""}</td>
+      <td>${client.methods?.vertibas ? "✓" : ""}</td>
+      <td>${client.methods?.ricibasPlans ? "✓" : ""}</td>
+    `;
+
+    row.addEventListener("click", () => openClient(client));
+
+    tbody.appendChild(row);
+  });
+}
+
+
+function getFilteredClients() {
+
+  let filtered = [...clientsCache];
+
+  if (activeSearch.trim()) {
+
+    const search = activeSearch.toLowerCase();
+
+    filtered = filtered.filter(client => {
+
+      return [
+        client.name,
+        client.surname,
+        client.email,
+        client.phone,
+        client.occupation,
+        client.profession
+      ]
+        .join(" ")
+        .toLowerCase()
+        .includes(search);
+    });
+  }
+
+Object.entries(activeFilters).forEach(([column, values]) => {
+
+  if (!values.length) return;
+
+  filtered = filtered.filter(client => {
+
+    let clientValue;
+
+    if (
+      column === "grow" ||
+      column === "virsotne" ||
+      column === "vertibas" ||
+      column === "ricibasPlans"
+    ) {
+
+      clientValue =
+        client.methods?.[column]
+          ? "Jā"
+          : "Nē";
+
+    } else {
+
+      clientValue =
+        String(client[column] || "");
+    }
+
+    return values.includes(clientValue);
+  });
+});
+
+
+  if (activeSort.key) {
+
+    filtered.sort((a, b) => {
+
+      let aValue;
+      let bValue;
+
+      if (
+        activeSort.key === "grow" ||
+        activeSort.key === "virsotne" ||
+        activeSort.key === "vertibas" ||
+        activeSort.key === "ricibasPlans"
+      ) {
+
+        aValue = a.methods?.[activeSort.key] ? 1 : 0;
+        bValue = b.methods?.[activeSort.key] ? 1 : 0;
+
+      } else {
+
+        aValue = String(a[activeSort.key] || "").toLowerCase();
+        bValue = String(b[activeSort.key] || "").toLowerCase();
+      }
+
+      if (aValue < bValue) {
+        return activeSort.direction === "asc" ? -1 : 1;
+      }
+
+      if (aValue > bValue) {
+        return activeSort.direction === "asc" ? 1 : -1;
+      }
+
+      return 0;
+    });
+  }
+
+  return filtered;
+}
+
+function setSort(key) {
+
+  if (activeSort.key === key) {
+
+    activeSort.direction =
+      activeSort.direction === "asc"
+        ? "desc"
+        : "asc";
+
+  } else {
+
+    activeSort.key = key;
+    activeSort.direction = "asc";
+  }
+
+  renderClientsTable(getFilteredClients());
+}
+
+
+  async function loadClients() {
+    try {
+
+const [clientsResponse, bookingsResponse, crmDataResponse] = await Promise.all([
+  fetch("/kristina/crm/clients"),
+  fetch("/kristina/bookings"),
+  fetch("/kristina/crm/client-data")
+]);
+
+clientsCache = await clientsResponse.json();
+bookingsCache = await bookingsResponse.json();
+const crmData = await crmDataResponse.json();
+
+const crmMap = {};
+
+crmData.forEach(item => {
+  const email = normalizeEmail(item.email);
+
+  if (email) {
+    crmMap[email] = item;
+  }
+});
+
+clientsCache = clientsCache.map(client => {
+  const email = normalizeEmail(client.email);
+
+  return {
+    ...client,
+    ...(crmMap[email] || {})
+  };
+});
+
+renderClientsTable(clientsCache);
+
+    } catch (err) {
+      console.error("CRM load error:", err);
+    }
+  }
+
+  loadClients();
+
+
+document
+  .getElementById("crm-global-search")
+  .addEventListener("input", (e) => {
+
+    activeSearch = e.target.value;
+
+    renderClientsTable(getFilteredClients());
+});
+
+function scrollToFreeNote() {
+  const textarea = document.getElementById("crm-free-note");
+
+  if (!textarea) return;
+
+  textarea.scrollIntoView({
+    behavior: "smooth",
+    block: "center"
+  });
+
+  textarea.focus();
+}
+
+
+async function saveClientData() {
+  try {
+    const inputs = document.querySelectorAll(".crm-client-form > label input");
+
+    const currentClient = clientsCache.find(
+      c => normalizeEmail(c.email) === normalizeEmail(window.currentClientEmail)
+    );
+
+    const existingNotes = Array.isArray(currentClient?.notes)
+      ? [...currentClient.notes]
+      : [];
+
+    let notes = existingNotes.filter(note => note.type !== "session");
+
+    document.querySelectorAll(".session-note-textarea").forEach(textarea => {
+      const bookingId = textarea.dataset.bookingId;
+      const text = textarea.value.trim();
+
+      if (!bookingId || !text) return;
+
+      notes.unshift({
+        type: "session",
+        bookingId,
+        text,
+        createdAt: new Date().toISOString()
+      });
+    });
+
+const freeNoteTextarea = document.getElementById("crm-free-note");
+const freeNoteText = freeNoteTextarea?.value.trim();
+
+if (freeNoteText) {
+  notes.unshift({
+    type: "free",
+    text: freeNoteText,
+    createdAt: new Date().toISOString()
+  });
+
+  freeNoteTextarea.value = "";
+}
+
+
+
+    const payload = {
+      ...(currentClient || {}),
+
+      name: inputs[0]?.value || "",
+      surname: inputs[1]?.value || "",
+      email: inputs[2]?.value || "",
+      phone: inputs[3]?.value || "",
+      occupation: inputs[4]?.value || "",
+      profession: inputs[5]?.value || "",
+importantInfo1:
+  document.getElementById("important-info-1")?.value || "",
+
+importantInfo2:
+  document.getElementById("important-info-2")?.value || "",
+
+      methods: {
+        grow: document.getElementById("method-grow")?.checked || false,
+        virsotne: document.getElementById("method-virsotne")?.checked || false,
+        vertibas: document.getElementById("method-vertibas")?.checked || false,
+        ricibasPlans: document.getElementById("method-ricibas-plans")?.checked || false
+      },
+
+      notes
+    };
+
+    if (!payload.email) {
+      alert("Klientam nav e-pasta");
+      return;
+    }
+
+    const response = await fetch("/kristina/crm/client-data", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(payload)
+    });
+
+    if (!response.ok) {
+      throw new Error("Save failed");
+    }
+
+    alert("Klienta dati saglabāti");
+
+    await loadClients();
+
+  } catch (err) {
+    console.error(err);
+    alert("Neizdevās saglabāt klientu");
+  }
+}
+
+window.saveSessionNote = async function (bookingId) {
+  try {
+
+    const textarea = document.querySelector(
+      `[data-booking-id="${bookingId}"]`
+    );
+
+    if (!textarea) {
+      alert("Textarea nav atrasts");
+      return;
+    }
+
+    const text = textarea.value.trim();
+
+    const client = clientsCache.find(
+      c => normalizeEmail(c.email) === normalizeEmail(window.currentClientEmail)
+    );
+
+    if (!client) {
+      alert("Klients nav atrasts");
+      return;
+    }
+
+    let notes = Array.isArray(client.notes)
+      ? [...client.notes]
+      : [];
+
+    // izņem veco piezīmi šim booking
+    notes = notes.filter(note =>
+      !(
+        note.type === "session" &&
+        note.bookingId === bookingId
+      )
+    );
+
+    // pievieno jauno
+    notes.unshift({
+      type: "session",
+      bookingId,
+      text,
+      createdAt: new Date().toISOString()
+    });
+
+    const payload = {
+      ...client,
+      notes
+    };
+
+    const response = await fetch("/kristina/crm/client-data", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(payload)
+    });
+
+    if (!response.ok) {
+      throw new Error("Session note save failed");
+    }
+
+    alert("Konsultācijas piezīme saglabāta");
+
+    loadClients();
+
+  } catch (err) {
+    console.error(err);
+    alert("Neizdevās saglabāt konsultācijas piezīmi");
+  }
+}
+
+
+</script>
 </body>
 </html>
+
