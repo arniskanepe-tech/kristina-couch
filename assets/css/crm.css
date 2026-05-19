@@ -131,15 +131,39 @@ body {
   color: #2f5b4b;
   border-bottom: 1px solid rgba(47,91,75,.08);
   white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
 }
+
 
 .crm-table th button {
   margin-left: 6px;
+  width: 22px;
+  height: 22px;
   border: none;
-  background: transparent;
-  color: #8f9f97;
+  border-radius: 999px;
+  background: rgba(47,91,75,.10);
+  color: #2f5b4b;
   cursor: pointer;
+  font-size: .95rem;
+  font-weight: 800;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
 }
+
+.crm-table th button:hover {
+  background: #2f5b4b;
+  color: #fff;
+}
+
+.crm-table th button.filter-active {
+  background: #2f5b4b;
+  color: #fff;
+}
+
 
 .crm-table td {
   padding: 10px 14px;
@@ -162,22 +186,51 @@ body {
   position: absolute;
   background: #fff;
   border: 1px solid rgba(47,91,75,.12);
-  border-radius: 12px;
-  padding: 10px;
-  min-width: 180px;
-  max-height: 320px;
+  border-radius: 10px;
+  padding: 8px;
+  min-width: 210px;
+  max-width: 320px;
+  max-height: 260px;
   overflow: auto;
   z-index: 5000;
-  box-shadow: 0 12px 32px rgba(0,0,0,.12);
+  box-shadow: 0 12px 30px rgba(0,0,0,.10);
+}
+
+.crm-filter-actions {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 8px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid rgba(47,91,75,.08);
+}
+
+.crm-filter-actions button {
+  height: 24px;
+  padding: 0 10px;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(47,91,75,.09);
+  color: #2f5b4b;
+  font-size: .68rem;
+  font-weight: 700;
+  cursor: pointer;
 }
 
 .crm-filter-option {
   display: flex;
   align-items: center;
-  gap: 8px;
-  margin-bottom: 6px;
-  font-size: .78rem;
+  gap: 7px;
+  margin-bottom: 5px;
+  font-size: .72rem;
+  line-height: 1.25;
+  color: #26322d;
   cursor: pointer;
+  white-space: nowrap;
+}
+
+.crm-filter-option input {
+  width: 14px;
+  height: 14px;
 }
 
 
@@ -309,6 +362,13 @@ body {
 
 .crm-feed {
   max-height: 100%;
+}
+
+.crm-table th button.filter-active {
+  color: #fff;
+  background: #2f5b4b;
+  border-radius: 999px;
+  padding: 1px 6px;
 }
 
 

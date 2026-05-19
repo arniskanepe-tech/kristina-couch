@@ -57,57 +57,89 @@
 
     <th rowspan="2" onclick="setSort('name')">
       Vārds
-      <button type="button" onclick="openFilterMenu(event,'name')">
-        ⌄
+      <button
+        type="button"
+        data-filter-key="name"
+        onclick="openFilterMenu(event,'name')"
+      >
+        ▾
       </button>
     </th>
 
     <th rowspan="2" onclick="setSort('surname')">
       Uzvārds
-      <button type="button" onclick="openFilterMenu(event,'surname')">
-        ⌄
+      <button
+        type="button"
+        data-filter-key="surname"
+        onclick="openFilterMenu(event,'surname')"
+      >
+        ▾
       </button>
     </th>
 
     <th rowspan="2" onclick="setSort('email')">
       E-pasts
-      <button type="button" onclick="openFilterMenu(event,'email')">
-        ⌄
+      <button
+        type="button"
+        data-filter-key="email"
+        onclick="openFilterMenu(event,'email')"
+      >
+        ▾
       </button>
     </th>
 
     <th rowspan="2" onclick="setSort('phone')">
       Telefons
-      <button type="button" onclick="openFilterMenu(event,'phone')">
-        ⌄
+      <button
+        type="button"
+        data-filter-key="phone"
+        onclick="openFilterMenu(event,'phone')"
+      >
+        ▾
       </button>
     </th>
 
     <th rowspan="2" onclick="setSort('occupation')">
       Nodarbošanās
-      <button type="button" onclick="openFilterMenu(event,'occupation')">
-        ⌄
+      <button
+        type="button"
+        data-filter-key="occupation"
+        onclick="openFilterMenu(event,'occupation')"
+      >
+        ▾
       </button>
     </th>
 
     <th rowspan="2" onclick="setSort('profession')">
       Profesija
-      <button type="button" onclick="openFilterMenu(event,'profession')">
-        ⌄
+      <button
+        type="button"
+        data-filter-key="profession"
+        onclick="openFilterMenu(event,'profession')"
+      >
+        ▾
       </button>
     </th>
 
     <th rowspan="2" onclick="setSort('bookingsCount')">
       Rezervācijas
-      <button type="button" onclick="openFilterMenu(event,'bookingsCount')">
-        ⌄
+      <button
+        type="button"
+        data-filter-key="bookingsCount"
+        onclick="openFilterMenu(event,'bookingsCount')"
+      >
+        ▾
       </button>
     </th>
 
     <th rowspan="2" onclick="setSort('lastBookingDate')">
       Pēdējā konsultācija
-      <button type="button" onclick="openFilterMenu(event,'lastBookingDate')">
-        ⌄
+      <button
+        type="button"
+        data-filter-key="lastBookingDate"
+        onclick="openFilterMenu(event,'lastBookingDate')"
+      >
+        ▾
       </button>
     </th>
 
@@ -121,36 +153,51 @@
 
     <th onclick="setSort('grow')">
       GROW
-      <button type="button" onclick="openFilterMenu(event,'grow')">
-        ⌄
+      <button
+        type="button"
+        data-filter-key="grow"
+        onclick="openFilterMenu(event,'grow')"
+      >
+        ▾
       </button>
     </th>
 
     <th onclick="setSort('virsotne')">
       Virsotne
-      <button type="button" onclick="openFilterMenu(event,'virsotne')">
-        ⌄
+      <button
+        type="button"
+        data-filter-key="virsotne"
+        onclick="openFilterMenu(event,'virsotne')"
+      >
+        ▾
       </button>
     </th>
 
     <th onclick="setSort('vertibas')">
       Vērtības
-      <button type="button" onclick="openFilterMenu(event,'vertibas')">
-        ⌄
+      <button
+        type="button"
+        data-filter-key="vertibas"
+        onclick="openFilterMenu(event,'vertibas')"
+      >
+        ▾
       </button>
     </th>
 
     <th onclick="setSort('ricibasPlans')">
       Rīcības plāns
-      <button type="button" onclick="openFilterMenu(event,'ricibasPlans')">
-        ⌄
+      <button
+        type="button"
+        data-filter-key="ricibasPlans"
+        onclick="openFilterMenu(event,'ricibasPlans')"
+      >
+        ▾
       </button>
     </th>
 
   </tr>
 
 </thead>
-
 
 		<tbody id="crm-clients-body">
 		</tbody>
@@ -299,6 +346,8 @@
 
   let clientsCache = [];
   let bookingsCache = [];
+  let crmEventsCache = [];
+
 
 const CRM_COLUMNS = [
   {
@@ -416,24 +465,18 @@ function openFilterMenu(event, column) {
 }
 
 function renderFilterMenu(column) {
-
-  const menu =
-    document.getElementById("crm-filter-menu");
+  const menu = document.getElementById("crm-filter-menu");
 
   const values = [
     ...new Set(
       clientsCache.map(client => {
-
         if (
           column === "grow" ||
           column === "virsotne" ||
           column === "vertibas" ||
           column === "ricibasPlans"
         ) {
-
-          return client.methods?.[column]
-            ? "Jā"
-            : "Nē";
+          return client.methods?.[column] ? "Jā" : "Nē";
         }
 
         return String(client[column] || "");
@@ -441,25 +484,70 @@ function renderFilterMenu(column) {
     )
   ];
 
-  menu.innerHTML = values.map(value => {
+  menu.innerHTML = `
+    <div class="crm-filter-actions">
+      <button type="button" onclick="selectAllFilterValues('${column}')">
+        Visi
+      </button>
 
-    const checked =
-      activeFilters[column]?.includes(value)
-        ? "checked"
-        : "";
+      <button type="button" onclick="clearFilterValues('${column}')">
+        Neviens
+      </button>
+    </div>
 
-    return `
-      <label class="crm-filter-option">
-        <input
-          type="checkbox"
-          ${checked}
-          onchange="toggleFilter('${column}','${value}')"
-        >
-        ${value || "(tukšs)"}
-      </label>
-    `;
-  }).join("");
+    ${values.map(value => {
+      const checked =
+        activeFilters[column]?.includes(value)
+          ? "checked"
+          : "";
+
+      return `
+        <label class="crm-filter-option">
+          <input
+            type="checkbox"
+            ${checked}
+            onchange="toggleFilter('${column}','${value}')"
+          >
+          ${value || "(tukšs)"}
+        </label>
+      `;
+    }).join("")}
+  `;
 }
+
+function selectAllFilterValues(column) {
+  const values = [
+    ...new Set(
+      clientsCache.map(client => {
+        if (
+          column === "grow" ||
+          column === "virsotne" ||
+          column === "vertibas" ||
+          column === "ricibasPlans"
+        ) {
+          return client.methods?.[column] ? "Jā" : "Nē";
+        }
+
+        return String(client[column] || "");
+      })
+    )
+  ];
+
+delete activeFilters[column];
+
+  renderFilterMenu(column);
+  renderClientsTable(getFilteredClients());
+}
+
+function clearFilterValues(column) {
+  activeFilters[column] = [];
+
+  renderFilterMenu(column);
+  renderClientsTable(getFilteredClients());
+}
+
+
+
 
 document.addEventListener("click", (event) => {
 
@@ -523,6 +611,11 @@ document.addEventListener("click", (event) => {
     const clientBookings = bookingsCache
       .filter(booking => normalizeEmail(booking.email) === email)
       .sort((a, b) => getBookingDateTime(b) - getBookingDateTime(a));
+
+const clientEvents = crmEventsCache
+  .filter(event => normalizeEmail(event.email) === email)
+  .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
 
 document.querySelector(".crm-client-name").textContent =
       client.name || client.email || "Klients";
@@ -599,11 +692,56 @@ function getSessionNoteText(client, booking) {
       `;
     }).join("");
 
+const crmEventsHtml = clientEvents.map(event => {
+
+  let title = "CRM notikums";
+
+  if (event.type === "booking_created") {
+    title = "Rezervācija izveidota";
+  }
+
+  if (event.type === "booking_cancelled") {
+    title = "Rezervācija atcelta";
+  }
+
+if (event.type === "booking_deleted") {
+  title = "Rezervācija dzēsta adminā";
+}
+
+  return `
+    <article class="crm-feed-item crm-feed-note">
+
+      <div class="crm-feed-meta">
+        <span>
+          ${new Date(event.createdAt).toLocaleString("lv-LV")}
+        </span>
+
+        <strong>${title}</strong>
+      </div>
+
+      <p>
+        <b>Pakalpojums:</b>
+        ${event.service || "-"}
+      </p>
+
+      <p>
+        <b>Tēma:</b>
+        ${event.goal || "-"}
+      </p>
+
+    </article>
+  `;
+}).join("");
+
+
+
+
     feed.innerHTML = `
 
 
-	${notesHtml}
-	${timelineHtml || `
+${crmEventsHtml}
+${notesHtml}
+${timelineHtml || `
         <article class="crm-feed-item crm-feed-note">
           <div class="crm-feed-meta">
             <span>-</span>
@@ -625,6 +763,14 @@ function getSessionNoteText(client, booking) {
     openModal();
   }
 
+function updateFilterIndicators() {
+  document.querySelectorAll("th button[data-filter-key]").forEach(button => {
+    const key = button.dataset.filterKey;
+    const hasFilter = Object.prototype.hasOwnProperty.call(activeFilters, key);
+
+    button.classList.toggle("filter-active", hasFilter);
+  });
+}
 
 function renderClientsTable(clients) {
   const tbody = document.getElementById("crm-clients-body");
@@ -655,6 +801,7 @@ function renderClientsTable(clients) {
 
     tbody.appendChild(row);
   });
+updateFilterIndicators();
 }
 
 
@@ -684,7 +831,12 @@ function getFilteredClients() {
 
 Object.entries(activeFilters).forEach(([column, values]) => {
 
-  if (!values.length) return;
+  if (!Array.isArray(values)) return;
+
+  if (values.length === 0) {
+    filtered = [];
+    return;
+  }
 
   filtered = filtered.filter(client => {
 
@@ -773,15 +925,28 @@ function setSort(key) {
   async function loadClients() {
     try {
 
-const [clientsResponse, bookingsResponse, crmDataResponse] = await Promise.all([
+
+const [
+  clientsResponse,
+  bookingsResponse,
+  crmDataResponse,
+  crmEventsResponse
+] = await Promise.all([
   fetch("/kristina/crm/clients"),
   fetch("/kristina/bookings"),
-  fetch("/kristina/crm/client-data")
+  fetch("/kristina/crm/client-data"),
+  fetch("/kristina/crm/events")
 ]);
 
 clientsCache = await clientsResponse.json();
 bookingsCache = await bookingsResponse.json();
-const crmData = await crmDataResponse.json();
+
+const crmData =
+  await crmDataResponse.json();
+
+crmEventsCache =
+  await crmEventsResponse.json();
+
 
 const crmMap = {};
 
