@@ -275,7 +275,7 @@ body {
 
 .crm-modal-body {
   height: calc(100% - 60px);
-  overflow: auto;
+  overflow: hidden;
   padding: 12px;
   display: grid;
   grid-template-columns: 170px 1fr;
@@ -288,6 +288,7 @@ body {
   border-radius: 18px;
   border: 1px solid rgba(47,91,75,.08);
   padding: 4px;
+  overflow-y: auto;
 }
 
 .crm-client-form h3,
@@ -299,6 +300,15 @@ body {
   color: #9a8f78;
   font-weight: 400;
   text-align: center;
+}
+
+
+.crm-client-form {
+  max-height: 100%;
+}
+
+.crm-feed {
+  max-height: 100%;
 }
 
 
