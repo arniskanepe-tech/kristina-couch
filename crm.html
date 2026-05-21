@@ -27,7 +27,13 @@
 
         <div class="crm-actions">
           <a class="crm-back-link" href="admin.html">← Atpakaļ uz admin</a>
-          <button class="crm-btn crm-btn-primary" type="button">+ Pievienot klientu</button>
+<button
+  class="crm-btn crm-btn-primary"
+  type="button"
+  onclick="openNewClientForm()"
+>
+  + Pievienot klientu
+</button>
         </div>
       </div>
     </header>
@@ -287,6 +293,18 @@
     <input type="checkbox" id="method-ricibas-plans">
     Rīcības plāns
   </label>
+</div>
+
+<div class="crm-danger-zone">
+
+  <button
+    type="button"
+    class="crm-delete-client-btn"
+    onclick="deleteClientPrompt()"
+  >
+    Dzēst klientu pilnībā
+  </button>
+
 </div>
         </aside>
 
@@ -568,6 +586,62 @@ document.addEventListener("click", (event) => {
   function closeModal() {
     document.body.classList.remove("crm-modal-open");
   }
+
+
+window.openNewClientForm = function () {
+
+  document.querySelector(".crm-client-name").textContent =
+    "Jauns klients";
+
+  document.querySelector(".crm-modal-header p").textContent =
+    "";
+
+  const inputs =
+    document.querySelectorAll(
+      ".crm-client-form > label input"
+    );
+
+  inputs.forEach(input => {
+    input.value = "";
+  });
+
+  document.getElementById("important-info-1").value = "";
+  document.getElementById("important-info-2").value = "";
+
+  document.getElementById("method-grow").checked = false;
+  document.getElementById("method-virsotne").checked = false;
+  document.getElementById("method-vertibas").checked = false;
+  document.getElementById("method-ricibas-plans").checked = false;
+
+  window.currentClientEmail = null;
+
+  document.querySelector(".crm-feed").innerHTML = `
+
+    <article class="crm-feed-item crm-feed-note">
+
+      <div class="crm-feed-meta">
+        <span>-</span>
+        <strong>Jauns klients</strong>
+      </div>
+
+      <p>
+        Šim klientam vēl nav rezervāciju vai CRM vēstures.
+      </p>
+
+    </article>
+
+    <div class="crm-new-note">
+      <textarea
+        id="crm-free-note"
+        placeholder="Jauna brīvā piezīme..."
+      ></textarea>
+    </div>
+
+  `;
+
+  openModal();
+};
+
 
   closeButton.addEventListener("click", closeModal);
   backdrop.addEventListener("click", closeModal);
@@ -1069,6 +1143,46 @@ async function restoreCrmNote(eventId) {
 }
 
 
+window.deleteClientPrompt = async function () {
+  const email = normalizeEmail(
+    window.currentClientEmail
+  );
+  if (!email) {
+    alert("Klientam nav e-pasta");
+    return;
+  }
+  const confirmed = confirm(
+    "Vai tiešām dzēst klientu pilnībā?\n\nTiks dzēstas rezervācijas, CRM vēsture un Google Calendar ieraksti."
+  );
+  if (!confirmed) return;
+  const confirmText = prompt(
+    'Lai apstiprinātu dzēšanu, ieraksti: DZĒST'
+  );
+  if (confirmText !== "DZĒST") {
+    alert("Dzēšana atcelta");
+    return;
+  }
+  try {
+    const response = await fetch(
+      `/kristina/crm/client/${encodeURIComponent(email)}`,
+      {
+        method: "DELETE"
+      }
+    );
+    if (!response.ok) {
+      throw new Error("Delete failed");
+    }
+    closeModal();
+    await loadClients();
+    alert("Klients pilnībā dzēsts");
+  } catch (err) {
+    console.error(err);
+    alert("Neizdevās dzēst klientu");
+  }
+};
+
+
+
 function updateFilterIndicators() {
   document.querySelectorAll("th button[data-filter-key]").forEach(button => {
     const key = button.dataset.filterKey;
@@ -1266,11 +1380,34 @@ crmData.forEach(item => {
 
 clientsCache = clientsCache.map(client => {
   const email = normalizeEmail(client.email);
+  const savedClient = crmMap[email] || {};
 
   return {
     ...client,
-    ...(crmMap[email] || {})
+    ...savedClient,
+
+    bookingsCount: client.bookingsCount || 0,
+    lastBookingDate: client.lastBookingDate || "",
+    lastService: client.lastService || "",
+    status: client.status || savedClient.status || "active"
   };
+});
+
+
+crmData.forEach(item => {
+  const email = normalizeEmail(item.email);
+
+  const exists = clientsCache.some(
+    client => normalizeEmail(client.email) === email
+  );
+
+  if (email && !exists) {
+    clientsCache.push({
+      ...item,
+      bookingsCount: 0,
+      lastBookingDate: ""
+    });
+  }
 });
 
 renderClientsTable(clientsCache);
@@ -1313,6 +1450,18 @@ async function saveClientData() {
     const currentClient = clientsCache.find(
       c => normalizeEmail(c.email) === normalizeEmail(window.currentClientEmail)
     );
+
+const enteredEmail = normalizeEmail(inputs[2]?.value);
+
+if (
+  window.currentClientEmail &&
+  enteredEmail !== normalizeEmail(window.currentClientEmail)
+) {
+  alert("E-pastu esošam klientam nav iespējams labot, jo tas sasaista klienta rezervācijas un CRM vēsturi.");
+  inputs[2].value = window.currentClientEmail;
+  return;
+}
+
 
     const existingNotes = Array.isArray(currentClient?.notes)
       ? [...currentClient.notes]
