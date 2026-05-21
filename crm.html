@@ -576,192 +576,498 @@ document.addEventListener("click", (event) => {
     return String(email || "").trim().toLowerCase();
   }
 
-  function getBookingDateTime(booking) {
-    return new Date(`${booking.date}T${booking.time || "00:00"}:00`);
+function getBookingDateTime(booking) {
+  return new Date(`${booking.date}T${booking.time || "00:00"}:00`);
+}
+
+function formatTimelineDate(dateValue) {
+  if (!dateValue) return "-";
+
+  const date = new Date(dateValue);
+
+  if (Number.isNaN(date.getTime())) {
+    return String(dateValue);
   }
 
-  function getEventType(booking) {
-    if (booking.status === "cancelled") {
-      return {
-        className: "crm-feed-cancelled",
-        title: "Rezervācija atcelta"
-      };
-    }
+  return date.toLocaleString("lv-LV", {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit"
+  });
+}
 
-    const bookingDate = getBookingDateTime(booking);
-    const now = new Date();
-
-    if (bookingDate < now) {
-      return {
-        className: "crm-feed-session",
-        title: "Konsultācija notikusi"
-      };
-    }
-
+function getEventType(booking) {
+  if (booking.status === "cancelled") {
     return {
-      className: "crm-feed-booking",
-      title: "Rezervācija veikta"
+      className: "crm-feed-cancelled",
+      title: "Rezervācija atcelta"
     };
   }
 
-  function openClient(client) {
-    const email = normalizeEmail(client.email);
-    window.currentClientEmail = email;
+  const bookingDate = getBookingDateTime(booking);
+  const now = new Date();
 
-    const clientBookings = bookingsCache
-      .filter(booking => normalizeEmail(booking.email) === email)
-      .sort((a, b) => getBookingDateTime(b) - getBookingDateTime(a));
+  if (bookingDate < now) {
+    return {
+      className: "crm-feed-session",
+      title: "Konsultācija notikusi"
+    };
+  }
 
-const clientEvents = crmEventsCache
-  .filter(event => normalizeEmail(event.email) === email)
-  .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-
-
-document.querySelector(".crm-client-name").textContent =
-      client.name || client.email || "Klients";
-
-    document.querySelector(".crm-modal-header p").textContent =
-      `${client.email || ""} · ${client.phone || ""}`;
-
-    const inputs = document.querySelectorAll(".crm-client-form > label input");
-
-if (inputs[0]) inputs[0].value = client.name || "";
-if (inputs[1]) inputs[1].value = client.surname || "";
-if (inputs[2]) inputs[2].value = client.email || "";
-if (inputs[3]) inputs[3].value = client.phone || "";
-if (inputs[4]) inputs[4].value = client.occupation || "";
-if (inputs[5]) inputs[5].value = client.profession || "";
-document.getElementById("important-info-1").value =
-  client.importantInfo1 || "";
-
-document.getElementById("important-info-2").value =
-  client.importantInfo2 || "";
-
-    const feed = document.querySelector(".crm-feed");
-
-const notesHtml = Array.isArray(client.notes)
-  ? client.notes
-      .filter(note => note.type === "free")
-      .map(note => `
-        <article class="crm-feed-item crm-feed-note">
-          <div class="crm-feed-meta">
-            <span>${new Date(note.createdAt).toLocaleString("lv-LV")}</span>
-          </div>
-          <p>${note.text || ""}</p>
-        </article>
-      `).join("")
-  : "";
-
-   
-function getSessionNoteText(client, booking) {
-  const bookingId = booking.eventId || booking.cancelToken || `${booking.date}-${booking.time}`;
-
-  const note = Array.isArray(client.notes)
-    ? client.notes.find(
-        item =>
-          item.type === "session" &&
-          item.bookingId === bookingId
-      )
-    : null;
-
-  return note?.text || "";
+  return {
+    className: "crm-feed-booking",
+    title: "Rezervācija veikta"
+  };
 }
 
 
- const timelineHtml = clientBookings.map(booking => {
-      const type = getEventType(booking);
+function openClient(client) {
 
-      return `
+  const email = normalizeEmail(client.email);
+
+  window.currentClientEmail = email;
+
+  const clientBookings = bookingsCache
+    .filter(
+      booking => normalizeEmail(booking.email) === email
+    );
+
+  const clientEvents = crmEventsCache
+    .filter(
+      event => normalizeEmail(event.email) === email
+    )
+    .sort(
+      (a, b) =>
+        new Date(b.createdAt) - new Date(a.createdAt)
+    );
+
+  const hiddenEvents = clientEvents.filter(
+    event => event.hidden
+  );
+
+  document.querySelector(".crm-client-name").textContent =
+    client.name || client.email || "Klients";
+
+  document.querySelector(".crm-modal-header p").textContent =
+    `${client.email || ""} · ${client.phone || ""}`;
+
+  const inputs =
+    document.querySelectorAll(
+      ".crm-client-form > label input"
+    );
+
+  if (inputs[0]) inputs[0].value = client.name || "";
+  if (inputs[1]) inputs[1].value = client.surname || "";
+  if (inputs[2]) inputs[2].value = client.email || "";
+  if (inputs[3]) inputs[3].value = client.phone || "";
+  if (inputs[4]) inputs[4].value = client.occupation || "";
+  if (inputs[5]) inputs[5].value = client.profession || "";
+
+  document.getElementById("important-info-1").value =
+    client.importantInfo1 || "";
+
+  document.getElementById("important-info-2").value =
+    client.importantInfo2 || "";
+
+  const feed = document.querySelector(".crm-feed");
+
+  function getSessionNoteText(client, booking) {
+
+    const bookingId =
+      booking.eventId ||
+      booking.cancelToken ||
+      `${booking.date}-${booking.time}`;
+
+    const note = Array.isArray(client.notes)
+      ? client.notes.find(
+          item =>
+            item.type === "session" &&
+            item.bookingId === bookingId
+        )
+      : null;
+
+    return note?.text || "";
+  }
+
+  function getCrmEventTitle(event) {
+
+    if (event.type === "note") {
+      return "Brīvā piezīme";
+    }
+
+    if (event.type === "booking_created") {
+      return "Rezervācija izveidota";
+    }
+
+    if (event.type === "booking_cancelled") {
+      return "Rezervācija atcelta";
+    }
+
+    if (event.type === "booking_deleted") {
+      return "Rezervācija dzēsta adminā";
+    }
+
+    return "CRM notikums";
+  }
+
+  let timelineItems = [];
+
+  clientEvents
+    .filter(event =>
+      showHiddenNotes
+        ? true
+        : !event.hidden
+    )
+    .forEach(event => {
+
+      const isNote = event.type === "note";
+      const isHidden = event.hidden === true;
+
+      timelineItems.push({
+        kind: "crm-event",
+        date: event.createdAt,
+
+        html: `
+          <article class="crm-feed-item crm-feed-note">
+
+            <div class="crm-feed-meta">
+              <span>
+                ${formatTimelineDate(event.createdAt)}
+              </span>
+
+              <strong>
+                ${getCrmEventTitle(event)}
+              </strong>
+            </div>
+
+            ${
+              isNote
+                ? `
+                  <div
+                    class="crm-note-view"
+                    data-event-id="${event.id}"
+                  >
+
+                    <p>${event.text || ""}</p>
+
+                    <div class="crm-note-actions">
+
+                      <button
+                        type="button"
+                        class="crm-note-edit-btn"
+                        onclick="editCrmNote('${event.id}')"
+                      >
+                        Rediģēt
+                      </button>
+
+                      <button
+                        type="button"
+                        class="crm-note-hide-btn"
+                        onclick="${
+                          isHidden
+                            ? `restoreCrmNote('${event.id}')`
+                            : `hideCrmNote('${event.id}')`
+                        }"
+                      >
+                        ${
+                          isHidden
+                            ? "Atjaunot"
+                            : "Paslēpt"
+                        }
+                      </button>
+
+                    </div>
+
+                  </div>
+                `
+                : `
+                  <p>
+                    <b>Pakalpojums:</b>
+                    ${event.service || "-"}
+                  </p>
+
+                  <p>
+                    <b>Tēma:</b>
+                    ${event.goal || "-"}
+                  </p>
+                `
+            }
+
+          </article>
+        `
+      });
+
+    });
+
+  clientBookings.forEach(booking => {
+
+    const type = getEventType(booking);
+
+    timelineItems.push({
+
+      kind: "booking",
+
+      date: `${booking.date}T${booking.time || "00:00"}`,
+
+      html: `
         <article class="crm-feed-item ${type.className}">
+
           <div class="crm-feed-meta">
-            <span>${booking.date} ${booking.time || ""}</span>
+
+            <span>
+              ${formatTimelineDate(
+                `${booking.date}T${booking.time || "00:00"}`
+              )}
+            </span>
+
             <strong>${type.title}</strong>
+
           </div>
 
-          <p><b>Pakalpojums:</b> ${booking.service || "-"}</p>
-          <p><b>Tēma:</b> ${booking.goal || "-"}</p>
+          <p>
+            <b>Pakalpojums:</b>
+            ${booking.service || "-"}
+          </p>
 
-<textarea
-  data-booking-id="${booking.eventId || booking.cancelToken || `${booking.date}-${booking.time}`}"
-  class="session-note-textarea"
-  placeholder="Piezīme pie šīs konsultācijas..."
->${getSessionNoteText(client, booking)}</textarea>
+          <p>
+            <b>Tēma:</b>
+            ${booking.goal || "-"}
+          </p>
 
+          <textarea
+            data-booking-id="${
+              booking.eventId ||
+              booking.cancelToken ||
+              `${booking.date}-${booking.time}`
+            }"
+            class="session-note-textarea"
+            placeholder="Piezīme pie šīs konsultācijas..."
+          >${getSessionNoteText(client, booking)}</textarea>
 
         </article>
-      `;
-    }).join("");
+      `
+    });
 
-const crmEventsHtml = clientEvents.map(event => {
+  });
 
-  let title = "CRM notikums";
+  timelineItems.sort((a, b) => {
+    return new Date(b.date) - new Date(a.date);
+  });
 
-  if (event.type === "booking_created") {
-    title = "Rezervācija izveidota";
-  }
+  const timelineHtml = timelineItems.length
+    ? timelineItems.map(item => item.html).join("")
+    : `
+      <article class="crm-feed-item crm-feed-note">
 
-  if (event.type === "booking_cancelled") {
-    title = "Rezervācija atcelta";
-  }
+        <div class="crm-feed-meta">
+          <span>-</span>
+          <strong>Nav ierakstu</strong>
+        </div>
 
-if (event.type === "booking_deleted") {
-  title = "Rezervācija dzēsta adminā";
-}
+        <p>
+          Šim klientam vēl nav CRM vēstures.
+        </p>
 
-  return `
-    <article class="crm-feed-item crm-feed-note">
-
-      <div class="crm-feed-meta">
-        <span>
-          ${new Date(event.createdAt).toLocaleString("lv-LV")}
-        </span>
-
-        <strong>${title}</strong>
-      </div>
-
-      <p>
-        <b>Pakalpojums:</b>
-        ${event.service || "-"}
-      </p>
-
-      <p>
-        <b>Tēma:</b>
-        ${event.goal || "-"}
-      </p>
-
-    </article>
-  `;
-}).join("");
-
-
-
-
-    feed.innerHTML = `
-
-
-${crmEventsHtml}
-${notesHtml}
-${timelineHtml || `
-        <article class="crm-feed-item crm-feed-note">
-          <div class="crm-feed-meta">
-            <span>-</span>
-            <strong>Nav rezervāciju</strong>
-          </div>
-          <p>Šim klientam vēl nav rezervāciju vēstures.</p>
-        </article>
-      `}
-
-<div class="crm-new-note">
-  <textarea
-    id="crm-free-note"
-    placeholder="Jauna brīvā piezīme..."
-  ></textarea>
-</div>
-
+      </article>
     `;
 
-    openModal();
+  feed.innerHTML = `
+
+    ${hiddenEvents.length > 0 ? `
+      <div class="crm-hidden-notes-bar">
+
+        <button
+          type="button"
+          class="crm-show-hidden-btn"
+          onclick="toggleHiddenNotes()"
+        >
+          Rādīt paslēptās (${hiddenEvents.length})
+        </button>
+
+      </div>
+    ` : ""}
+
+    ${timelineHtml}
+
+    <div class="crm-new-note">
+      <textarea
+        id="crm-free-note"
+        placeholder="Jauna brīvā piezīme..."
+      ></textarea>
+    </div>
+
+  `;
+
+  openModal();
+}
+
+let showHiddenNotes = false;
+
+function toggleHiddenNotes() {
+
+  showHiddenNotes = !showHiddenNotes;
+
+  const updatedClient = clientsCache.find(
+    client =>
+      normalizeEmail(client.email) ===
+      normalizeEmail(window.currentClientEmail)
+  );
+
+  if (updatedClient) {
+    openClient(updatedClient);
   }
+}
+
+async function editCrmNote(eventId) {
+
+  const wrapper = document.querySelector(
+    `.crm-note-view[data-event-id="${eventId}"]`
+  );
+
+  if (!wrapper) return;
+
+  const textElement = wrapper.querySelector("p");
+
+  const currentText =
+    textElement?.textContent || "";
+
+  wrapper.innerHTML = `
+
+    <textarea
+      class="crm-note-inline-textarea"
+    >${currentText}</textarea>
+
+    <button
+      type="button"
+      class="crm-note-save-btn"
+      onclick="saveCrmNote('${eventId}')"
+    >
+      Saglabāt
+    </button>
+
+  `;
+}
+
+async function saveCrmNote(eventId) {
+
+  const wrapper = document.querySelector(
+    `.crm-note-view[data-event-id="${eventId}"]`
+  );
+
+  if (!wrapper) return;
+
+  const textarea =
+    wrapper.querySelector("textarea");
+
+  const text =
+    textarea?.value?.trim() || "";
+
+  const response = await fetch(
+    `/kristina/crm/events/${eventId}`,
+    {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        text
+      })
+    }
+  );
+
+  if (!response.ok) {
+    alert("Neizdevās saglabāt piezīmi");
+    return;
+  }
+
+  await loadClients();
+
+  const updatedClient = clientsCache.find(
+    client =>
+      normalizeEmail(client.email) ===
+      normalizeEmail(window.currentClientEmail)
+  );
+
+  if (updatedClient) {
+    openClient(updatedClient);
+  }
+}
+
+async function hideCrmNote(eventId) {
+
+  const confirmed = confirm(
+    "Vai tiešām paslēpt šo piezīmi?"
+  );
+
+  if (!confirmed) return;
+
+  const response = await fetch(
+    `/kristina/crm/events/${eventId}`,
+    {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        hidden: true
+      })
+    }
+  );
+
+  if (!response.ok) {
+    alert("Neizdevās paslēpt piezīmi");
+    return;
+  }
+
+  await loadClients();
+
+  const updatedClient = clientsCache.find(
+    client =>
+      normalizeEmail(client.email) ===
+      normalizeEmail(window.currentClientEmail)
+  );
+
+  if (updatedClient) {
+    openClient(updatedClient);
+  }
+}
+
+async function restoreCrmNote(eventId) {
+
+  const response = await fetch(
+    `/kristina/crm/events/${eventId}`,
+    {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        hidden: false
+      })
+    }
+  );
+
+  if (!response.ok) {
+    alert("Neizdevās atjaunot piezīmi");
+    return;
+  }
+
+  await loadClients();
+
+  const updatedClient = clientsCache.find(
+    client =>
+      normalizeEmail(client.email) ===
+      normalizeEmail(window.currentClientEmail)
+  );
+
+  if (updatedClient) {
+    openClient(updatedClient);
+  }
+}
+
 
 function updateFilterIndicators() {
   document.querySelectorAll("th button[data-filter-key]").forEach(button => {
