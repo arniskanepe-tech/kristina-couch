@@ -546,7 +546,7 @@ h3 {
   z-index: 1;
   pointer-events: none;
 
-  background:
+  /*background:
     linear-gradient(
       90deg,
       rgba(249, 244, 238, 0.96) 0%,
@@ -559,7 +559,17 @@ h3 {
       rgba(249, 244, 238, 0.02) 100%
     );
 
-  backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);*/
+
+background:
+    linear-gradient(
+      90deg,
+      rgba(249, 244, 238, 0.96) 0%,
+      rgba(249, 244, 238, 0.88) 24%,
+      rgba(249, 244, 238, 0.42) 46%,
+      rgba(249, 244, 238, 0) 54%
+    );
+  backdrop-filter: blur(1px);
 }
 
 .journey-overlay-grid {
@@ -594,12 +604,12 @@ h3 {
   background:
     radial-gradient(
       circle at 35% 40%,
-      rgba(255,255,255,0.48) 0%,
-      rgba(255,255,255,0.18) 38%,
+      rgba(255,255,255,0.32) 0%,
+      rgba(255,255,255,0.12) 38%,
       rgba(255,255,255,0.06) 62%,
       rgba(255,255,255,0.00) 100%
     );
-  filter: blur(16px);
+  filter: blur(6px);
 }
 
 .journey-right > * {
@@ -610,6 +620,11 @@ h3 {
 .journey-col h2 {
   margin: 0 0 22px;
   font-size: 28px;
+}
+
+.journey-right h2 {
+  color: #faf7f2;
+  text-shadow: 0 2px 6px rgba(0,0,0,.28);
 }
 
 .check-list,
@@ -660,13 +675,17 @@ h3 {
   grid-template-columns: 48px 1fr;
   align-items: center;
   gap: 14px;
-  color: #27413b;
+  /*color: #27413b;*/
+  color: #faf7f2;
   font-size: 1rem;
   line-height: 1.45;
-  text-shadow:
+  /* text-shadow: none;*/
+  text-shadow: 0 1px 4px rgba(0,0,0,0.32);
+  /*text-shadow:
     0 0 10px rgba(255,255,255,0.95),
     0 0 18px rgba(255,255,255,0.82),
     0 1px 2px rgba(255,255,255,0.65);
+  */
 }
 
 .feature-icon {
@@ -2144,6 +2163,10 @@ h3 {
     align-self: start;
   }
 
+.hero-bg img {
+  object-position: 70% 27%;
+}
+
   h1 {
     font-size: clamp(3rem, 13vw, 4.1rem);
   }
@@ -2202,13 +2225,14 @@ h3 {
   }
 
   .hero-copy-overlay h1 {
-    font-size: clamp(2.7rem, 12vw, 3.8rem);
-    margin-bottom: 18px;
+    font-size: clamp(2.25rem, 9vw, 2.9rem);
+    line-height: 1.08;
+    margin-bottom: 14px;
   }
 
   .hero-lead {
-    font-size: 0.98rem;
-    max-width: 26ch;
+    font-size: 0.92rem;
+    max-width: 24ch;
   }
 
   .benefit-cards {
