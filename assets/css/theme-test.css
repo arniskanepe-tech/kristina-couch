@@ -1,0 +1,173 @@
+/* ==========================================================
+   KRISTĪNA THEME TEST
+   ========================================================== */
+
+:root {
+
+  /* Galvenais fons */
+  --bg: #f8f5f2;
+
+  /* Kartītes */
+  --paper: #ffffff;
+  --paper-2: #fcfaf8;
+
+  /* Teksts */
+  --ink: #2f3833;
+  --muted: #66746d;
+
+  /* Akcenti */
+  --green: #4b7564;
+  --green-2: #608979;
+  --deep-green: #27463c;
+
+  /* Līnijas */
+  --line: rgba(75,117,100,.08);
+
+  /* Ēnas */
+  --shadow:
+      0 18px 50px rgba(20,35,28,.07);
+
+  --shadow-soft:
+      0 8px 24px rgba(20,35,28,.05);
+
+  /* Radiusi */
+  --radius-xl: 36px;
+  --radius-lg: 28px;
+  --radius-md: 20px;
+
+}
+
+/* ==========================================================
+   GLOBĀLĀS VIRSMAS
+   ========================================================== */
+
+body {
+    background: #f8f6f3;
+}
+
+.hero-card,
+.intro-copy,
+.journey-wide-card,
+.about-band .container,
+.timeline-band .container,
+.consult-cards-band .container,
+.consult-hero .container,
+.consult-section .container,
+.consult-section-alt .container,
+.page-hero-box,
+.simple-card,
+.contact-box,
+.consult-card,
+.consult-option-card {
+    background: #ffffff;
+}
+
+.simple-card,
+.contact-box,
+.consult-card,
+.consult-option-card,
+.benefit-card {
+    border-radius: 28px;
+    box-shadow: 0 18px 40px rgba(24, 36, 31, .06);
+    border: 1px solid rgba(47,91,75,.06);
+}
+
+/* ==========================================================
+   GALVENE
+   ========================================================== */
+
+.site-header {
+  background: rgba(255, 255, 255, 0.88);
+  border-bottom: 1px solid rgba(75, 117, 100, 0.08);
+  box-shadow: 0 8px 30px rgba(24, 36, 31, 0.035);
+  backdrop-filter: blur(18px);
+}
+
+.header-inner {
+  min-height: 88px;
+}
+
+.main-nav {
+  gap: 32px;
+}
+
+.main-nav a {
+  color: #53625b;
+  font-size: 0.96rem;
+  font-weight: 500;
+}
+
+.main-nav a.active,
+.main-nav a:hover {
+  color: var(--green);
+}
+
+.main-nav a.active::after,
+.main-nav a:hover::after {
+  bottom: -10px;
+  height: 1px;
+}
+
+.header-social {
+  background: rgba(75, 117, 100, 0.08);
+  border: 1px solid rgba(75, 117, 100, 0.06);
+}
+
+.header-social:hover {
+  background: rgba(75, 117, 100, 0.14);
+}
+
+/* ==========================================================
+   VAIRĀK GAISA
+   ========================================================== */
+
+/* Noņemam "kastes" sajūtu no lielajiem blokiem */
+
+.intro-band .container,
+.journey-band .container,
+.timeline-band .container,
+.about-band .container,
+.consult-cards-band .container,
+.consult-hero .container,
+.consult-section .container,
+.consult-section-alt .container {
+    background: transparent;
+}
+
+/* Atstājam saturu uz paša lapas fona */
+
+.intro-copy,
+.page-hero-box,
+.consult-hero-box,
+.consult-section-head {
+    background: transparent;
+    box-shadow: none;
+    border: none;
+}
+
+/* Mazliet vairāk gaisa starp sekcijām */
+
+.band {
+    padding-top: 36px;
+    padding-bottom: 36px;
+}
+
+/* ==========================================================
+   SEKCIJU RITMS
+   ========================================================== */
+
+.about-band {
+    background: #f4f1ec;
+}
+
+.timeline-band {
+    background: #fbfaf8;
+}
+
+.journey-band {
+    background: #f5f3ef;
+}
+
+.consult-cards-band {
+    background: #fbfaf8;
+}

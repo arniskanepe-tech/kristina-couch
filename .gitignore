@@ -1,0 +1,4 @@
+*.save
+*.bak
+*~
+.DS_Store

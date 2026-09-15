@@ -243,6 +243,38 @@ h3 {
 .nav-toggle span::before { top: -6px; }
 .nav-toggle span::after { top: 6px; }
 
+.nav-toggle span,
+.nav-toggle span::before,
+.nav-toggle span::after {
+  transition: .25s ease;
+}
+
+.nav-toggle.open span {
+  background: transparent;
+}
+
+.nav-toggle.open span::before {
+  top: 0;
+  transform: rotate(45deg);
+}
+
+.nav-toggle.open span::after {
+  top: 0;
+  transform: rotate(-45deg);
+}
+
+.nav-overlay {
+  display: none;
+}
+
+.nav-overlay.open {
+  display: block;
+  position: fixed;
+  inset: 0;
+  background: rgba(24, 52, 45, .22);
+  z-index: 40;
+}
+
 /* ---------- Shared block behavior ---------- */
 
 .band {
@@ -1430,6 +1462,338 @@ background:
 .consult-option-btn {
   width: 100%;
   justify-content: center;
+}
+
+
+/* ---------- Koučinga ievada attēls ---------- */
+
+.coaching-hero-image {
+  padding: 0;
+  overflow: hidden;
+  height:620px;
+}
+
+.coaching-hero-image img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center 20%;
+}
+
+/* Teksts tikai koučinga ievada blokā */
+.intro-grid .lead,
+.intro-grid .about-paragraph {
+  text-align: justify;
+}
+
+.intro-grid .lead {
+  max-width: none;
+}
+
+/* ---------- Koučinga process ---------- */
+
+.koucings-process-band {
+  padding: 0;
+}
+
+.koucings-process-card {
+  position: relative;
+  background: #fbf8f4;
+  border: 1px solid rgba(47, 91, 75, 0.08);
+  border-radius: 0;
+  padding: 28px 24px 24px;
+  overflow: hidden;
+}
+
+.koucings-process-head {
+  max-width: 760px;
+  margin-bottom: 22px;
+}
+
+.koucings-process-head h2 {
+  margin-bottom: 12px;
+}
+
+.koucings-process-head .lead {
+  margin: 0;
+  max-width: 58ch;
+}
+
+.koucings-process-flow {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 18px;
+  align-items: start;
+  margin-top: 8px;
+  margin-bottom: 24px;
+}
+
+.process-step {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.process-icon-wrap {
+  width: 164px;
+  height: 164px;
+  display: grid;
+  place-items: center;
+  position: relative;
+  z-index: 3;
+  margin-bottom: -70px;
+}
+
+.process-icon {
+  width: 100%;
+  height: auto;
+  display: block;
+  transform: translateY(-6px);
+}
+
+.process-text-card {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  min-height: 290px;
+  padding: 112px 22px 26px;
+  border-radius: 26px;
+  background: rgba(255,255,255,0.75);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(47, 91, 75, 0.05);
+  box-shadow: 0 14px 28px rgba(32, 47, 41, 0.05);
+  text-align: center;
+}
+
+.process-text-card h3 {
+  margin: 0;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 2.1rem;
+  line-height: 0.95;
+  color: var(--green);
+}
+
+.process-divider {
+  display: block;
+  width: 58px;
+  height: 2px;
+  margin: 12px auto 18px;
+  background: #ccb07c;
+  border-radius: 999px;
+}
+
+.process-text-card p {
+  margin: 0;
+  font-size: 0.96rem;
+  line-height: 1.55;
+  color: #394944;
+}
+
+.koucings-process-benefits {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  flex-wrap: wrap;
+  padding: 18px 20px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.92);
+  border: 1px solid rgba(47, 91, 75, 0.06);
+}
+
+.process-benefit-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--green);
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.process-benefit-icon {
+  display: inline-grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  color: #caa96f;
+  font-size: 1.35rem;
+  line-height: 1;
+}
+
+.process-benefit-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #caa96f;
+  opacity: 0.7;
+}
+
+@media (max-width: 1200px) {
+  .koucings-process-flow {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .process-text-card {
+    min-height: 250px;
+  }
+}
+
+@media (max-width: 860px) {
+  .koucings-process-card {
+    padding: 24px 18px 20px;
+  }
+
+  .koucings-process-flow {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+
+  .process-step {
+    max-width: 420px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .process-icon-wrap {
+    width: 150px;
+    height: 150px;
+    margin-bottom: -62px;
+  }
+
+  .process-text-card {
+    min-height: auto;
+    padding: 92px 20px 22px;
+  }
+
+  .process-text-card h3 {
+    font-size: 1.9rem;
+  }
+
+  .koucings-process-benefits {
+    border-radius: 26px;
+    justify-content: flex-start;
+  }
+
+  .process-benefit-dot {
+    display: none;
+  }
+}
+/* ---------- Koučings - grow ---------- */
+
+
+.grow-band {
+  padding: 0;
+}
+
+.grow-card {
+  background: #f7f4ef;
+  border-radius: 0;
+  padding: 40px;
+  border: 1px solid rgba(47, 91, 75, 0.08);
+}
+
+.grow-head {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.grow-head h2 {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 36px;
+  color: #2f4f3e;
+  margin-bottom: 10px;
+}
+
+.grow-head .lead {
+  max-width: 600px;
+  margin: 0 auto;
+  color: #5f6f65;
+}
+
+.grow-visual {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.grow-step {
+  flex: 1;
+  min-width: 180px;
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 20px 22px 22px;
+  text-align: left;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+}
+
+.grow-step-icon {
+  display: flex;
+  align-items: center;
+  min-height: 74px;
+  margin-bottom: 10px;
+}
+
+.grow-step-icon img {
+  width: 70px;
+  height: auto;
+  display: block;
+}
+
+.grow-step-text {
+  margin-top: -64px;
+  padding-left: 92px;
+  min-height: 64px;
+}
+
+.grow-step-text h3 {
+  margin: 0 0 8px;
+  font-size: 18px;
+  color: #2f4f3e;
+  line-height: 1.2;
+}
+
+.grow-step-text p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.4;
+  color: #5f6f65;
+}
+
+.grow-arrow {
+  font-size: 24px;
+  color: #8aa090;
+}
+
+.grow-summary {
+  margin-top: 30px;
+  text-align: center;
+  font-style: italic;
+  color: #5f6f65;
+}
+
+@media (max-width: 768px) {
+  .grow-visual {
+    flex-direction: column;
+  }
+
+  .grow-arrow {
+    transform: rotate(90deg);
+  }
+
+  .grow-step {
+    width: 100%;
+  }
+
+  .grow-step-text {
+    margin-top: -58px;
+    padding-left: 88px;
+  }
 }
 
 /* ---------- Booking modal integration ---------- */
