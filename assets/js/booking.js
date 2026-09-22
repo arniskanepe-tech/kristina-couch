@@ -334,10 +334,16 @@ if (window.innerWidth < 768) {
 
 <div class="form-field">
   <textarea id="booking-client-goal" placeholder="Sarunas mērķis"></textarea>
+  <div class="booking-field-note">
+    Lūdzu, nenorādi sensitīvu vai īpaši personisku informāciju. Pietiek ar īsu sarunas tēmas aprakstu.
+  </div>
   <div class="form-error" id="error-goal"></div>
 </div>
 
-
+<div class="booking-privacy-note">
+  Veicot rezervāciju, Tavi dati tiks apstrādāti rezervācijas nodrošināšanai saskaņā ar
+  <a href="privatuma-politika.html" target="_blank" rel="noopener">Privātuma politiku</a>.
+</div>
 
           <button type="button" class="booking-primary-btn" id="booking-submit-btn">
             Apstiprināt rezervāciju

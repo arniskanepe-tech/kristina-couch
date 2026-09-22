@@ -1950,6 +1950,26 @@ background:
   flex-direction: column;
   gap: 3px;
 }
+.booking-field-note {
+  margin: 2px 4px 3px;
+  font-size: 0.72rem;
+  line-height: 1.35;
+  color: var(--text-light);
+}
+
+.booking-privacy-note {
+  margin: 4px 4px 6px;
+  font-size: 0.72rem;
+  line-height: 1.4;
+  color: var(--text-soft);
+}
+
+.booking-privacy-note a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
 .form-error {
   min-height: 12px;
   margin-top: 1px;
