@@ -34,10 +34,28 @@ document.addEventListener("DOMContentLoaded", () => {
     gtag("config", GA_MEASUREMENT_ID);
   }
 
+  function clearGoogleAnalyticsCookies() {
+    const cookieNames = [
+      "_ga",
+      "_ga_" + GA_MEASUREMENT_ID.replace("G-", "")
+    ];
+
+    cookieNames.forEach((name) => {
+      document.cookie =
+        name + "=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/; domain=izaugsmei.lv";
+      document.cookie =
+        name + "=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/; domain=.izaugsmei.lv";
+      document.cookie =
+        name + "=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/";
+    });
+  }
+
   const savedConsent = localStorage.getItem(CONSENT_KEY);
 
   if (savedConsent === "accepted") {
     loadGoogleAnalytics();
+  } else if (savedConsent === "rejected") {
+    clearGoogleAnalyticsCookies();
   }
 
   if (!banner || !acceptButton || !rejectButton) {
@@ -59,11 +77,14 @@ document.addEventListener("DOMContentLoaded", () => {
       localStorage.getItem(CONSENT_KEY) === "accepted";
 
     localStorage.setItem(CONSENT_KEY, "rejected");
-    banner.hidden = true;
 
     if (wasAccepted) {
       location.reload();
+      return;
     }
+
+    clearGoogleAnalyticsCookies();
+    banner.hidden = true;
   });
 
   settingsButtons.forEach((button) => {
